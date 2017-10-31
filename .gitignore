@@ -1,4 +1,4 @@
 *.class
-/target/
-/.settings/
+target/
+.settings/
 .project
