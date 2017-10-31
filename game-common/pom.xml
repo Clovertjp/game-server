@@ -22,5 +22,10 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>com.game</groupId>
+    	<artifactId>game-agent</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
   </dependencies>
 </project>
