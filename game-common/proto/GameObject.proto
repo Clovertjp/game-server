@@ -1,0 +1,20 @@
+syntax="proto3"; 
+
+option java_package = "com.game.common.pb.object";
+option java_outer_classname = "GameObject";
+
+message GamePbObject{
+	string cmd = 1 ;
+	map<string,int32> intValues = 2 ;
+	map<string,string> stringValues = 3 ;
+	map<string,double> doubleValues = 4 ;
+	map<string,float> floatValues = 5 ;
+	map<string,bool> boolValues = 6 ;
+	map<string,int64> longValues = 7 ;
+	map<string,GamePbArray> pbArrayValues = 8 ;
+
+}
+
+message GamePbArray{
+	repeated GamePbObject objArray = 1 ;
+}
