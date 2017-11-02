@@ -1,9 +1,12 @@
 package com.game.common.server.coder;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.List;
 
 import org.xerial.snappy.Snappy;
+
+import com.game.common.pb.object.GameObject;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -36,7 +39,9 @@ public class GameServerDecoder extends ByteToMessageDecoder {
         byte[] body = new byte[dataLength];
         paramByteBuf.readBytes(body); 
         body = uncompress(body);
-        paramList.add(body);
+        GameObject.GamePbObject pbObj=GameObject.GamePbObject.parseFrom(body);
+        paramList.add(pbObj);
+        
 	}
 	
 	//对数据进行解压
