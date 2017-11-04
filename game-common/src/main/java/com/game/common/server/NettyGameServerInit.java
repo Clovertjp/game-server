@@ -2,6 +2,7 @@ package com.game.common.server;
 
 import com.game.common.server.coder.GameServerDecoder;
 import com.game.common.server.coder.GameServerEncoder;
+import com.game.common.server.handler.GameServerHandler;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
@@ -20,6 +21,8 @@ public class NettyGameServerInit extends ChannelInitializer<SocketChannel> {
 		
 		// 都属于ChannelIntboundHandler，按照顺序执行
 		ch.pipeline().addLast("decoder",new GameServerDecoder());
+		
+		ch.pipeline().addLast("handler",new GameServerHandler());
 		
 	}
 

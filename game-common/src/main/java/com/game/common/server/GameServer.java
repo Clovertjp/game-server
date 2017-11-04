@@ -21,9 +21,9 @@ public abstract class GameServer implements IGameServer {
 		this.serverName=serverName;
 	}
 	
-	public abstract void initServer() throws GameException;
-	public abstract void startServer() throws GameException;
-	public abstract void stopServer() throws GameException;
+	protected abstract void initServer() throws GameException;
+	protected abstract void startServer() throws GameException;
+	protected abstract void stopServer() throws GameException;
 
 	@Override
 	public void init() throws GameException {

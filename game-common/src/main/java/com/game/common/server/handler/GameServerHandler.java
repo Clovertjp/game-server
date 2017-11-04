@@ -28,6 +28,7 @@ public class GameServerHandler extends SimpleChannelInboundHandler<GameObject.Ga
 		if(session==null){
 			throw new GameException("session is null");
 		}
+		session.updateReadTime();
 		
 	}
 	
