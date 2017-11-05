@@ -2,6 +2,10 @@ package com.game.common.server.session;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.game.common.pb.object.GameObject;
+import com.game.common.server.queue.MessageQueue;
+import com.game.common.server.queue.MessageQueueFactory;
+
 import io.netty.channel.Channel;
 
 /**
@@ -14,6 +18,7 @@ public class GameSession {
 	private long createTime;
 	private long readTime;
 	private Channel channel;
+	private MessageQueue messageQueue;
 	
 	public GameSession(Channel channel) {
 		// TODO Auto-generated constructor stub
@@ -21,6 +26,11 @@ public class GameSession {
 		createTime=System.currentTimeMillis();
 		readTime=createTime;
 		this.channel=channel;
+		messageQueue=MessageQueueFactory.getMessageQueue(MessageQueueFactory.MessageQueueType.multiType);
+	}
+	
+	public void addMessage(GameObject.GamePbObject msg){
+		messageQueue.addQueue(msg);
 	}
 
 	public int getId() {

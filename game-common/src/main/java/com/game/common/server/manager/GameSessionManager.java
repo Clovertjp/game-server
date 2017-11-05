@@ -25,12 +25,12 @@ public class GameSessionManager {
 		sessionMap.put(session.getChannel(), session);
 	}
 	
-	public void removeSession(GameSession session){
-		sessionMap.remove(session.getChannel());
+	public GameSession removeSession(GameSession session){
+		return sessionMap.remove(session.getChannel());
 	}
 	
-	public void removeSession(Channel channel){
-		sessionMap.remove(channel);
+	public GameSession removeSession(Channel channel){
+		return sessionMap.remove(channel);
 	}
 	
 	public GameSession getSession(Channel channel){

@@ -29,7 +29,8 @@ public class GameServerHandler extends SimpleChannelInboundHandler<GameObject.Ga
 			throw new GameException("session is null");
 		}
 		session.updateReadTime();
-		
+		session.addMessage(msg);
+		logger.info("session create id"+session.getId()+"  add message");
 	}
 	
 	@Override
@@ -43,6 +44,13 @@ public class GameServerHandler extends SimpleChannelInboundHandler<GameObject.Ga
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
+		GameSession session=GameSessionManager.getInstance().removeSession(ctx.channel());
+		if(session!=null){
+			logger.info("session destory id"+session.getId()+"   ip:"+ctx.channel().remoteAddress());
+		}else{
+			logger.info("session is null d,estory ip:"+ctx.channel().remoteAddress());
+		}
+		
 	}
 	
 	@Override
