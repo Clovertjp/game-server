@@ -48,7 +48,7 @@ public class GameServerHandler extends SimpleChannelInboundHandler<GameObject.Ga
 		if(session!=null){
 			logger.info("session destory id"+session.getId()+"   ip:"+ctx.channel().remoteAddress());
 		}else{
-			logger.info("session is null d,estory ip:"+ctx.channel().remoteAddress());
+			logger.info("session is null ,destory ip:"+ctx.channel().remoteAddress());
 		}
 		
 	}
@@ -56,6 +56,13 @@ public class GameServerHandler extends SimpleChannelInboundHandler<GameObject.Ga
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		// TODO Auto-generated method stub
+		GameSession session=GameSessionManager.getInstance().removeSession(ctx.channel());
+		if(session!=null){
+			logger.info("session destory id"+session.getId()+"   ip:"+ctx.channel().remoteAddress(),cause);
+		}else{
+			logger.info("session is null ,destory ip:"+ctx.channel().remoteAddress(),cause);
+		}
+		ctx.close();
 	}
 
 }

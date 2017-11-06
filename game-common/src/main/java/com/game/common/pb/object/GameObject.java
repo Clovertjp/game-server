@@ -29,11 +29,21 @@ public final class GameObject {
         getCmdBytes();
 
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>string uid = 2;</code>
+     */
+    java.lang.String getUid();
+    /**
+     * <code>string uid = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getUidBytes();
+
+    /**
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
     int getIntValuesCount();
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
     boolean containsIntValues(
         java.lang.String key);
@@ -44,30 +54,30 @@ public final class GameObject {
     java.util.Map<java.lang.String, java.lang.Integer>
     getIntValues();
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
     java.util.Map<java.lang.String, java.lang.Integer>
     getIntValuesMap();
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
 
     int getIntValuesOrDefault(
         java.lang.String key,
         int defaultValue);
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
 
     int getIntValuesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
     int getStringValuesCount();
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
     boolean containsStringValues(
         java.lang.String key);
@@ -78,30 +88,30 @@ public final class GameObject {
     java.util.Map<java.lang.String, java.lang.String>
     getStringValues();
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
     java.util.Map<java.lang.String, java.lang.String>
     getStringValuesMap();
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
 
     java.lang.String getStringValuesOrDefault(
         java.lang.String key,
         java.lang.String defaultValue);
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
 
     java.lang.String getStringValuesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
     int getDoubleValuesCount();
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
     boolean containsDoubleValues(
         java.lang.String key);
@@ -112,30 +122,30 @@ public final class GameObject {
     java.util.Map<java.lang.String, java.lang.Double>
     getDoubleValues();
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
     java.util.Map<java.lang.String, java.lang.Double>
     getDoubleValuesMap();
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
 
     double getDoubleValuesOrDefault(
         java.lang.String key,
         double defaultValue);
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
 
     double getDoubleValuesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
     int getFloatValuesCount();
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
     boolean containsFloatValues(
         java.lang.String key);
@@ -146,30 +156,30 @@ public final class GameObject {
     java.util.Map<java.lang.String, java.lang.Float>
     getFloatValues();
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
     java.util.Map<java.lang.String, java.lang.Float>
     getFloatValuesMap();
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
 
     float getFloatValuesOrDefault(
         java.lang.String key,
         float defaultValue);
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
 
     float getFloatValuesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
     int getBoolValuesCount();
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
     boolean containsBoolValues(
         java.lang.String key);
@@ -180,30 +190,30 @@ public final class GameObject {
     java.util.Map<java.lang.String, java.lang.Boolean>
     getBoolValues();
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
     java.util.Map<java.lang.String, java.lang.Boolean>
     getBoolValuesMap();
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
 
     boolean getBoolValuesOrDefault(
         java.lang.String key,
         boolean defaultValue);
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
 
     boolean getBoolValuesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
     int getLongValuesCount();
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
     boolean containsLongValues(
         java.lang.String key);
@@ -214,30 +224,30 @@ public final class GameObject {
     java.util.Map<java.lang.String, java.lang.Long>
     getLongValues();
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
     java.util.Map<java.lang.String, java.lang.Long>
     getLongValuesMap();
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
 
     long getLongValuesOrDefault(
         java.lang.String key,
         long defaultValue);
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
 
     long getLongValuesOrThrow(
         java.lang.String key);
 
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
     int getPbArrayValuesCount();
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
     boolean containsPbArrayValues(
         java.lang.String key);
@@ -248,19 +258,19 @@ public final class GameObject {
     java.util.Map<java.lang.String, com.game.common.pb.object.GameObject.GamePbArray>
     getPbArrayValues();
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
     java.util.Map<java.lang.String, com.game.common.pb.object.GameObject.GamePbArray>
     getPbArrayValuesMap();
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
 
     com.game.common.pb.object.GameObject.GamePbArray getPbArrayValuesOrDefault(
         java.lang.String key,
         com.game.common.pb.object.GameObject.GamePbArray defaultValue);
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
 
     com.game.common.pb.object.GameObject.GamePbArray getPbArrayValuesOrThrow(
@@ -280,6 +290,7 @@ public final class GameObject {
     }
     private GamePbObject() {
       cmd_ = "";
+      uid_ = "";
     }
 
     @java.lang.Override
@@ -317,10 +328,16 @@ public final class GameObject {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              uid_ = s;
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
                 intValues_ = com.google.protobuf.MapField.newMapField(
                     IntValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000004;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
               intValues__ = input.readMessage(
@@ -329,11 +346,11 @@ public final class GameObject {
                   intValues__.getKey(), intValues__.getValue());
               break;
             }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
                 stringValues_ = com.google.protobuf.MapField.newMapField(
                     StringValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000004;
+                mutable_bitField0_ |= 0x00000008;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
               stringValues__ = input.readMessage(
@@ -342,11 +359,11 @@ public final class GameObject {
                   stringValues__.getKey(), stringValues__.getValue());
               break;
             }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
                 doubleValues_ = com.google.protobuf.MapField.newMapField(
                     DoubleValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000008;
+                mutable_bitField0_ |= 0x00000010;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.Double>
               doubleValues__ = input.readMessage(
@@ -355,11 +372,11 @@ public final class GameObject {
                   doubleValues__.getKey(), doubleValues__.getValue());
               break;
             }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+            case 50: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
                 floatValues_ = com.google.protobuf.MapField.newMapField(
                     FloatValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000010;
+                mutable_bitField0_ |= 0x00000020;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.Float>
               floatValues__ = input.readMessage(
@@ -368,11 +385,11 @@ public final class GameObject {
                   floatValues__.getKey(), floatValues__.getValue());
               break;
             }
-            case 50: {
-              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+            case 58: {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
                 boolValues_ = com.google.protobuf.MapField.newMapField(
                     BoolValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000020;
+                mutable_bitField0_ |= 0x00000040;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.Boolean>
               boolValues__ = input.readMessage(
@@ -381,11 +398,11 @@ public final class GameObject {
                   boolValues__.getKey(), boolValues__.getValue());
               break;
             }
-            case 58: {
-              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+            case 66: {
+              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
                 longValues_ = com.google.protobuf.MapField.newMapField(
                     LongValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000040;
+                mutable_bitField0_ |= 0x00000080;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.Long>
               longValues__ = input.readMessage(
@@ -394,11 +411,11 @@ public final class GameObject {
                   longValues__.getKey(), longValues__.getValue());
               break;
             }
-            case 66: {
-              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+            case 74: {
+              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
                 pbArrayValues_ = com.google.protobuf.MapField.newMapField(
                     PbArrayValuesDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000080;
+                mutable_bitField0_ |= 0x00000100;
               }
               com.google.protobuf.MapEntry<java.lang.String, com.game.common.pb.object.GameObject.GamePbArray>
               pbArrayValues__ = input.readMessage(
@@ -428,19 +445,19 @@ public final class GameObject {
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
-        case 2:
-          return internalGetIntValues();
         case 3:
-          return internalGetStringValues();
+          return internalGetIntValues();
         case 4:
-          return internalGetDoubleValues();
+          return internalGetStringValues();
         case 5:
-          return internalGetFloatValues();
+          return internalGetDoubleValues();
         case 6:
-          return internalGetBoolValues();
+          return internalGetFloatValues();
         case 7:
-          return internalGetLongValues();
+          return internalGetBoolValues();
         case 8:
+          return internalGetLongValues();
+        case 9:
           return internalGetPbArrayValues();
         default:
           throw new RuntimeException(
@@ -489,7 +506,41 @@ public final class GameObject {
       }
     }
 
-    public static final int INTVALUES_FIELD_NUMBER = 2;
+    public static final int UID_FIELD_NUMBER = 2;
+    private volatile java.lang.Object uid_;
+    /**
+     * <code>string uid = 2;</code>
+     */
+    public java.lang.String getUid() {
+      java.lang.Object ref = uid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        uid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string uid = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUidBytes() {
+      java.lang.Object ref = uid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        uid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int INTVALUES_FIELD_NUMBER = 3;
     private static final class IntValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Integer> defaultEntry =
@@ -516,7 +567,7 @@ public final class GameObject {
       return internalGetIntValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
 
     public boolean containsIntValues(
@@ -532,14 +583,14 @@ public final class GameObject {
       return getIntValuesMap();
     }
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.Integer> getIntValuesMap() {
       return internalGetIntValues().getMap();
     }
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
 
     public int getIntValuesOrDefault(
@@ -551,7 +602,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, int32&gt; intValues = 2;</code>
+     * <code>map&lt;string, int32&gt; intValues = 3;</code>
      */
 
     public int getIntValuesOrThrow(
@@ -565,7 +616,7 @@ public final class GameObject {
       return map.get(key);
     }
 
-    public static final int STRINGVALUES_FIELD_NUMBER = 3;
+    public static final int STRINGVALUES_FIELD_NUMBER = 4;
     private static final class StringValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
@@ -592,7 +643,7 @@ public final class GameObject {
       return internalGetStringValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
 
     public boolean containsStringValues(
@@ -608,14 +659,14 @@ public final class GameObject {
       return getStringValuesMap();
     }
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.String> getStringValuesMap() {
       return internalGetStringValues().getMap();
     }
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
 
     public java.lang.String getStringValuesOrDefault(
@@ -627,7 +678,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, string&gt; stringValues = 3;</code>
+     * <code>map&lt;string, string&gt; stringValues = 4;</code>
      */
 
     public java.lang.String getStringValuesOrThrow(
@@ -641,7 +692,7 @@ public final class GameObject {
       return map.get(key);
     }
 
-    public static final int DOUBLEVALUES_FIELD_NUMBER = 4;
+    public static final int DOUBLEVALUES_FIELD_NUMBER = 5;
     private static final class DoubleValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Double> defaultEntry =
@@ -668,7 +719,7 @@ public final class GameObject {
       return internalGetDoubleValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
 
     public boolean containsDoubleValues(
@@ -684,14 +735,14 @@ public final class GameObject {
       return getDoubleValuesMap();
     }
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.Double> getDoubleValuesMap() {
       return internalGetDoubleValues().getMap();
     }
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
 
     public double getDoubleValuesOrDefault(
@@ -703,7 +754,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+     * <code>map&lt;string, double&gt; doubleValues = 5;</code>
      */
 
     public double getDoubleValuesOrThrow(
@@ -717,7 +768,7 @@ public final class GameObject {
       return map.get(key);
     }
 
-    public static final int FLOATVALUES_FIELD_NUMBER = 5;
+    public static final int FLOATVALUES_FIELD_NUMBER = 6;
     private static final class FloatValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Float> defaultEntry =
@@ -744,7 +795,7 @@ public final class GameObject {
       return internalGetFloatValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
 
     public boolean containsFloatValues(
@@ -760,14 +811,14 @@ public final class GameObject {
       return getFloatValuesMap();
     }
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.Float> getFloatValuesMap() {
       return internalGetFloatValues().getMap();
     }
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
 
     public float getFloatValuesOrDefault(
@@ -779,7 +830,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, float&gt; floatValues = 5;</code>
+     * <code>map&lt;string, float&gt; floatValues = 6;</code>
      */
 
     public float getFloatValuesOrThrow(
@@ -793,7 +844,7 @@ public final class GameObject {
       return map.get(key);
     }
 
-    public static final int BOOLVALUES_FIELD_NUMBER = 6;
+    public static final int BOOLVALUES_FIELD_NUMBER = 7;
     private static final class BoolValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Boolean> defaultEntry =
@@ -820,7 +871,7 @@ public final class GameObject {
       return internalGetBoolValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
 
     public boolean containsBoolValues(
@@ -836,14 +887,14 @@ public final class GameObject {
       return getBoolValuesMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.Boolean> getBoolValuesMap() {
       return internalGetBoolValues().getMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
 
     public boolean getBoolValuesOrDefault(
@@ -855,7 +906,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+     * <code>map&lt;string, bool&gt; boolValues = 7;</code>
      */
 
     public boolean getBoolValuesOrThrow(
@@ -869,7 +920,7 @@ public final class GameObject {
       return map.get(key);
     }
 
-    public static final int LONGVALUES_FIELD_NUMBER = 7;
+    public static final int LONGVALUES_FIELD_NUMBER = 8;
     private static final class LongValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.Long> defaultEntry =
@@ -896,7 +947,7 @@ public final class GameObject {
       return internalGetLongValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
 
     public boolean containsLongValues(
@@ -912,14 +963,14 @@ public final class GameObject {
       return getLongValuesMap();
     }
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.Long> getLongValuesMap() {
       return internalGetLongValues().getMap();
     }
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
 
     public long getLongValuesOrDefault(
@@ -931,7 +982,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, int64&gt; longValues = 7;</code>
+     * <code>map&lt;string, int64&gt; longValues = 8;</code>
      */
 
     public long getLongValuesOrThrow(
@@ -945,7 +996,7 @@ public final class GameObject {
       return map.get(key);
     }
 
-    public static final int PBARRAYVALUES_FIELD_NUMBER = 8;
+    public static final int PBARRAYVALUES_FIELD_NUMBER = 9;
     private static final class PbArrayValuesDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, com.game.common.pb.object.GameObject.GamePbArray> defaultEntry =
@@ -972,7 +1023,7 @@ public final class GameObject {
       return internalGetPbArrayValues().getMap().size();
     }
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
 
     public boolean containsPbArrayValues(
@@ -988,14 +1039,14 @@ public final class GameObject {
       return getPbArrayValuesMap();
     }
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
 
     public java.util.Map<java.lang.String, com.game.common.pb.object.GameObject.GamePbArray> getPbArrayValuesMap() {
       return internalGetPbArrayValues().getMap();
     }
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
 
     public com.game.common.pb.object.GameObject.GamePbArray getPbArrayValuesOrDefault(
@@ -1007,7 +1058,7 @@ public final class GameObject {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+     * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
      */
 
     public com.game.common.pb.object.GameObject.GamePbArray getPbArrayValuesOrThrow(
@@ -1036,48 +1087,51 @@ public final class GameObject {
       if (!getCmdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, cmd_);
       }
+      if (!getUidBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uid_);
+      }
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetIntValues(),
           IntValuesDefaultEntryHolder.defaultEntry,
-          2);
+          3);
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetStringValues(),
           StringValuesDefaultEntryHolder.defaultEntry,
-          3);
+          4);
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetDoubleValues(),
           DoubleValuesDefaultEntryHolder.defaultEntry,
-          4);
+          5);
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetFloatValues(),
           FloatValuesDefaultEntryHolder.defaultEntry,
-          5);
+          6);
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetBoolValues(),
           BoolValuesDefaultEntryHolder.defaultEntry,
-          6);
+          7);
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetLongValues(),
           LongValuesDefaultEntryHolder.defaultEntry,
-          7);
+          8);
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetPbArrayValues(),
           PbArrayValuesDefaultEntryHolder.defaultEntry,
-          8);
+          9);
       unknownFields.writeTo(output);
     }
 
@@ -1089,6 +1143,9 @@ public final class GameObject {
       if (!getCmdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, cmd_);
       }
+      if (!getUidBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uid_);
+      }
       for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
            : internalGetIntValues().getMap().entrySet()) {
         com.google.protobuf.MapEntry<java.lang.String, java.lang.Integer>
@@ -1097,7 +1154,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(2, intValues__);
+            .computeMessageSize(3, intValues__);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetStringValues().getMap().entrySet()) {
@@ -1107,7 +1164,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(3, stringValues__);
+            .computeMessageSize(4, stringValues__);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.Double> entry
            : internalGetDoubleValues().getMap().entrySet()) {
@@ -1117,7 +1174,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, doubleValues__);
+            .computeMessageSize(5, doubleValues__);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.Float> entry
            : internalGetFloatValues().getMap().entrySet()) {
@@ -1127,7 +1184,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, floatValues__);
+            .computeMessageSize(6, floatValues__);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.Boolean> entry
            : internalGetBoolValues().getMap().entrySet()) {
@@ -1137,7 +1194,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(6, boolValues__);
+            .computeMessageSize(7, boolValues__);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.Long> entry
            : internalGetLongValues().getMap().entrySet()) {
@@ -1147,7 +1204,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(7, longValues__);
+            .computeMessageSize(8, longValues__);
       }
       for (java.util.Map.Entry<java.lang.String, com.game.common.pb.object.GameObject.GamePbArray> entry
            : internalGetPbArrayValues().getMap().entrySet()) {
@@ -1157,7 +1214,7 @@ public final class GameObject {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(8, pbArrayValues__);
+            .computeMessageSize(9, pbArrayValues__);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1177,6 +1234,8 @@ public final class GameObject {
       boolean result = true;
       result = result && getCmd()
           .equals(other.getCmd());
+      result = result && getUid()
+          .equals(other.getUid());
       result = result && internalGetIntValues().equals(
           other.internalGetIntValues());
       result = result && internalGetStringValues().equals(
@@ -1204,6 +1263,8 @@ public final class GameObject {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CMD_FIELD_NUMBER;
       hash = (53 * hash) + getCmd().hashCode();
+      hash = (37 * hash) + UID_FIELD_NUMBER;
+      hash = (53 * hash) + getUid().hashCode();
       if (!internalGetIntValues().getMap().isEmpty()) {
         hash = (37 * hash) + INTVALUES_FIELD_NUMBER;
         hash = (53 * hash) + internalGetIntValues().hashCode();
@@ -1341,19 +1402,19 @@ public final class GameObject {
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
         switch (number) {
-          case 2:
-            return internalGetIntValues();
           case 3:
-            return internalGetStringValues();
+            return internalGetIntValues();
           case 4:
-            return internalGetDoubleValues();
+            return internalGetStringValues();
           case 5:
-            return internalGetFloatValues();
+            return internalGetDoubleValues();
           case 6:
-            return internalGetBoolValues();
+            return internalGetFloatValues();
           case 7:
-            return internalGetLongValues();
+            return internalGetBoolValues();
           case 8:
+            return internalGetLongValues();
+          case 9:
             return internalGetPbArrayValues();
           default:
             throw new RuntimeException(
@@ -1364,19 +1425,19 @@ public final class GameObject {
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
         switch (number) {
-          case 2:
-            return internalGetMutableIntValues();
           case 3:
-            return internalGetMutableStringValues();
+            return internalGetMutableIntValues();
           case 4:
-            return internalGetMutableDoubleValues();
+            return internalGetMutableStringValues();
           case 5:
-            return internalGetMutableFloatValues();
+            return internalGetMutableDoubleValues();
           case 6:
-            return internalGetMutableBoolValues();
+            return internalGetMutableFloatValues();
           case 7:
-            return internalGetMutableLongValues();
+            return internalGetMutableBoolValues();
           case 8:
+            return internalGetMutableLongValues();
+          case 9:
             return internalGetMutablePbArrayValues();
           default:
             throw new RuntimeException(
@@ -1408,6 +1469,8 @@ public final class GameObject {
       public Builder clear() {
         super.clear();
         cmd_ = "";
+
+        uid_ = "";
 
         internalGetMutableIntValues().clear();
         internalGetMutableStringValues().clear();
@@ -1441,6 +1504,7 @@ public final class GameObject {
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         result.cmd_ = cmd_;
+        result.uid_ = uid_;
         result.intValues_ = internalGetIntValues();
         result.intValues_.makeImmutable();
         result.stringValues_ = internalGetStringValues();
@@ -1499,6 +1563,10 @@ public final class GameObject {
         if (other == com.game.common.pb.object.GameObject.GamePbObject.getDefaultInstance()) return this;
         if (!other.getCmd().isEmpty()) {
           cmd_ = other.cmd_;
+          onChanged();
+        }
+        if (!other.getUid().isEmpty()) {
+          uid_ = other.uid_;
           onChanged();
         }
         internalGetMutableIntValues().mergeFrom(
@@ -1612,6 +1680,75 @@ public final class GameObject {
         return this;
       }
 
+      private java.lang.Object uid_ = "";
+      /**
+       * <code>string uid = 2;</code>
+       */
+      public java.lang.String getUid() {
+        java.lang.Object ref = uid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          uid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string uid = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUidBytes() {
+        java.lang.Object ref = uid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          uid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string uid = 2;</code>
+       */
+      public Builder setUid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string uid = 2;</code>
+       */
+      public Builder clearUid() {
+        
+        uid_ = getDefaultInstance().getUid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string uid = 2;</code>
+       */
+      public Builder setUidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+
       private com.google.protobuf.MapField<
           java.lang.String, java.lang.Integer> intValues_;
       private com.google.protobuf.MapField<java.lang.String, java.lang.Integer>
@@ -1639,7 +1776,7 @@ public final class GameObject {
         return internalGetIntValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
 
       public boolean containsIntValues(
@@ -1655,14 +1792,14 @@ public final class GameObject {
         return getIntValuesMap();
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.Integer> getIntValuesMap() {
         return internalGetIntValues().getMap();
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
 
       public int getIntValuesOrDefault(
@@ -1674,7 +1811,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
 
       public int getIntValuesOrThrow(
@@ -1694,7 +1831,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
 
       public Builder removeIntValues(
@@ -1713,7 +1850,7 @@ public final class GameObject {
         return internalGetMutableIntValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
       public Builder putIntValues(
           java.lang.String key,
@@ -1725,7 +1862,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, int32&gt; intValues = 2;</code>
+       * <code>map&lt;string, int32&gt; intValues = 3;</code>
        */
 
       public Builder putAllIntValues(
@@ -1762,7 +1899,7 @@ public final class GameObject {
         return internalGetStringValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
 
       public boolean containsStringValues(
@@ -1778,14 +1915,14 @@ public final class GameObject {
         return getStringValuesMap();
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.String> getStringValuesMap() {
         return internalGetStringValues().getMap();
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
 
       public java.lang.String getStringValuesOrDefault(
@@ -1797,7 +1934,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
 
       public java.lang.String getStringValuesOrThrow(
@@ -1817,7 +1954,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
 
       public Builder removeStringValues(
@@ -1836,7 +1973,7 @@ public final class GameObject {
         return internalGetMutableStringValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
       public Builder putStringValues(
           java.lang.String key,
@@ -1848,7 +1985,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; stringValues = 3;</code>
+       * <code>map&lt;string, string&gt; stringValues = 4;</code>
        */
 
       public Builder putAllStringValues(
@@ -1885,7 +2022,7 @@ public final class GameObject {
         return internalGetDoubleValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
 
       public boolean containsDoubleValues(
@@ -1901,14 +2038,14 @@ public final class GameObject {
         return getDoubleValuesMap();
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.Double> getDoubleValuesMap() {
         return internalGetDoubleValues().getMap();
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
 
       public double getDoubleValuesOrDefault(
@@ -1920,7 +2057,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
 
       public double getDoubleValuesOrThrow(
@@ -1940,7 +2077,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
 
       public Builder removeDoubleValues(
@@ -1959,7 +2096,7 @@ public final class GameObject {
         return internalGetMutableDoubleValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
       public Builder putDoubleValues(
           java.lang.String key,
@@ -1971,7 +2108,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, double&gt; doubleValues = 4;</code>
+       * <code>map&lt;string, double&gt; doubleValues = 5;</code>
        */
 
       public Builder putAllDoubleValues(
@@ -2008,7 +2145,7 @@ public final class GameObject {
         return internalGetFloatValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
 
       public boolean containsFloatValues(
@@ -2024,14 +2161,14 @@ public final class GameObject {
         return getFloatValuesMap();
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.Float> getFloatValuesMap() {
         return internalGetFloatValues().getMap();
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
 
       public float getFloatValuesOrDefault(
@@ -2043,7 +2180,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
 
       public float getFloatValuesOrThrow(
@@ -2063,7 +2200,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
 
       public Builder removeFloatValues(
@@ -2082,7 +2219,7 @@ public final class GameObject {
         return internalGetMutableFloatValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
       public Builder putFloatValues(
           java.lang.String key,
@@ -2094,7 +2231,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, float&gt; floatValues = 5;</code>
+       * <code>map&lt;string, float&gt; floatValues = 6;</code>
        */
 
       public Builder putAllFloatValues(
@@ -2131,7 +2268,7 @@ public final class GameObject {
         return internalGetBoolValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
 
       public boolean containsBoolValues(
@@ -2147,14 +2284,14 @@ public final class GameObject {
         return getBoolValuesMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.Boolean> getBoolValuesMap() {
         return internalGetBoolValues().getMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
 
       public boolean getBoolValuesOrDefault(
@@ -2166,7 +2303,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
 
       public boolean getBoolValuesOrThrow(
@@ -2186,7 +2323,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
 
       public Builder removeBoolValues(
@@ -2205,7 +2342,7 @@ public final class GameObject {
         return internalGetMutableBoolValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
       public Builder putBoolValues(
           java.lang.String key,
@@ -2217,7 +2354,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, bool&gt; boolValues = 6;</code>
+       * <code>map&lt;string, bool&gt; boolValues = 7;</code>
        */
 
       public Builder putAllBoolValues(
@@ -2254,7 +2391,7 @@ public final class GameObject {
         return internalGetLongValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
 
       public boolean containsLongValues(
@@ -2270,14 +2407,14 @@ public final class GameObject {
         return getLongValuesMap();
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.Long> getLongValuesMap() {
         return internalGetLongValues().getMap();
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
 
       public long getLongValuesOrDefault(
@@ -2289,7 +2426,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
 
       public long getLongValuesOrThrow(
@@ -2309,7 +2446,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
 
       public Builder removeLongValues(
@@ -2328,7 +2465,7 @@ public final class GameObject {
         return internalGetMutableLongValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
       public Builder putLongValues(
           java.lang.String key,
@@ -2340,7 +2477,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, int64&gt; longValues = 7;</code>
+       * <code>map&lt;string, int64&gt; longValues = 8;</code>
        */
 
       public Builder putAllLongValues(
@@ -2377,7 +2514,7 @@ public final class GameObject {
         return internalGetPbArrayValues().getMap().size();
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
 
       public boolean containsPbArrayValues(
@@ -2393,14 +2530,14 @@ public final class GameObject {
         return getPbArrayValuesMap();
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
 
       public java.util.Map<java.lang.String, com.game.common.pb.object.GameObject.GamePbArray> getPbArrayValuesMap() {
         return internalGetPbArrayValues().getMap();
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
 
       public com.game.common.pb.object.GameObject.GamePbArray getPbArrayValuesOrDefault(
@@ -2412,7 +2549,7 @@ public final class GameObject {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
 
       public com.game.common.pb.object.GameObject.GamePbArray getPbArrayValuesOrThrow(
@@ -2432,7 +2569,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
 
       public Builder removePbArrayValues(
@@ -2451,7 +2588,7 @@ public final class GameObject {
         return internalGetMutablePbArrayValues().getMutableMap();
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
       public Builder putPbArrayValues(
           java.lang.String key,
@@ -2463,7 +2600,7 @@ public final class GameObject {
         return this;
       }
       /**
-       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 8;</code>
+       * <code>map&lt;string, .GamePbArray&gt; pbArrayValues = 9;</code>
        */
 
       public Builder putAllPbArrayValues(
@@ -3329,29 +3466,29 @@ public final class GameObject {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020GameObject.proto\"\210\006\n\014GamePbObject\022\013\n\003c" +
-      "md\030\001 \001(\t\022/\n\tintValues\030\002 \003(\0132\034.GamePbObje" +
-      "ct.IntValuesEntry\0225\n\014stringValues\030\003 \003(\0132" +
-      "\037.GamePbObject.StringValuesEntry\0225\n\014doub" +
-      "leValues\030\004 \003(\0132\037.GamePbObject.DoubleValu" +
-      "esEntry\0223\n\013floatValues\030\005 \003(\0132\036.GamePbObj" +
-      "ect.FloatValuesEntry\0221\n\nboolValues\030\006 \003(\013" +
-      "2\035.GamePbObject.BoolValuesEntry\0221\n\nlongV" +
-      "alues\030\007 \003(\0132\035.GamePbObject.LongValuesEnt" +
-      "ry\0227\n\rpbArrayValues\030\010 \003(\0132 .GamePbObject",
-      ".PbArrayValuesEntry\0320\n\016IntValuesEntry\022\013\n" +
-      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\005:\0028\001\0323\n\021StringV" +
-      "aluesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002" +
-      "8\001\0323\n\021DoubleValuesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005" +
-      "value\030\002 \001(\001:\0028\001\0322\n\020FloatValuesEntry\022\013\n\003k" +
-      "ey\030\001 \001(\t\022\r\n\005value\030\002 \001(\002:\0028\001\0321\n\017BoolValue" +
-      "sEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\010:\0028\001\0321" +
-      "\n\017LongValuesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
-      "\002 \001(\003:\0028\001\032B\n\022PbArrayValuesEntry\022\013\n\003key\030\001" +
-      " \001(\t\022\033\n\005value\030\002 \001(\0132\014.GamePbArray:\0028\001\".\n",
-      "\013GamePbArray\022\037\n\010objArray\030\001 \003(\0132\r.GamePbO" +
-      "bjectB\'\n\031com.game.common.pb.objectB\nGame" +
-      "Objectb\006proto3"
+      "\n\020GameObject.proto\"\225\006\n\014GamePbObject\022\013\n\003c" +
+      "md\030\001 \001(\t\022\013\n\003uid\030\002 \001(\t\022/\n\tintValues\030\003 \003(\013" +
+      "2\034.GamePbObject.IntValuesEntry\0225\n\014string" +
+      "Values\030\004 \003(\0132\037.GamePbObject.StringValues" +
+      "Entry\0225\n\014doubleValues\030\005 \003(\0132\037.GamePbObje" +
+      "ct.DoubleValuesEntry\0223\n\013floatValues\030\006 \003(" +
+      "\0132\036.GamePbObject.FloatValuesEntry\0221\n\nboo" +
+      "lValues\030\007 \003(\0132\035.GamePbObject.BoolValuesE" +
+      "ntry\0221\n\nlongValues\030\010 \003(\0132\035.GamePbObject." +
+      "LongValuesEntry\0227\n\rpbArrayValues\030\t \003(\0132 ",
+      ".GamePbObject.PbArrayValuesEntry\0320\n\016IntV" +
+      "aluesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\005:\002" +
+      "8\001\0323\n\021StringValuesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005" +
+      "value\030\002 \001(\t:\0028\001\0323\n\021DoubleValuesEntry\022\013\n\003" +
+      "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\001:\0028\001\0322\n\020FloatVal" +
+      "uesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\002:\0028\001" +
+      "\0321\n\017BoolValuesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
+      "e\030\002 \001(\010:\0028\001\0321\n\017LongValuesEntry\022\013\n\003key\030\001 " +
+      "\001(\t\022\r\n\005value\030\002 \001(\003:\0028\001\032B\n\022PbArrayValuesE" +
+      "ntry\022\013\n\003key\030\001 \001(\t\022\033\n\005value\030\002 \001(\0132\014.GameP",
+      "bArray:\0028\001\".\n\013GamePbArray\022\037\n\010objArray\030\001 " +
+      "\003(\0132\r.GamePbObjectB\'\n\031com.game.common.pb" +
+      ".objectB\nGameObjectb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3370,7 +3507,7 @@ public final class GameObject {
     internal_static_GamePbObject_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GamePbObject_descriptor,
-        new java.lang.String[] { "Cmd", "IntValues", "StringValues", "DoubleValues", "FloatValues", "BoolValues", "LongValues", "PbArrayValues", });
+        new java.lang.String[] { "Cmd", "Uid", "IntValues", "StringValues", "DoubleValues", "FloatValues", "BoolValues", "LongValues", "PbArrayValues", });
     internal_static_GamePbObject_IntValuesEntry_descriptor =
       internal_static_GamePbObject_descriptor.getNestedTypes().get(0);
     internal_static_GamePbObject_IntValuesEntry_fieldAccessorTable = new
