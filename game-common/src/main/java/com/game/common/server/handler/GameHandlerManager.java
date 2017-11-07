@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.game.common.pb.object.GameObject;
+import com.game.common.server.action.IAction;
 
 /**
  * @author tangjp
@@ -26,7 +27,8 @@ public class GameHandlerManager {
 		return handlerManager;
 	}
 	
-	public void execHandler(GameObject.GamePbObject msg){
+	public void execHandler(IAction<GameObject.GamePbObject> actionMsg){
+		GameObject.GamePbObject msg=actionMsg.getMsgObject();
 		String cmd=msg.getCmd();
 		String uid=msg.getUid();
 		GameObject.GamePbObject ret=GameObject.GamePbObject.getDefaultInstance();
@@ -34,6 +36,9 @@ public class GameHandlerManager {
 		try{
 			Class<? extends GameBaseHandler> handler=handlerMap.get(cmd);
 			ret=((GameBaseHandler)handler.newInstance()).handlerRequest(msg);
+			if(ret!=null){
+				actionMsg.getSession().getChannel().writeAndFlush(ret);
+			}
 		}catch (Exception e) {
 			// TODO: handle exception
 			logger.error(e);

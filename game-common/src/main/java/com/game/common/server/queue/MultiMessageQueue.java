@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import com.game.common.pb.object.GameObject;
+import com.game.common.pb.object.GameObject.GamePbObject;
+import com.game.common.server.action.IAction;
 
 /**
  * @author tangjp
@@ -15,7 +17,7 @@ public class MultiMessageQueue extends MessageQueue {
 	
 	private ExecutorService executor=Executors.newScheduledThreadPool(1); 
 	
-	private Queue<GameObject.GamePbObject> queue=new LinkedBlockingQueue<>();
+	private Queue<IAction<GameObject.GamePbObject>> queue=new LinkedBlockingQueue<>();
 
 	@Override
 	protected ExecutorService getExecutorService() {
@@ -24,9 +26,8 @@ public class MultiMessageQueue extends MessageQueue {
 	}
 
 	@Override
-	protected Queue<GameObject.GamePbObject> getQueue() {
+	protected Queue<IAction<GameObject.GamePbObject>> getQueue() {
 		// TODO Auto-generated method stub
 		return queue;
 	}
-
 }

@@ -3,6 +3,7 @@ package com.game.common.server.session;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.game.common.pb.object.GameObject;
+import com.game.common.server.action.IAction;
 import com.game.common.server.queue.MessageQueue;
 import com.game.common.server.queue.MessageQueueFactory;
 
@@ -29,7 +30,7 @@ public class GameSession {
 		messageQueue=MessageQueueFactory.getMessageQueue(MessageQueueFactory.MessageQueueType.multiType);
 	}
 	
-	public void addMessage(GameObject.GamePbObject msg){
+	public void addMessage(IAction<GameObject.GamePbObject> msg){
 		messageQueue.addQueue(msg);
 	}
 

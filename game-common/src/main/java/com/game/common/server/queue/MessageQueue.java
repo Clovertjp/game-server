@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
+import com.game.common.server.action.IAction;
 import com.game.common.server.handler.GameHandlerManager;
 
 import io.netty.util.internal.StringUtil;
@@ -27,7 +28,7 @@ public abstract class MessageQueue implements IMessageQueue {
 	
 	protected abstract ExecutorService getExecutorService();
 	
-	protected abstract Queue<GameObject.GamePbObject> getQueue();
+	protected abstract Queue<IAction<GameObject.GamePbObject>> getQueue();
 	
 	private void execute(){
 		
@@ -37,12 +38,12 @@ public abstract class MessageQueue implements IMessageQueue {
 				return ;
 			}
 		}
-		GameObject.GamePbObject msg=getQueue().poll();
+		IAction<GameObject.GamePbObject> msg=getQueue().poll();
 		getExecutorService().execute(new MessageTask(msg,this));
 		
 	}
 	
-	public void addQueue(GameObject.GamePbObject msg){
+	public void addQueue(IAction<GameObject.GamePbObject> msg){
 		getQueue().add(msg);
 		synchronized (lock) {
 			if(!exec){
@@ -55,10 +56,10 @@ public abstract class MessageQueue implements IMessageQueue {
 	
 	private class MessageTask implements Runnable {
 		
-		private GameObject.GamePbObject msg;
+		private IAction<GameObject.GamePbObject> msg;
 		private MessageQueue queue;
 		
-		public MessageTask(GameObject.GamePbObject msg,MessageQueue queue) {
+		public MessageTask(IAction<GameObject.GamePbObject> msg,MessageQueue queue) {
 			// TODO Auto-generated constructor stub
 			this.msg=msg;
 			this.queue=queue;
@@ -68,7 +69,7 @@ public abstract class MessageQueue implements IMessageQueue {
 		public void run() {
 			// TODO Auto-generated method stub
 			try{
-				if(StringUtil.isNullOrEmpty(msg.getCmd())){
+				if(StringUtil.isNullOrEmpty(msg.getMsgObject().getCmd())){
 					throw new GameException("cmd is null");
 				}
 				GameHandlerManager.getInstance().execHandler(msg);
