@@ -38,7 +38,11 @@ public class GameConfigCache {
 	}
 	
 	public Map<String,String> getItem(String fileName,String itemId){
-		return new HashMap<>(configItem.get(fileName+"_"+itemId));
+		String key=fileName+"_"+itemId;
+		if(configItem.containsKey(key)){
+			return new HashMap<>(configItem.get(key));
+		}
+		return new HashMap<>();
 	}
 	
 	public List<Map<String,String > > getAllItem(String fileName){
@@ -47,7 +51,14 @@ public class GameConfigCache {
 			return list;
 		}
 		for(String id : configKeySet.get(fileName)){
-			list.add(new HashMap<>(configItem.get(id)));
+			Map<String,String> map;
+			if(configItem.containsKey(id)){
+				map= new HashMap<>(configItem.get(id));
+			}else{
+				map= new HashMap<>();
+			}
+			
+			list.add(new HashMap<>(map));
 		}
 		return list;
 	}
