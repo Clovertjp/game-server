@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+<classPathEntry location="lib/mysql-connector-java-6.0.6.jar" />
+ <context id="account">
+
+  <commentGenerator>
+   <property name="suppressAllComments" value="true"/>
+  </commentGenerator>
+  
+<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/db1" userId="root" password="tjp"/>
+  <javaModelGenerator targetPackage="com.game.common.server.puredb.model" targetProject="../src/main/java">
+	<property name="trimStrings" value="true"/>
+  </javaModelGenerator>
+
+  <sqlMapGenerator targetPackage="com.game.common.server.puredb.dao" targetProject="../src/main/resources"/>
+   
+  <javaClientGenerator targetPackage="com.game.common.server.puredb.dao" targetProject="../src/main/java" type="XMLMAPPER">
+  </javaClientGenerator>
+
+  <table  tableName="tb1" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+  
+  
+ </context>
+</generatorConfiguration>
