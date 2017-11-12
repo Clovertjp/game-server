@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.game.common.exception.GameException;
+import com.game.common.server.config.Config;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.AdaptiveRecvByteBufAllocator;
@@ -37,12 +38,12 @@ public class NettyGameServer extends GameServer {
 	public NettyGameServer() {
 		// TODO Auto-generated constructor stub
 		super(className);
-		BOSS_NUM=1;
-		WORKER_NUM=2;
-		PORT=8000;
-		BACKLOG_NUM=512;
-		RCVBUF=1024;
-		SNDBUF=1024*32;
+		BOSS_NUM=Config.NETTY_BOSS;
+		WORKER_NUM=Config.NETTY_WORK;
+		PORT=Config.NETTY_PORT;
+		BACKLOG_NUM=Config.NETTY_BACK;
+		RCVBUF=Config.NETTY_RCVBUF;
+		SNDBUF=Config.NETTY_SNDBUF;
 	}
 
 	@Override

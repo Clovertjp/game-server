@@ -29,7 +29,7 @@ public class GameConfigXml {
 	
 	private static final Logger logger = LogManager.getLogger(GameConfigXml.class);
 	
-	private static final String PATH="Resource";
+	private static final String PATH=Config.XML_PATH;
 	
 	public static void loadAllXML() throws GameException{
 		logger.info("loading xml start");

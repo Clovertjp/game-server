@@ -7,6 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
+import com.game.common.server.config.Config;
 
 /**
  * @author tangjp
@@ -14,7 +15,7 @@ import com.game.common.server.action.IAction;
  */
 public class SingleMessageQueue extends MessageQueue {
 	
-	private static ExecutorService executor=Executors.newScheduledThreadPool(5);
+	private static ExecutorService executor=Executors.newScheduledThreadPool(Config.MESSAGE_SINGLE);
 	
 	private static Queue<IAction<GameObject.GamePbObject>> queue=new LinkedBlockingQueue<>();
 
