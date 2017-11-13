@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<environments default="development">
+	<environments default="hikaricp">
 	
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/db1" />
-				<property name="username" value="root" />
-				<property name="password" value="tjp" />
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.pwd}" />
 
-        		<property name="initialSize" value="10" />  
-        		<property name="minIdle" value="10" />   
-        		<property name="maxActive" value="50" />  
-        		<property name="maxWait" value="60000" />
+        		<property name="initialSize" value="${jdbc.init}" />  
+        		<property name="minIdle" value="${jdbc.minIdle}" />   
+        		<property name="maxActive" value="${jdbc.maxActive}" />  
+        		<property name="maxWait" value="${jdbc.maxWait}" />
         		<property name="removeAbandoned" value="true" />
         		<!-- 超过时间限制多长； -->
         		<property name="removeAbandonedTimeout" value="180" />
@@ -34,9 +34,24 @@
 			</dataSource>
 		</environment>
 		
+		<environment id="hikaricp">
+			<transactionManager type="JDBC" />
+			<dataSource type="com.game.common.server.sql.source.HikariDataSourceFactory">
+				<property name="driverClassName" value="${jdbc.driver}" />
+				<property name="jdbcUrl" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.pwd}" />
+        		<property name="minimumIdle" value="${jdbc.minIdle}" />   
+        		<property name="maximumPoolSize" value="${jdbc.maxActive}" />  
+        		<property name="connectionTimeout" value="${jdbc.maxWait}" />
+				
+			</dataSource>
+		</environment>
+		
 	</environments>
 
 	<mappers>
+	<mapper resource="com/game/common/server/puredb/dao/Tb1Mapper.xml" />
 		
 	</mappers>
 

@@ -13,8 +13,12 @@ public class PropertiesManager {
 	
 	public static Properties getProperties(String fileName){
 		Properties prop = new Properties();
+		System.out.println(fileName);
 		try {
-			InputStream inStream = Properties.class.getResourceAsStream("/"+fileName);
+			InputStream inStream = PropertiesManager.class.getClassLoader().getResourceAsStream(fileName);
+			if(inStream==null){
+				System.out.println("123");
+			}
 			// 将属性文件流装载到Properties对象中
 			prop.load(inStream);
 
