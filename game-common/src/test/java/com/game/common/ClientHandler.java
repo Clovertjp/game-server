@@ -21,16 +21,18 @@ public class ClientHandler extends SimpleChannelInboundHandler<GameObject.GamePb
 		if(msg.containsIntValues("num")){
 			i=msg.getIntValuesOrThrow("num");
 		}
-		GameObject.GamePbObject obj=GameObject.GamePbObject.newBuilder().putIntValues("num", ++i)
+		GameObject.GamePbObject obj=GameObject.GamePbObject.newBuilder().setCmd("a").putIntValues("num", ++i)
 				.putStringValues("hhh", "aaa").putStringValues("11", "aaa").putStringValues("22", "aaa")
 				.build();
+		System.out.println(obj);
 		ctx.writeAndFlush(obj);
 	}
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
-		GameObject.GamePbObject obj=GameObject.GamePbObject.newBuilder().putStringValues("hhh", "aaa").build();
+		GameObject.GamePbObject obj=GameObject.GamePbObject.newBuilder().setCmd("a").putStringValues("hhh", "aaa").build();
+		System.out.println(obj);
 		ctx.writeAndFlush(obj);
 	}
 

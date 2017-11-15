@@ -34,8 +34,9 @@ public class GameConfigXml {
 	public static void loadAllXML() throws GameException{
 		logger.info("loading xml start");
 		File xmlPath = new File(PATH);
+		System.out.println(xmlPath.getAbsolutePath());
 		if(!xmlPath.isDirectory()){
-			throw new GameException(PATH+" i snot a directory");
+			throw new GameException(PATH+" is not a directory");
 		}
 		
 		File[] fileList=xmlPath.listFiles(new FileFilter() {

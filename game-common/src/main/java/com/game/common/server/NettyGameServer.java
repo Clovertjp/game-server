@@ -102,39 +102,4 @@ public class NettyGameServer extends GameServer {
 		}
 		
 	}
-	
-	public static void main(String[] args) throws GameException {
-		NettyGameServer n=new NettyGameServer();
-		n.init();
-		n.start();
-		Thread t=new Thread(new Runnable() {
-        	volatile int i=0;
-			
-			public void run() {
-				// TODO Auto-generated method stub
-				
-				while(i<1000000)
-				{
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					i++;
-				}
-				try {
-					n.stop();
-				} catch (GameException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-		});
-        t.start();
-	}
-
-	
-
 }
