@@ -39,14 +39,6 @@ public class GameRedisPool implements IGameRedisPool {
 		pool = new JedisPool(poolConfig, poolIp, poolPort);
 	}
 
-	public JedisPool getPool() {
-		return pool;
-	}
-
-	public void setPool(JedisPool pool) {
-		this.pool = pool;
-	}
-
 	public int getPort() {
 		return port;
 	}
