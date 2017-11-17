@@ -19,6 +19,7 @@
   </properties>
   <modules>
   	<module>game-agent</module>
+  	<module>game-pb</module>
   	<module>game-common</module>
   </modules>
 </project>
