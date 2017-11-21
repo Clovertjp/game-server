@@ -5,6 +5,7 @@ import java.util.concurrent.CountDownLatch;
 import com.game.common.exception.GameException;
 import com.game.common.server.config.Config;
 import com.game.common.server.config.GameConfigManager;
+import com.game.common.server.net.netty.NettyGameServer;
 
 /**
  * @author tangjp

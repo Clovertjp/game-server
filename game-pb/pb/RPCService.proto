@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.game.pb.service";
+option java_outer_classname = "RPCServiceProto";
+import "TestHello.proto";
+package rpcservice;
+
+service RPCService {
+
+  rpc SayHello (hello.HelloRequest) returns (hello.HelloReply) {}
+}

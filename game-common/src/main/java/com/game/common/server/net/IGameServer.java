@@ -1,4 +1,4 @@
-package com.game.common.server;
+package com.game.common.server.net;
 
 import com.game.common.exception.GameException;
 

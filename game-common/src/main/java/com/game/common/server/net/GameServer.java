@@ -1,4 +1,4 @@
-package com.game.common.server;
+package com.game.common.server.net;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

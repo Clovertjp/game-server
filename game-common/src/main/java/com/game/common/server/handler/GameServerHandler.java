@@ -7,10 +7,10 @@ import com.game.agent.GameAgent;
 import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
 import com.game.common.pb.object.GameObject.GamePbObject;
-import com.game.common.server.GameServer;
 import com.game.common.server.action.IAction;
 import com.game.common.server.action.MessageAction;
 import com.game.common.server.manager.GameSessionManager;
+import com.game.common.server.net.GameServer;
 import com.game.common.server.session.GameSession;
 
 import io.netty.channel.ChannelHandlerContext;

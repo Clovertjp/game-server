@@ -1,4 +1,4 @@
-package com.game.common.server;
+package com.game.common.server.net.netty;
 
 import com.game.common.server.coder.GameServerDecoder;
 import com.game.common.server.coder.GameServerEncoder;

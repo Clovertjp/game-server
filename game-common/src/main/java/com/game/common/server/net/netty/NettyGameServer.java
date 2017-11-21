@@ -1,4 +1,4 @@
-package com.game.common.server;
+package com.game.common.server.net.netty;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.game.common.exception.GameException;
 import com.game.common.server.config.Config;
+import com.game.common.server.net.GameServer;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.AdaptiveRecvByteBufAllocator;
