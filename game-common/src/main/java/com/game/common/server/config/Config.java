@@ -34,6 +34,7 @@ public class Config {
 	public static boolean REDIS_LOCAL_POOL_RETURN = false;
 	public static int REDIS_LOCAL_POOL_PORT = 6379;
 	public static String REDIS_LOCAL_POOL_IP = "127.0.0.1";
+	public static int RPC_PORT = 9000;
 	
 	public static void load(){
 		Properties prop = PropertiesManager.getSystemConfig();
@@ -64,6 +65,8 @@ public class Config {
 		REDIS_LOCAL_POOL_RETURN=getBooleanItem(prop, "redis.pool.testOnReturn", false);
 		REDIS_LOCAL_POOL_PORT=getIntItem(prop, "redis.local.pool.port", 6379);
 		REDIS_LOCAL_POOL_IP=getStringItem(prop, "redis.local.pool.ip", "127.0.0.1");
+		
+		RPC_PORT=getIntItem(prop, "rpc.port", 9000);
 
 	}
 	
