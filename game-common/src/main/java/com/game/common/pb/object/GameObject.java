@@ -2,7 +2,7 @@
 // source: GameObject.proto
 
 package com.game.common.pb.object;
-
+@Deprecated
 public final class GameObject {
   private GameObject() {}
   public static void registerAllExtensions(
