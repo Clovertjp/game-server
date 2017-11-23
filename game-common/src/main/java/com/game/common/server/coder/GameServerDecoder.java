@@ -7,6 +7,7 @@ import java.util.List;
 import org.xerial.snappy.Snappy;
 
 import com.game.common.pb.object.GameObject;
+import com.game.pb.server.message.MessageObj;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -39,7 +40,7 @@ public class GameServerDecoder extends ByteToMessageDecoder {
         byte[] body = new byte[dataLength];
         paramByteBuf.readBytes(body); 
         body = uncompress(body);
-        GameObject.GamePbObject pbObj=GameObject.GamePbObject.parseFrom(body);
+        MessageObj.NetMessage pbObj=MessageObj.NetMessage.parseFrom(body);
         paramList.add(pbObj);
         
 	}

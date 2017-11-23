@@ -1,4 +1,4 @@
-package com.game.pb.service;
+package com.game.pb.server.rpc;
 
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
 import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
@@ -28,16 +28,16 @@ public final class RPCServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.game.pb.service.HelloRequest,
-      com.game.pb.service.HelloReply> METHOD_SAY_HELLO =
-      io.grpc.MethodDescriptor.<com.game.pb.service.HelloRequest, com.game.pb.service.HelloReply>newBuilder()
+  public static final io.grpc.MethodDescriptor<com.game.pb.server.rpc.hello.HelloRequest,
+      com.game.pb.server.rpc.hello.HelloReply> METHOD_SAY_HELLO =
+      io.grpc.MethodDescriptor.<com.game.pb.server.rpc.hello.HelloRequest, com.game.pb.server.rpc.hello.HelloReply>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
               "rpcservice.RPCService", "SayHello"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              com.game.pb.service.HelloRequest.getDefaultInstance()))
+              com.game.pb.server.rpc.hello.HelloRequest.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              com.game.pb.service.HelloReply.getDefaultInstance()))
+              com.game.pb.server.rpc.hello.HelloReply.getDefaultInstance()))
           .setSchemaDescriptor(new RPCServiceMethodDescriptorSupplier("SayHello"))
           .build();
 
@@ -70,8 +70,8 @@ public final class RPCServiceGrpc {
 
     /**
      */
-    public void sayHello(com.game.pb.service.HelloRequest request,
-        io.grpc.stub.StreamObserver<com.game.pb.service.HelloReply> responseObserver) {
+    public void sayHello(com.game.pb.server.rpc.hello.HelloRequest request,
+        io.grpc.stub.StreamObserver<com.game.pb.server.rpc.hello.HelloReply> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_SAY_HELLO, responseObserver);
     }
 
@@ -81,8 +81,8 @@ public final class RPCServiceGrpc {
             METHOD_SAY_HELLO,
             asyncUnaryCall(
               new MethodHandlers<
-                com.game.pb.service.HelloRequest,
-                com.game.pb.service.HelloReply>(
+                com.game.pb.server.rpc.hello.HelloRequest,
+                com.game.pb.server.rpc.hello.HelloReply>(
                   this, METHODID_SAY_HELLO)))
           .build();
     }
@@ -108,8 +108,8 @@ public final class RPCServiceGrpc {
 
     /**
      */
-    public void sayHello(com.game.pb.service.HelloRequest request,
-        io.grpc.stub.StreamObserver<com.game.pb.service.HelloReply> responseObserver) {
+    public void sayHello(com.game.pb.server.rpc.hello.HelloRequest request,
+        io.grpc.stub.StreamObserver<com.game.pb.server.rpc.hello.HelloReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_SAY_HELLO, getCallOptions()), request, responseObserver);
     }
@@ -135,7 +135,7 @@ public final class RPCServiceGrpc {
 
     /**
      */
-    public com.game.pb.service.HelloReply sayHello(com.game.pb.service.HelloRequest request) {
+    public com.game.pb.server.rpc.hello.HelloReply sayHello(com.game.pb.server.rpc.hello.HelloRequest request) {
       return blockingUnaryCall(
           getChannel(), METHOD_SAY_HELLO, getCallOptions(), request);
     }
@@ -161,8 +161,8 @@ public final class RPCServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.game.pb.service.HelloReply> sayHello(
-        com.game.pb.service.HelloRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.game.pb.server.rpc.hello.HelloReply> sayHello(
+        com.game.pb.server.rpc.hello.HelloRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_SAY_HELLO, getCallOptions()), request);
     }
@@ -188,8 +188,8 @@ public final class RPCServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SAY_HELLO:
-          serviceImpl.sayHello((com.game.pb.service.HelloRequest) request,
-              (io.grpc.stub.StreamObserver<com.game.pb.service.HelloReply>) responseObserver);
+          serviceImpl.sayHello((com.game.pb.server.rpc.hello.HelloRequest) request,
+              (io.grpc.stub.StreamObserver<com.game.pb.server.rpc.hello.HelloReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -213,7 +213,7 @@ public final class RPCServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.game.pb.service.RPCServiceProto.getDescriptor();
+      return com.game.pb.server.rpc.RPCServiceProto.getDescriptor();
     }
 
     @java.lang.Override

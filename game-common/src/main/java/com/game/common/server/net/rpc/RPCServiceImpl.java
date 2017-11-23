@@ -1,8 +1,8 @@
 package com.game.common.server.net.rpc;
 
-import com.game.pb.service.HelloReply;
-import com.game.pb.service.HelloRequest;
-import com.game.pb.service.RPCServiceGrpc.RPCServiceImplBase;
+import com.game.pb.server.rpc.RPCServiceGrpc.RPCServiceImplBase;
+import com.game.pb.server.rpc.hello.HelloReply;
+import com.game.pb.server.rpc.hello.HelloRequest;
 
 import io.grpc.stub.StreamObserver;
 

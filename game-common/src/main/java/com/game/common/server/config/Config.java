@@ -17,8 +17,10 @@ public class Config {
 	
 	public static String XML_PATH = "Resource";
 	
+	@Deprecated
 	public static int MESSAGE_MULTI = 1;
-	public static int MESSAGE_SINGLE = 5;
+	public static int MESSAGE_SINGLE = 1;
+	public static int MESSAGE_POOL_NUM = 5;
 	
 	public static String MYBATIS_XML = "mybatis-config.xml";
 	
@@ -47,7 +49,7 @@ public class Config {
 		NETTY_SNDBUF=getIntItem(prop, "netty.sndbuf", 32768);
 		
 		MESSAGE_MULTI=getIntItem(prop, "message.multi", 1);
-		MESSAGE_SINGLE=getIntItem(prop, "message.single", 5);
+		MESSAGE_SINGLE=getIntItem(prop, "message.single", 1);
 		
 		XML_PATH=getStringItem(prop, "xml.path", "Resource");
 		

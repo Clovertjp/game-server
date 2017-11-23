@@ -12,6 +12,7 @@ import com.game.common.server.action.MessageAction;
 import com.game.common.server.manager.GameSessionManager;
 import com.game.common.server.net.GameServer;
 import com.game.common.server.session.GameSession;
+import com.game.pb.server.message.MessageObj;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -20,19 +21,19 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * @author tangjp
  *
  */
-public class GameServerHandler extends SimpleChannelInboundHandler<GameObject.GamePbObject> {
+public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.NetMessage> {
 	private static final Logger logger = LogManager.getLogger(GameServerHandler.class);
 	
 
 	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, GamePbObject msg) throws Exception {
+	protected void channelRead0(ChannelHandlerContext ctx, MessageObj.NetMessage msg) throws Exception {
 		// TODO Auto-generated method stub
 		GameSession session=GameSessionManager.getInstance().getSession(ctx.channel());
 		if(session==null){
 			throw new GameException("session is null");
 		}
 		session.updateReadTime();
-		IAction<GameObject.GamePbObject> actionMsg=new MessageAction<>(session,msg);
+		IAction<MessageObj.NetMessage> actionMsg=new MessageAction<>(session,msg);
 		session.addMessage(actionMsg);
 		logger.info("session create id"+session.getId()+"  add message");
 	}

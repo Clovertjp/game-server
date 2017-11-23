@@ -10,6 +10,7 @@ import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.handler.GameHandlerManager;
+import com.game.pb.server.message.MessageObj;
 
 import io.netty.util.internal.StringUtil;
 
@@ -28,7 +29,7 @@ public abstract class MessageQueue implements IMessageQueue {
 	
 	protected abstract ExecutorService getExecutorService();
 	
-	protected abstract Queue<IAction<GameObject.GamePbObject>> getQueue();
+	protected abstract Queue<IAction<MessageObj.NetMessage>> getQueue();
 	
 	private void execute(){
 		
@@ -38,12 +39,12 @@ public abstract class MessageQueue implements IMessageQueue {
 				return ;
 			}
 		}
-		IAction<GameObject.GamePbObject> msg=getQueue().poll();
+		IAction<MessageObj.NetMessage> msg=getQueue().poll();
 		getExecutorService().execute(new MessageTask(msg,this));
 		
 	}
 	
-	public void addQueue(IAction<GameObject.GamePbObject> msg){
+	public void addQueue(IAction<MessageObj.NetMessage> msg){
 		getQueue().add(msg);
 		synchronized (lock) {
 			if(!exec){
@@ -56,10 +57,10 @@ public abstract class MessageQueue implements IMessageQueue {
 	
 	private class MessageTask implements Runnable {
 		
-		private IAction<GameObject.GamePbObject> msg;
+		private IAction<MessageObj.NetMessage> msg;
 		private MessageQueue queue;
 		
-		public MessageTask(IAction<GameObject.GamePbObject> msg,MessageQueue queue) {
+		public MessageTask(IAction<MessageObj.NetMessage> msg,MessageQueue queue) {
 			// TODO Auto-generated constructor stub
 			this.msg=msg;
 			this.queue=queue;

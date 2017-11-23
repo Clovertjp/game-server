@@ -9,16 +9,20 @@ import com.game.common.pb.object.GameObject;
 import com.game.common.pb.object.GameObject.GamePbObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
+import com.game.common.server.thread.GameThreadFactory;
+import com.game.pb.server.message.MessageObj;
 
 /**
  * @author tangjp
  *
  */
+@Deprecated
 public class MultiMessageQueue extends MessageQueue {
 	
-	private ExecutorService executor=Executors.newScheduledThreadPool(Config.MESSAGE_MULTI); 
+	private ExecutorService executor=Executors.newScheduledThreadPool(Config.MESSAGE_MULTI,
+			new GameThreadFactory("MultiMessageQueue")); 
 	
-	private Queue<IAction<GameObject.GamePbObject>> queue=new LinkedBlockingQueue<>();
+	private Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>();
 
 	@Override
 	protected ExecutorService getExecutorService() {
@@ -27,7 +31,7 @@ public class MultiMessageQueue extends MessageQueue {
 	}
 
 	@Override
-	protected Queue<IAction<GameObject.GamePbObject>> getQueue() {
+	protected Queue<IAction<MessageObj.NetMessage>> getQueue() {
 		// TODO Auto-generated method stub
 		return queue;
 	}

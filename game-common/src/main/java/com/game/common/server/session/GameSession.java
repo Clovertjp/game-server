@@ -4,8 +4,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
+import com.game.common.server.config.Config;
 import com.game.common.server.queue.MessageQueue;
 import com.game.common.server.queue.MessageQueueFactory;
+import com.game.pb.server.message.MessageObj;
 
 import io.netty.channel.Channel;
 
@@ -27,10 +29,12 @@ public class GameSession {
 		createTime=System.currentTimeMillis();
 		readTime=createTime;
 		this.channel=channel;
-		messageQueue=MessageQueueFactory.getMessageQueue(MessageQueueFactory.MessageQueueType.multiType);
+		int poolId=id%Config.MESSAGE_POOL_NUM;
+		messageQueue=MessageQueueFactory.getInstance()
+				.getMessageQueue(MessageQueueFactory.MessageQueueType.multiType,poolId);
 	}
 	
-	public void addMessage(IAction<GameObject.GamePbObject> msg){
+	public void addMessage(IAction<MessageObj.NetMessage> msg){
 		messageQueue.addQueue(msg);
 	}
 

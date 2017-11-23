@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "com.game.pb.server.message";
+option java_outer_classname = "MessageObj";
+
+message NetMessage {
+  string cmd = 1;
+  string uid = 2;
+  int64 sendTime = 3;
+  string className =4;
+  bytes classData =5;
+}
