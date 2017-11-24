@@ -18,6 +18,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.Message;
 import com.google.protobuf.MessageLite;
 import com.google.protobuf.MessageOrBuilder;
+import com.googlecode.protobuf.format.JsonFormat;
 
 /**
  * @author tangjp
@@ -27,6 +28,7 @@ public class GameHandlerManager {
 	private static final String SEPARATOR="|";
 	private static final Logger logger = LogManager.getLogger(GameHandlerManager.class);
 	private static GameHandlerManager handlerManager=new GameHandlerManager();
+	JsonFormat format=new JsonFormat();
 	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<String, Method>();
 	private GameHandlerManager(){
 		
@@ -44,23 +46,29 @@ public class GameHandlerManager {
 		String className=msg.getClassName();
 		String uid=msg.getUid();
 		ByteString data = msg.getClassData();
+		String msgStr="";
+		String retStr="";
+		String retClsName="";
 		MessageObj.NetMessage ret=MessageObj.NetMessage.getDefaultInstance();
 		long start=System.currentTimeMillis();
 		try{
 			Class<? extends GameBaseHandler> handler=handlerMap.get(cmd);
 			GameBaseHandler gameHandler=(GameBaseHandler)handler.newInstance();
-			MessageLite retBuilder=gameHandler.handlerRequest(byteStringToMessage(data,className));
-			String pbName=gameHandler.getPbClassName();
+			Message msgMessage=byteStringToMessage(data,className);
+			msgStr=format.printToString(msgMessage);
+			Message retBuilder=gameHandler.handlerRequest(msgMessage);
+			retStr=format.printToString(retBuilder);
+			retClsName=gameHandler.getPbClassName();
 			if(retBuilder!=null){
 				ret=MessageObj.NetMessage.newBuilder().setClassData(retBuilder.toByteString())
-						.setClassName(pbName).setUid(uid).build();
+						.setClassName(retClsName).setUid(uid).build();
 				actionMsg.getSession().getChannel().writeAndFlush(ret);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
 			logger.error(e);
 		}finally {
-			writeLog(start, msg, ret, uid, cmd);
+			writeLog(start, cmd, uid, className, msgStr, retClsName, retStr);
 		}
 	}
 	
@@ -97,9 +105,12 @@ public class GameHandlerManager {
 		});
 	}
 	
-	private void writeLog(long start,MessageOrBuilder msg,MessageOrBuilder ret,String uid,String cmd){
+	private void writeLog(long start,String cmd,String uid,String clsName,String msg,String retClsName,String ret){
 		StringBuilder sb=new StringBuilder();
-		sb.append(cmd).append(GameHandlerManager.SEPARATOR).append(uid).append(GameHandlerManager.SEPARATOR)
+		sb.append(clsName).append(GameHandlerManager.SEPARATOR)
+		.append(retClsName).append(GameHandlerManager.SEPARATOR)
+		.append(uid).append(GameHandlerManager.SEPARATOR)
+		.append(cmd).append(GameHandlerManager.SEPARATOR)
 		.append(System.currentTimeMillis()-start).append(GameHandlerManager.SEPARATOR)
 		.append(msg).append(GameHandlerManager.SEPARATOR)
 		.append(ret);

@@ -2,6 +2,8 @@ package com.game.common;
 
 import com.game.common.pb.object.GameObject;
 import com.game.common.pb.object.GameObject.GamePbObject;
+import com.game.pb.server.message.MessageObj;
+import com.googlecode.protobuf.format.JsonFormat;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -21,18 +23,27 @@ public class ClientHandler extends SimpleChannelInboundHandler<GameObject.GamePb
 		if(msg.containsIntValues("num")){
 			i=msg.getIntValuesOrThrow("num");
 		}
-		GameObject.GamePbObject obj=GameObject.GamePbObject.newBuilder().setCmd("a").putIntValues("num", ++i)
-				.putStringValues("hhh", "aaa").putStringValues("11", "aaa").putStringValues("22", "aaa")
+		GameObject.GamePbObject gobj=GameObject.GamePbObject.newBuilder().setCmd("a").putStringValues("hhh", "aaa").build();
+		MessageObj.NetMessage obj=MessageObj.NetMessage.newBuilder().setCmd("a")
+				.setClassName("com.game.common.pb.object.GameObject$GamePbObject")
+				.setUid("1").setClassData(gobj.toByteString())
 				.build();
-		System.out.println(obj);
+		JsonFormat format=new JsonFormat();
+		System.out.println(format.printToString(obj));
 		ctx.writeAndFlush(obj);
 	}
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
-		GameObject.GamePbObject obj=GameObject.GamePbObject.newBuilder().setCmd("a").putStringValues("hhh", "aaa").build();
-		System.out.println(obj);
+		GameObject.GamePbObject gobj=GameObject.GamePbObject.newBuilder().setCmd("a").putStringValues("hhh", "aaabbb").build();
+		MessageObj.NetMessage obj=MessageObj.NetMessage.newBuilder().setCmd("a")
+				.setClassName("com.game.common.pb.object.GameObject$GamePbObject")
+				.setUid("1").setClassData(gobj.toByteString())
+				.build();
+		System.out.println(GameObject.GamePbObject.class.getName());
+		JsonFormat format=new JsonFormat();
+		System.out.println(format.printToString(obj));
 		ctx.writeAndFlush(obj);
 	}
 
