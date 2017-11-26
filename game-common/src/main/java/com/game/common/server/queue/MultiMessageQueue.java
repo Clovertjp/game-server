@@ -19,7 +19,7 @@ import com.game.pb.server.message.MessageObj;
 @Deprecated
 public class MultiMessageQueue extends MessageQueue {
 	
-	private ExecutorService executor=Executors.newScheduledThreadPool(Config.MESSAGE_MULTI,
+	private ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_MULTI,
 			new GameThreadFactory("MultiMessageQueue")); 
 	
 	private Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>();

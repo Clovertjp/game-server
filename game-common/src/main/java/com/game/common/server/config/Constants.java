@@ -5,5 +5,7 @@ package com.game.common.server.config;
  *
  */
 public class Constants {
+	
+	public static int SERVER_ID;
 
 }

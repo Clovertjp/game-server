@@ -38,6 +38,10 @@ public class Config {
 	public static String REDIS_LOCAL_POOL_IP = "127.0.0.1";
 	public static int RPC_PORT = 9000;
 	
+	public static int GAME_SCHEDULE_THREAD_POOL_NUM = 2;
+	
+	public static String AGENT_JAR = "lib/game_agent.jar";
+	
 	public static void load(){
 		Properties prop = PropertiesManager.getSystemConfig();
 		
@@ -69,6 +73,10 @@ public class Config {
 		REDIS_LOCAL_POOL_IP=getStringItem(prop, "redis.local.pool.ip", "127.0.0.1");
 		
 		RPC_PORT=getIntItem(prop, "rpc.port", 9000);
+		
+		GAME_SCHEDULE_THREAD_POOL_NUM=getIntItem(prop, "schedule.thread.pool", 2);
+		
+		AGENT_JAR=getStringItem(prop, "agent.jar.path", "lib/game_agent.jar");
 
 	}
 	

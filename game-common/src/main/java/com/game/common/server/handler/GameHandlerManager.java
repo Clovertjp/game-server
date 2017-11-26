@@ -58,7 +58,10 @@ public class GameHandlerManager {
 			msgStr=format.printToString(msgMessage);
 			Message retBuilder=gameHandler.handlerRequest(msgMessage);
 			retStr=format.printToString(retBuilder);
-			retClsName=gameHandler.getPbClassName();
+			Class retCl=gameHandler.getRetPbClass();
+			if(retCl!=null){
+				retClsName=retCl.getName();
+			}
 			if(retBuilder!=null){
 				ret=MessageObj.NetMessage.newBuilder().setClassData(retBuilder.toByteString())
 						.setClassName(retClsName).setUid(uid).build();
@@ -66,7 +69,7 @@ public class GameHandlerManager {
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
-			logger.error(e);
+			logger.error(e.getMessage(),e);
 		}finally {
 			writeLog(start, cmd, uid, className, msgStr, retClsName, retStr);
 		}

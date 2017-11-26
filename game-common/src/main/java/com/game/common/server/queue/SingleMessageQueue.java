@@ -17,7 +17,7 @@ import com.game.pb.server.message.MessageObj;
  */
 public class SingleMessageQueue extends MessageQueue {
 	
-	private static ExecutorService executor=Executors.newScheduledThreadPool(Config.MESSAGE_SINGLE,
+	private static ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_SINGLE,
 			new GameThreadFactory("SingleMessageQueue"));
 	
 	private static Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>();

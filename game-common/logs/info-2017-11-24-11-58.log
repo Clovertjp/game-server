@@ -1,4 +1,0 @@
-2017-11-24 11:58:25 session create id3   ip:/127.0.0.1:64170
-2017-11-24 11:58:25 session create id3  add message
-2017-11-24 11:58:25 java.lang.NullPointerException
-2017-11-24 11:58:25 com.game.common.pb.object.GameObject$GamePbObject||1|a|0||

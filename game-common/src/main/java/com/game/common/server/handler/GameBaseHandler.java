@@ -14,6 +14,6 @@ public abstract class GameBaseHandler {
 	
 	public abstract Message handlerRequest(Message msg) throws GameException;
 	
-	public abstract String getPbClassName();
+	public abstract Class<?> getRetPbClass();
 	
 }
