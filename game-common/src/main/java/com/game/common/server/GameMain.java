@@ -7,6 +7,7 @@ import com.game.common.server.config.Config;
 import com.game.common.server.config.GameConfigManager;
 import com.game.common.server.net.netty.NettyGameServer;
 import com.game.common.server.net.rpc.RPCGameServer;
+import com.game.common.server.redis.pubsub.PubSubChannelFactory;
 
 /**
  * @author tangjp
@@ -21,6 +22,7 @@ public class GameMain {
 	public static void start() throws GameException, InterruptedException{
 		Config.load();
 		GameConfigManager.refreshAll();
+		PubSubChannelFactory.getInstance().init();
 		Runtime.getRuntime().addShutdownHook(new ShutdownHook());
 		nettyServer=new NettyGameServer();
 		nettyServer.init();

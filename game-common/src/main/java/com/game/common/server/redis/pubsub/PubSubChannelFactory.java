@@ -7,8 +7,10 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.game.common.server.GameScheduler;
+import com.game.common.server.scheduler.*;
 import com.game.common.server.redis.R;
+import com.game.common.server.redis.pubsub.channel.HotSwapChannel;
+import com.game.common.server.redis.pubsub.channel.RefreshConfigChannel;
 import com.google.common.base.Strings;
 
 import redis.clients.jedis.JedisPubSub;
@@ -20,6 +22,13 @@ import redis.clients.jedis.JedisPubSub;
 public class PubSubChannelFactory {
 	
 	private static PubSubChannelFactory factory=new PubSubChannelFactory();
+	
+	private static final Logger logger = LogManager.getLogger(PubSubChannelFactory.class);
+	
+	private static Map<String,Class<? extends IPubSubChannel>> channels=new HashMap<>();
+	
+	public JedisPubSub listener=new GamePubSub();
+	
 	private PubSubChannelFactory(){
 		
 	}
@@ -29,14 +38,14 @@ public class PubSubChannelFactory {
 	}
 	
 	public void init(){
+		addMap();
 		subscribe();
 	}
 	
-	private static final Logger logger = LogManager.getLogger(PubSubChannelFactory.class);
-	
-	private static Map<String,Class<? extends IPubSubChannel>> channels=new HashMap<>();
-	
-	public JedisPubSub listener=new GamePubSub();
+	private void addMap(){
+		channels.put(HotSwapChannel.class.getSimpleName(), HotSwapChannel.class);
+		channels.put(RefreshConfigChannel.class.getSimpleName(), RefreshConfigChannel.class);
+	}
 	
 	private void subscribe(){
 		GameScheduler.getInstance().getThreadExecutor().execute(new Runnable() {

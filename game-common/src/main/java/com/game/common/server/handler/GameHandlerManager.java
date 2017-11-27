@@ -25,7 +25,7 @@ import com.googlecode.protobuf.format.JsonFormat;
  *
  */
 public class GameHandlerManager {
-	private static final String SEPARATOR="|";
+	private static final String SEPARATOR=" | ";
 	private static final Logger logger = LogManager.getLogger(GameHandlerManager.class);
 	private static GameHandlerManager handlerManager=new GameHandlerManager();
 	JsonFormat format=new JsonFormat();

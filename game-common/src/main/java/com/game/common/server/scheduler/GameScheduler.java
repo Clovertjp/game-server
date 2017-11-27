@@ -1,4 +1,4 @@
-package com.game.common.server;
+package com.game.common.server.scheduler;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,6 +19,10 @@ public class GameScheduler {
 	private static final Logger logger = LogManager.getLogger(GameScheduler.class);
 	
 	private static GameScheduler gameScheduler=new GameScheduler();
+	
+	private ExecutorService threadExecutor=Executors.newFixedThreadPool(Config.GAME_SCHEDULE_THREAD_POOL_NUM,
+			new GameThreadFactory("GameScheduler_thread"));
+	
 	private GameScheduler(){
 		
 	}
@@ -26,11 +30,7 @@ public class GameScheduler {
 	public static GameScheduler getInstance(){
 		return gameScheduler;
 	}
-	
-	
-	private ExecutorService threadExecutor=Executors.newFixedThreadPool(Config.GAME_SCHEDULE_THREAD_POOL_NUM,
-			new GameThreadFactory("GameScheduler_thread"));
-	
+
 	public ExecutorService getThreadExecutor() {
 		return threadExecutor;
 	}
