@@ -42,6 +42,8 @@ public class Config {
 	
 	public static String AGENT_JAR = "lib/game_agent.jar";
 	
+	public static long SESSION_TIMEOUT = 300000;
+	
 	public static void load(){
 		Properties prop = PropertiesManager.getSystemConfig();
 		
@@ -77,6 +79,8 @@ public class Config {
 		GAME_SCHEDULE_THREAD_POOL_NUM=getIntItem(prop, "schedule.thread.pool", 2);
 		
 		AGENT_JAR=getStringItem(prop, "agent.jar.path", "lib/game_agent.jar");
+		
+		SESSION_TIMEOUT=getLongItem(prop, "session.timeout", 300000);
 
 	}
 	
