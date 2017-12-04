@@ -8,6 +8,7 @@ import com.game.common.server.config.GameConfigManager;
 import com.game.common.server.net.netty.NettyGameServer;
 import com.game.common.server.net.rpc.RPCGameServer;
 import com.game.common.server.redis.pubsub.PubSubChannelFactory;
+import com.game.common.server.scheduler.GameScheduler;
 
 /**
  * @author tangjp
@@ -24,6 +25,7 @@ public class GameMain {
 		GameConfigManager.refreshAll();
 		PubSubChannelFactory.getInstance().init();
 		Runtime.getRuntime().addShutdownHook(new ShutdownHook());
+		GameScheduler.getInstance().init();
 		nettyServer=new NettyGameServer();
 		nettyServer.init();
 		nettyServer.start();
@@ -35,6 +37,7 @@ public class GameMain {
 	public static void stop() throws GameException{
 		nettyServer.stop();
 		rpcServer.stop();
+		GameScheduler.getInstance().stop();
 	}
 
 	public static void main(String[] args) throws GameException, InterruptedException {

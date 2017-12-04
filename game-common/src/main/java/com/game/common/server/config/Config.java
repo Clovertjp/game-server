@@ -8,41 +8,43 @@ import java.util.Properties;
  */
 public class Config {
 	
-	public static int NETTY_BOSS = 1;
-	public static int NETTY_WORK = 5;
-	public static int NETTY_BACK = 512;
-	public static int NETTY_PORT = 8000;
-	public static int NETTY_RCVBUF = 1024;
-	public static int NETTY_SNDBUF = 32768;
+	public static int NETTY_BOSS ;
+	public static int NETTY_WORK ;
+	public static int NETTY_BACK ;
+	public static int NETTY_PORT ;
+	public static int NETTY_RCVBUF ;
+	public static int NETTY_SNDBUF ;
 	
-	public static String XML_PATH = "Resource";
+	public static String XML_PATH ;
 	
 	@Deprecated
-	public static int MESSAGE_MULTI = 1;
-	public static int MESSAGE_SINGLE = 1;
+	public static int MESSAGE_MULTI ;
+	public static int MESSAGE_SINGLE ;
 	public static int MESSAGE_POOL_NUM = 5;
 	
-	public static String MYBATIS_XML = "mybatis-config.xml";
+	public static String MYBATIS_XML ;
 	
-	public static boolean SQL_AUTO_CLOSE = true;
-	public static int SQL_AUTO_TIME = 60;
-	public static String SQL_POOL = "hikaricp";
+	public static boolean SQL_AUTO_CLOSE ;
+	public static int SQL_AUTO_TIME ;
+	public static String SQL_POOL ;
 	
-	public static int REDIS_LOCAL_POOL_MAXACTIVE = 8;
-	public static int REDIS_LOCAL_POOL_MAXIDLE = 16;
-	public static int REDIS_LOCAL_POOL_MINIDLE = 4;
-	public static long REDIS_LOCAL_POOL_MAXWAIT = 1000;
-	public static boolean REDIS_LOCAL_POOL_BORROW = false;
-	public static boolean REDIS_LOCAL_POOL_RETURN = false;
-	public static int REDIS_LOCAL_POOL_PORT = 6379;
-	public static String REDIS_LOCAL_POOL_IP = "127.0.0.1";
-	public static int RPC_PORT = 9000;
+	public static int REDIS_LOCAL_POOL_MAXACTIVE ;
+	public static int REDIS_LOCAL_POOL_MAXIDLE ;
+	public static int REDIS_LOCAL_POOL_MINIDLE ;
+	public static long REDIS_LOCAL_POOL_MAXWAIT ;
+	public static boolean REDIS_LOCAL_POOL_BORROW ;
+	public static boolean REDIS_LOCAL_POOL_RETURN ;
+	public static int REDIS_LOCAL_POOL_PORT ;
+	public static String REDIS_LOCAL_POOL_IP ;
+	public static int RPC_PORT ;
 	
-	public static int GAME_SCHEDULE_THREAD_POOL_NUM = 2;
+	public static int GAME_SCHEDULE_THREAD_POOL_NUM ;
 	
-	public static String AGENT_JAR = "lib/game_agent.jar";
+	public static String AGENT_JAR ;
 	
-	public static long SESSION_TIMEOUT = 300000;
+	public static long SESSION_TIMEOUT ;
+	
+	public static String RPC_FILE_PATH ;
 	
 	public static void load(){
 		Properties prop = PropertiesManager.getSystemConfig();
@@ -81,6 +83,8 @@ public class Config {
 		AGENT_JAR=getStringItem(prop, "agent.jar.path", "lib/game_agent.jar");
 		
 		SESSION_TIMEOUT=getLongItem(prop, "session.timeout", 300000);
+		
+		RPC_FILE_PATH=getStringItem(prop, "rpc.client.file", "Rpc/rpcClient.xml");
 
 	}
 	

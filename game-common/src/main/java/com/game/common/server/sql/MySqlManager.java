@@ -55,6 +55,9 @@ public class MySqlManager {
 		sqlSessionList.remove(session);
 	}
 	
+	/**
+	 * 定时删除未关闭的session，用来查找session泄露
+	 */
 	public void schedulerRemove(){
 		
 		List<SessionAutoClose> leakSessions=getLeakList();

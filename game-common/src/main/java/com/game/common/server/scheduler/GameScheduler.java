@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.game.common.server.config.Config;
 import com.game.common.server.redis.pubsub.GamePubSub;
+import com.game.common.server.scheduler.task.MySqlSessionSchedulerTask;
 import com.game.common.server.scheduler.task.SessionSchedulerTask;
 import com.game.common.server.thread.GameThreadFactory;
 
@@ -48,10 +49,20 @@ public class GameScheduler {
 
 	public void init(){
 		initSessionScheduled();
+		initMySqlSessionScheduled();
 	}
 	
 	private void initSessionScheduled(){
 		getScheduledExecutor().scheduleAtFixedRate(new SessionSchedulerTask(), 0, 1, TimeUnit.MINUTES);
+	}
+	
+	private void initMySqlSessionScheduled(){
+		getScheduledExecutor().scheduleAtFixedRate(new MySqlSessionSchedulerTask(), 0, 3, TimeUnit.MINUTES);
+	}
+	
+	public void stop() {
+		getScheduledExecutor().shutdown();
+		getThreadExecutor().shutdown();
 	}
 
 }

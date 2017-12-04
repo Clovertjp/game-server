@@ -1,0 +1,19 @@
+<config>
+	<rpc>
+		<server>
+			<id>1</id>
+			<ip>10.1.34.183</ip>
+			<port>9000</port>
+		</server>
+		<server>
+			<id>2</id>
+			<ip>10.1.34.181</ip>
+			<port>9000</port>
+		</server>
+		<server>
+			<id>3</id>
+			<ip>10.1.34.182</ip>
+			<port>9000</port>
+		</server>
+	</rpc>
+</config>
