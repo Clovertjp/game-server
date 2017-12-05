@@ -1,5 +1,6 @@
 package com.game.common.server.handler;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +9,7 @@ import com.game.common.pb.object.GameObject;
 import com.game.common.pb.object.GameObject.GamePbObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.action.MessageAction;
+import com.game.common.server.engine.GameEngine;
 import com.game.common.server.manager.GameSessionManager;
 import com.game.common.server.net.GameServer;
 import com.game.common.server.session.GameSession;
@@ -31,10 +33,14 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 		if(session==null){
 			throw new GameException("session is null");
 		}
+		if(StringUtils.isBlank(session.getUid())) {
+			session.setUid(msg.getUid());
+		}
+		session.setUid(msg.getUid());
 		session.updateReadTime();
 		IAction<MessageObj.NetMessage> actionMsg=new MessageAction<>(session,msg);
 		session.addMessage(actionMsg);
-		logger.info("session create id"+session.getId()+"  add message");
+		logger.info("session create id "+session.getId()+" uid: "+session.getUid()+"  add message");
 	}
 	
 	@Override
@@ -50,11 +56,12 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 		// TODO Auto-generated method stub
 		GameSession session=GameSessionManager.getInstance().removeSession(ctx.channel());
 		if(session!=null){
-			logger.info("session destory id"+session.getId()+"   ip:"+ctx.channel().remoteAddress());
+			GameEngine.getInstance().removePlayer(session.getUid());
+			logger.info("session destory id"+session.getId()+" uid: "+session.getUid()+"   ip:"+ctx.channel().remoteAddress());
 		}else{
 			logger.info("session is null ,destory ip:"+ctx.channel().remoteAddress());
 		}
-		
+		ctx.close();
 	}
 	
 	@Override
@@ -62,7 +69,8 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 		// TODO Auto-generated method stub
 		GameSession session=GameSessionManager.getInstance().removeSession(ctx.channel());
 		if(session!=null){
-			logger.info("session destory id"+session.getId()+"   ip:"+ctx.channel().remoteAddress(),cause);
+			GameEngine.getInstance().removePlayer(session.getUid());
+			logger.info("session destory id"+session.getId()+" uid: "+session.getUid()+"   ip:"+ctx.channel().remoteAddress(),cause);
 		}else{
 			logger.info("session is null ,destory ip:"+ctx.channel().remoteAddress(),cause);
 		}

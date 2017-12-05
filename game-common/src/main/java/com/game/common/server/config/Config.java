@@ -46,6 +46,12 @@ public class Config {
 	
 	public static String RPC_FILE_PATH ;
 	
+	public static int PUSH_QUEUE_THREAD ;
+	
+	public static String LOGIN_HANDLER ;
+	
+	public static String LOGIN_CMD ;
+	
 	public static void load(){
 		Properties prop = PropertiesManager.getSystemConfig();
 		
@@ -85,6 +91,12 @@ public class Config {
 		SESSION_TIMEOUT=getLongItem(prop, "session.timeout", 300000);
 		
 		RPC_FILE_PATH=getStringItem(prop, "rpc.client.file", "Rpc/rpcClient.xml");
+		
+		PUSH_QUEUE_THREAD=getIntItem(prop, "push.thread", 1);
+		
+		LOGIN_HANDLER=getStringItem(prop, "game.login.handler", "");
+		
+		LOGIN_CMD=getStringItem(prop, "game.login.cmd", "");
 
 	}
 	

@@ -9,6 +9,7 @@ import org.apache.commons.configuration.XMLConfiguration;
 import com.game.common.server.config.Config;
 import com.game.common.server.config.Constants;
 import com.game.common.server.config.GameServerConfig;
+import com.game.pb.server.rpc.hello.HelloRequest;
 
 /**
  * @author tangjp
@@ -20,6 +21,7 @@ public class RpcClientManager {
 	
 	private static RpcClientManager rpcManager=new RpcClientManager();
 	private Map<Integer,RpcClient> clientMap=new ConcurrentHashMap<>();
+	private Map<Integer,Object> lockMap=new ConcurrentHashMap<>();
 	
 	private RpcClientManager() {
 		
@@ -35,7 +37,7 @@ public class RpcClientManager {
 		if(clientMap.containsKey(serverId)) {
 			return clientMap.get(serverId);
 		}
-		synchronized (this) {
+		synchronized (lockMap.putIfAbsent(serverId, new Object())) {
 			if(clientMap.containsKey(serverId)) {
 				return clientMap.get(serverId);
 			}

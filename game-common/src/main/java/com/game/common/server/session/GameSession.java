@@ -22,6 +22,7 @@ public class GameSession {
 	private long readTime;
 	private Channel channel;
 	private MessageQueue messageQueue;
+	private String uid;
 	
 	public GameSession(Channel channel) {
 		// TODO Auto-generated constructor stub
@@ -60,6 +61,14 @@ public class GameSession {
 
 	public void setChannel(Channel channel) {
 		this.channel = channel;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	
 	

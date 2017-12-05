@@ -6,11 +6,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
+import com.game.common.server.config.Config;
 import com.game.pb.server.message.MessageObj;
 import com.google.common.base.Strings;
 import com.google.protobuf.AbstractMessageLite;
@@ -26,9 +28,10 @@ import com.googlecode.protobuf.format.JsonFormat;
  */
 public class GameHandlerManager {
 	private static final String SEPARATOR=" | ";
+	private static final String REQ_RES_STR="REQ_RES";
 	private static final Logger logger = LogManager.getLogger(GameHandlerManager.class);
 	private static GameHandlerManager handlerManager=new GameHandlerManager();
-	JsonFormat format=new JsonFormat();
+	private static JsonFormat format=new JsonFormat();
 	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<String, Method>();
 	private GameHandlerManager(){
 		
@@ -36,8 +39,16 @@ public class GameHandlerManager {
 	
 	private Map<String,Class<? extends GameBaseHandler>> handlerMap=new ConcurrentHashMap<>();
 	
+	private Class<? extends GameLoginHandler> gameLoginHandler;
+	
 	public static GameHandlerManager getInstance(){
 		return handlerManager;
+	}
+	
+	public void init() throws ClassNotFoundException {
+		if(!StringUtils.isBlank(Config.LOGIN_HANDLER)) {
+			gameLoginHandler=(Class<? extends GameLoginHandler>) Class.forName(Config.LOGIN_HANDLER);
+		}
 	}
 	
 	public void execHandler(IAction<MessageObj.NetMessage> actionMsg){
@@ -52,15 +63,22 @@ public class GameHandlerManager {
 		MessageObj.NetMessage ret=MessageObj.NetMessage.getDefaultInstance();
 		long start=System.currentTimeMillis();
 		try{
-			Class<? extends GameBaseHandler> handler=handlerMap.get(cmd);
-			GameBaseHandler gameHandler=(GameBaseHandler)handler.newInstance();
+			
 			Message msgMessage=byteStringToMessage(data,className);
 			msgStr=format.printToString(msgMessage);
-			Message retBuilder=gameHandler.handlerRequest(msgMessage);
-			retStr=format.printToString(retBuilder);
-			Class retCl=gameHandler.getRetPbClass();
-			if(retCl!=null){
-				retClsName=retCl.getName();
+			Message retBuilder=null ;
+			
+			if(Config.LOGIN_CMD.equals(cmd) && gameLoginHandler!=null) {
+				GameLoginHandler login=gameLoginHandler.newInstance();
+				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession());
+			}else {
+				Class<? extends GameBaseHandler> handler=handlerMap.get(cmd);
+				GameBaseHandler gameHandler=(GameBaseHandler)handler.newInstance();
+				retBuilder=gameHandler.handlerRequest(msgMessage);
+			}
+			if(retBuilder!=null){
+				retStr=format.printToString(retBuilder);
+				retClsName=retBuilder.getClass().getName();
 			}
 			if(retBuilder!=null){
 				ret=MessageObj.NetMessage.newBuilder().setClassData(retBuilder.toByteString())
@@ -110,7 +128,8 @@ public class GameHandlerManager {
 	
 	private void writeLog(long start,String cmd,String uid,String clsName,String msg,String retClsName,String ret){
 		StringBuilder sb=new StringBuilder();
-		sb.append(clsName).append(GameHandlerManager.SEPARATOR)
+		sb.append(REQ_RES_STR).append(SEPARATOR)
+		.append(clsName).append(GameHandlerManager.SEPARATOR)
 		.append(retClsName).append(GameHandlerManager.SEPARATOR)
 		.append(uid).append(GameHandlerManager.SEPARATOR)
 		.append(cmd).append(GameHandlerManager.SEPARATOR)
