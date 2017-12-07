@@ -36,6 +36,7 @@ public class GamePushManager {
 	private static JsonFormat format=new JsonFormat();
 	private static final String SEPARATOR=" | ";
 	private static final String PUSH_STR="PUSH";
+	private static final String SYSTEM_UID="0000";
 	
 	private static GamePushManager pushManager=new GamePushManager();
 	public static GamePushManager getInstance() {
@@ -59,11 +60,19 @@ public class GamePushManager {
 		addTask(message);
 	}
 	
+	public void systemPushOne(String toUid,String cmd,Message pushMessage) {
+		pushOne(SYSTEM_UID, toUid, cmd, pushMessage);
+	}
+	
 	public void pushOne(String pushUid,GamePlayer toPlayer,String cmd,Message pushMessage) {
 		List<GamePlayer> list=new ArrayList<>();
 		list.add(toPlayer);
 		PushMessage message=new PushMessage(cmd,pushUid,toPlayer.getUid(), list, pushMessage);
 		addTask(message);
+	}
+	
+	public void systemPushOne(GamePlayer toPlayer,String cmd,Message pushMessage) {
+		pushOne(SYSTEM_UID, toPlayer, cmd, pushMessage);
 	}
 	
 	public void pushList(String pushUid,List<String> toUidList,String cmd,Message pushMessage) {
@@ -79,6 +88,10 @@ public class GamePushManager {
 		addTask(message);
 	}
 	
+	public void systemPushList(List<String> toUidList,String cmd,Message pushMessage) {
+		pushList(SYSTEM_UID, toUidList, cmd, pushMessage);
+	}
+	
 	public void pushListWithPlayer(String pushUid,List<GamePlayer> toPlayerList,String cmd,Message pushMessage) {
 		List<String> list=new ArrayList<>();
 		for(GamePlayer toPlayer : toPlayerList) {
@@ -86,6 +99,20 @@ public class GamePushManager {
 		}
 		PushMessage message=new PushMessage(cmd,pushUid,Joiner.on(",").join(list), toPlayerList, pushMessage);
 		addTask(message);
+	}
+	
+	public void systemPushListWithPlayer(List<GamePlayer> toPlayerList,String cmd,Message pushMessage) {
+		pushListWithPlayer(SYSTEM_UID, toPlayerList, cmd, pushMessage);
+	}
+	
+	public void pushAll(String pushUid,String cmd,Message pushMessage) {
+		PushMessage message=new PushMessage(cmd,pushUid,Joiner.on(",").join(GameEngine.getInstance().getGamePlayerMap().keySet())
+				, new ArrayList<>(GameEngine.getInstance().getGamePlayerMap().values()), pushMessage);
+		addTask(message);
+	}
+	
+	public void systemPushAll(String cmd,Message pushMessage) {
+		pushAll(SYSTEM_UID, cmd, pushMessage);
 	}
 	
 	private void addTask(PushMessage message) {

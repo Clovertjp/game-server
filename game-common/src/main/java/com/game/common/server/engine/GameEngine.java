@@ -36,5 +36,13 @@ public class GameEngine {
 	public GamePlayer findPlayerById(String uid) {
 		return gamePlayerMap.get(uid);
 	}
+	public Map<String, GamePlayer> getGamePlayerMap() {
+		return gamePlayerMap;
+	}
+	public void setGamePlayerMap(Map<String, GamePlayer> gamePlayerMap) {
+		this.gamePlayerMap = gamePlayerMap;
+	}
+	
+	
 	
 }
