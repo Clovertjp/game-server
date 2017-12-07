@@ -48,6 +48,10 @@ public class Config {
 	
 	public static int PUSH_QUEUE_THREAD ;
 	
+	public static int PUSH_QUEUE_MAX_THREAD ;
+	
+	public static int PUSH_QUEUE_MAX_QUEUE ;
+	
 	public static String LOGIN_HANDLER ;
 	
 	public static String LOGIN_CMD ;
@@ -92,7 +96,9 @@ public class Config {
 		
 		RPC_FILE_PATH=getStringItem(prop, "rpc.client.file", "Rpc/rpcClient.xml");
 		
-		PUSH_QUEUE_THREAD=getIntItem(prop, "push.thread", 1);
+		PUSH_QUEUE_THREAD=getIntItem(prop, "push.thread", 2);
+		
+		PUSH_QUEUE_MAX_THREAD=getIntItem(prop, "push.thread.max", 5);
 		
 		LOGIN_HANDLER=getStringItem(prop, "game.login.handler", "");
 		

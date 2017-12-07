@@ -33,4 +33,8 @@ public class GameEngine {
 		gamePlayerMap.remove(uid);
 	}
 	
+	public GamePlayer findPlayerById(String uid) {
+		return gamePlayerMap.get(uid);
+	}
+	
 }
