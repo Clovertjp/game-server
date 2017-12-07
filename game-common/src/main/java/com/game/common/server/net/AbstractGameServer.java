@@ -10,14 +10,14 @@ import com.game.common.exception.GameException;
  * @author tangjp
  *
  */
-public abstract class GameServer implements IGameServer {
-	private static final Logger logger = LogManager.getLogger(GameServer.class);
+public abstract class AbstractGameServer implements IGameServer {
+	private static final Logger logger = LogManager.getLogger(AbstractGameServer.class);
 	
 	private boolean initialized=false;
 	private volatile boolean started=false;
 	private String serverName="defaultName";
 	
-	public GameServer(String serverName){
+	public AbstractGameServer(String serverName){
 		this.serverName=serverName;
 	}
 	

@@ -15,7 +15,7 @@ import com.game.pb.server.message.MessageObj;
  * @author tangjp
  *
  */
-public class SingleMessageQueue extends MessageQueue {
+public class SingleMessageQueue extends AbstractMessageQueue {
 	
 	private static ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_SINGLE,
 			new GameThreadFactory("SingleMessageQueue"));

@@ -6,7 +6,7 @@ import redis.clients.jedis.Jedis;
  * @author tangjp
  *
  */
-public interface GameRedisBatch {
+public interface IGameRedisBatch {
 	
 	public Object run(Jedis jedis);
 

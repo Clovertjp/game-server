@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
-import com.game.common.server.queue.MessageQueue;
+import com.game.common.server.queue.AbstractMessageQueue;
 import com.game.common.server.queue.MessageQueueFactory;
 import com.game.pb.server.message.MessageObj;
 
@@ -21,7 +21,7 @@ public class GameSession {
 	private long createTime;
 	private long readTime;
 	private Channel channel;
-	private MessageQueue messageQueue;
+	private AbstractMessageQueue messageQueue;
 	private String uid;
 	
 	public GameSession(Channel channel) {

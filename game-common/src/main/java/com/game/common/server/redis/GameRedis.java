@@ -735,7 +735,7 @@ public class GameRedis {
         }
     }
 
-    public Object batch(GameRedisBatch batch){
+    public Object batch(IGameRedisBatch batch){
         Jedis jedis = getClient();
         try {
             return batch.run(jedis);

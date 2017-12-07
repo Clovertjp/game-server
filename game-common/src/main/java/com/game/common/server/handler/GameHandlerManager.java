@@ -37,9 +37,9 @@ public class GameHandlerManager {
 		
 	}
 	
-	private Map<String,Class<? extends GameBaseHandler>> handlerMap=new ConcurrentHashMap<>();
+	private Map<String,Class<? extends AbstractGameBaseHandler>> handlerMap=new ConcurrentHashMap<>();
 	
-	private Class<? extends GameLoginHandler> gameLoginHandler;
+	private Class<? extends IGameLoginHandler> gameLoginHandler;
 	
 	public static GameHandlerManager getInstance(){
 		return handlerManager;
@@ -47,7 +47,7 @@ public class GameHandlerManager {
 	
 	public void init() throws ClassNotFoundException {
 		if(!StringUtils.isBlank(Config.LOGIN_HANDLER)) {
-			gameLoginHandler=(Class<? extends GameLoginHandler>) Class.forName(Config.LOGIN_HANDLER);
+			gameLoginHandler=(Class<? extends IGameLoginHandler>) Class.forName(Config.LOGIN_HANDLER);
 		}
 	}
 	
@@ -69,11 +69,11 @@ public class GameHandlerManager {
 			Message retBuilder=null ;
 			
 			if(Config.LOGIN_CMD.equals(cmd) && gameLoginHandler!=null) {
-				GameLoginHandler login=gameLoginHandler.newInstance();
+				IGameLoginHandler login=gameLoginHandler.newInstance();
 				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession());
 			}else {
-				Class<? extends GameBaseHandler> handler=handlerMap.get(cmd);
-				GameBaseHandler gameHandler=(GameBaseHandler)handler.newInstance();
+				Class<? extends AbstractGameBaseHandler> handler=handlerMap.get(cmd);
+				AbstractGameBaseHandler gameHandler=(AbstractGameBaseHandler)handler.newInstance();
 				retBuilder=gameHandler.handlerRequest(msgMessage);
 			}
 			if(retBuilder!=null){
@@ -139,7 +139,7 @@ public class GameHandlerManager {
 		logger.info(sb);
 	}
 	
-	public void registHandler(String cmd,Class<? extends GameBaseHandler> handler){
+	public void registHandler(String cmd,Class<? extends AbstractGameBaseHandler> handler){
 		handlerMap.put(cmd, handler);
 	}
 

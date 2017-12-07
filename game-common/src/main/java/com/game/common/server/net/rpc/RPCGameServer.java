@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.game.common.exception.GameException;
 import com.game.common.server.config.Config;
-import com.game.common.server.net.GameServer;
+import com.game.common.server.net.AbstractGameServer;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -16,7 +16,7 @@ import io.grpc.ServerBuilder;
  * @author tangjp
  *
  */
-public class RPCGameServer extends GameServer {
+public class RPCGameServer extends AbstractGameServer {
 	private final static String className="RPCServer";
 	private static final Logger logger = LogManager.getLogger(RPCGameServer.class);
 	

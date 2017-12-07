@@ -10,7 +10,7 @@ import com.google.protobuf.Message;
  * @author tangjp
  *
  */
-public abstract class AbstractLoginHandler implements GameLoginHandler {
+public abstract class AbstractLoginHandler implements IGameLoginHandler {
 
 	@Override
 	public Message handlerRequest(Message msg, GameSession session) throws GameException {

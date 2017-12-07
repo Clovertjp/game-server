@@ -11,7 +11,7 @@ import com.game.common.server.action.IAction;
 import com.game.common.server.action.MessageAction;
 import com.game.common.server.engine.GameEngine;
 import com.game.common.server.manager.GameSessionManager;
-import com.game.common.server.net.GameServer;
+import com.game.common.server.net.AbstractGameServer;
 import com.game.common.server.session.GameSession;
 import com.game.pb.server.message.MessageObj;
 

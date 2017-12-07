@@ -28,7 +28,7 @@ public class MessageQueueFactory {
 	
 	private volatile SingleMessageQueue[] single;
 	
-	public MessageQueue getMessageQueue(MessageQueueType type,int id){
+	public AbstractMessageQueue getMessageQueue(MessageQueueType type,int id){
 		
 		if(MessageQueueType.singleType==type){
 			if(id>=Config.MESSAGE_POOL_NUM){

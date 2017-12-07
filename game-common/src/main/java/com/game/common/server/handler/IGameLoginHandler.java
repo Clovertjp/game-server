@@ -8,6 +8,6 @@ import com.google.protobuf.Message;
  * @author tangjp
  *
  */
-public interface GameLoginHandler {
+public interface IGameLoginHandler {
 	public abstract Message handlerRequest(Message msg,GameSession session) throws GameException;
 }

@@ -10,7 +10,7 @@ import com.google.protobuf.MessageOrBuilder;
  * @author tangjp
  *
  */
-public abstract class GameBaseHandler {
+public abstract class AbstractGameBaseHandler {
 	
 	public abstract Message handlerRequest(Message msg) throws GameException;
 	

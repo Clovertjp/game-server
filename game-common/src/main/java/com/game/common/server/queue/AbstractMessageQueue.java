@@ -19,9 +19,9 @@ import io.netty.util.internal.StringUtil;
  * @param <T>
  *
  */
-public abstract class MessageQueue implements IMessageQueue {
+public abstract class AbstractMessageQueue implements IMessageQueue {
 	
-	private static final Logger logger = LogManager.getLogger(MessageQueue.class);
+	private static final Logger logger = LogManager.getLogger(AbstractMessageQueue.class);
 	
 	public volatile boolean exec=false;
 	
@@ -58,9 +58,9 @@ public abstract class MessageQueue implements IMessageQueue {
 	private class MessageTask implements Runnable {
 		
 		private IAction<MessageObj.NetMessage> msg;
-		private MessageQueue queue;
+		private AbstractMessageQueue queue;
 		
-		public MessageTask(IAction<MessageObj.NetMessage> msg,MessageQueue queue) {
+		public MessageTask(IAction<MessageObj.NetMessage> msg,AbstractMessageQueue queue) {
 			// TODO Auto-generated constructor stub
 			this.msg=msg;
 			this.queue=queue;

@@ -17,7 +17,7 @@ import com.game.pb.server.message.MessageObj;
  *
  */
 @Deprecated
-public class MultiMessageQueue extends MessageQueue {
+public class MultiMessageQueue extends AbstractMessageQueue {
 	
 	private ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_MULTI,
 			new GameThreadFactory("MultiMessageQueue")); 

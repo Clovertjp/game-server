@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.game.common.exception.GameException;
 import com.game.common.server.config.Config;
-import com.game.common.server.net.GameServer;
+import com.game.common.server.net.AbstractGameServer;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.AdaptiveRecvByteBufAllocator;
@@ -23,7 +23,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @author tangjp
  *
  */
-public class NettyGameServer extends GameServer {
+public class NettyGameServer extends AbstractGameServer {
 	private final static String className="NettyGameServer";
 	private static final Logger logger = LogManager.getLogger(NettyGameServer.class);
 	private EventLoopGroup boss;
