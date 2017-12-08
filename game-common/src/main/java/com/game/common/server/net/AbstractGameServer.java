@@ -27,7 +27,6 @@ public abstract class AbstractGameServer implements IGameServer {
 
 	@Override
 	public void init() throws GameException {
-		// TODO Auto-generated method stub
 		if(isInitialized()){
 			throw new GameException("the "+getServerName()+" server is already initialized!");
 		}
@@ -38,7 +37,6 @@ public abstract class AbstractGameServer implements IGameServer {
 
 	@Override
 	public void start() throws GameException {
-		// TODO Auto-generated method stub
 		if(!isInitialized()){
 			throw new GameException("the "+getServerName()+" server should init at first");
 		}
@@ -54,7 +52,6 @@ public abstract class AbstractGameServer implements IGameServer {
 
 	@Override
 	public void stop() throws GameException {
-		// TODO Auto-generated method stub
 		if(!isStarted()){
 			throw new GameException("the "+getServerName()+" server is not started!");
 		}
@@ -65,7 +62,6 @@ public abstract class AbstractGameServer implements IGameServer {
 
 	@Override
 	public void restart() throws GameException {
-		// TODO Auto-generated method stub
 		if(isStarted()){
 			stop();
 		}

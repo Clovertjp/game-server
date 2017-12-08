@@ -32,7 +32,7 @@ public class GameHandlerManager {
 	private static final Logger logger = LogManager.getLogger(GameHandlerManager.class);
 	private static GameHandlerManager handlerManager=new GameHandlerManager();
 	private static JsonFormat format=new JsonFormat();
-	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<String, Method>();
+	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<>();
 	private GameHandlerManager(){
 		
 	}
@@ -86,7 +86,6 @@ public class GameHandlerManager {
 				actionMsg.getSession().getChannel().writeAndFlush(ret);
 			}
 		}catch (Exception e) {
-			// TODO: handle exception
 			logger.error(e.getMessage(),e);
 		}finally {
 			writeLog(start, cmd, uid, className, msgStr, retClsName, retStr);

@@ -45,14 +45,13 @@ public class RpcClientManager {
 			try {
 				xmlConfig=GameServerConfig.getInstance().getXMLConfigurationByName(Config.RPC_FILE_PATH);
 			} catch (ConfigurationException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
 			}
 			String ipFi=String.format(filter, serverId,"ip");
-			String PortFi=String.format(filter, serverId,"port");
+			String portFi=String.format(filter, serverId,"port");
 			
-			RpcClient client=new RpcClient(xmlConfig.getString(ipFi), serverId, xmlConfig.getInt(PortFi));
+			RpcClient client=new RpcClient(xmlConfig.getString(ipFi), serverId, xmlConfig.getInt(portFi));
 			clientMap.put(serverId, client);
 			return client;
 		}

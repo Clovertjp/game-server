@@ -27,14 +27,17 @@ import io.netty.util.internal.StringUtil;
  */
 public class GameConfigXml {
 	
+	private GameConfigXml() {}
+	
 	private static final Logger logger = LogManager.getLogger(GameConfigXml.class);
+	
+	private static final String LOG_ERROR="loading xml is error,file name is ";
 	
 	private static final String PATH=Config.XML_PATH;
 	
 	public static void loadAllXML() throws GameException{
 		logger.info("loading xml start");
 		File xmlPath = new File(PATH);
-		System.out.println(xmlPath.getAbsolutePath());
 		if(!xmlPath.isDirectory()){
 			throw new GameException(PATH+" is not a directory");
 		}
@@ -43,13 +46,8 @@ public class GameConfigXml {
 			
 			@Override
 			public boolean accept(File pathname) {
-				// TODO Auto-generated method stub
 				String fileName = pathname.getName();
-				if(!fileName.matches("^.+\\.xml$")) {
-					return false;
-				} else {
-					return true;
-				}
+				return fileName.matches("^.+\\.xml$");
 			}
 		});
 		
@@ -67,15 +65,14 @@ public class GameConfigXml {
 			
 			logger.info("loading xml finish");
 		}catch (Exception e) {
-			// TODO: handle exception
-			logger.error("loading xml is error,file name is "+fileName,e);
+			logger.error(LOG_ERROR+fileName,e);
 			throw new GameException(fileName+" is error ",e);
 		}
 	}
 	
 	public static void readXMLByName(String fileName) throws GameException{
 		logger.info("loading "+fileName+" start");
-		File xml = new File(PATH+"/"+fileName+".xml");
+		File xml = new File(PATH+File.pathSeparator+fileName+".xml");
 		GameConfigCache.getInstance().clearAllItem(fileName);
 		SAXReader reader = new SAXReader();
 		try{
@@ -83,8 +80,7 @@ public class GameConfigXml {
 			Element root=document.getRootElement();
 			loadXML(root,fileName);
 		}catch (Exception e) {
-			// TODO: handle exception
-			logger.error("loading xml is error,file name is "+fileName,e);
+			logger.error(LOG_ERROR+fileName,e);
 			throw new GameException(fileName+" is error ",e);
 		}
 		
@@ -111,7 +107,7 @@ public class GameConfigXml {
 		if(StringUtil.isNullOrEmpty(fileName)){
 			return infoList;
 		}
-		File xml = new File(PATH+"/"+fileName+".xml");
+		File xml = new File(PATH+File.pathSeparator+fileName+".xml");
 		SAXReader reader = new SAXReader();
 		try{
 			Document document = reader.read(xml);
@@ -128,8 +124,7 @@ public class GameConfigXml {
 			}
 			
 		}catch (Exception e) {
-			// TODO: handle exception
-			logger.error("loading xml is error,file name is "+fileName,e);
+			logger.error(LOG_ERROR+fileName,e);
 			infoList.clear();
 		}
 		return infoList;
@@ -140,7 +135,7 @@ public class GameConfigXml {
 		if(StringUtil.isNullOrEmpty(fileName) || StringUtil.isNullOrEmpty(id)){
 			return new HashMap<>();
 		}
-		File xml = new File(PATH+"/"+fileName+".xml");
+		File xml = new File(PATH+File.pathSeparator+fileName+".xml");
 		SAXReader reader = new SAXReader();
 		try{
 			Document document = reader.read(xml);
@@ -164,8 +159,7 @@ public class GameConfigXml {
 			}
 			
 		}catch (Exception e) {
-			// TODO: handle exception
-			logger.error("loading xml is error,file name is "+fileName,e);
+			logger.error(LOG_ERROR+fileName,e);
 		}
 		return new HashMap<>();
 	}

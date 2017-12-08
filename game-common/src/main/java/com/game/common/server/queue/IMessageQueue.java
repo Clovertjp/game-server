@@ -1,6 +1,5 @@
 package com.game.common.server.queue;
 
-import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.pb.server.message.MessageObj;
 

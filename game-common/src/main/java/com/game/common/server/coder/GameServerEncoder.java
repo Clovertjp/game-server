@@ -20,11 +20,8 @@ public class GameServerEncoder extends MessageToByteEncoder<MessageObj.NetMessag
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, MessageObj.NetMessage msg, ByteBuf out) throws Exception {
-		// TODO Auto-generated method stub
 		byte[] data=msg.toByteArray();
-		System.out.println("------begin "+data.length);
 		data=compress(data);
-		System.out.println("------end "+data.length);
 		int len=data.length;
 		out.writeInt(len);
 		out.writeBytes(data);

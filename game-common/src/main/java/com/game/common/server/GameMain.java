@@ -21,7 +21,6 @@ public class GameMain {
 	private static RPCGameServer rpcServer;
 	
 	public static void start() throws GameException, InterruptedException{
-		Config.load();
 		GameConfigManager.refreshAll();
 		PubSubChannelFactory.getInstance().init();
 		Runtime.getRuntime().addShutdownHook(new ShutdownHook());
@@ -41,7 +40,6 @@ public class GameMain {
 	}
 
 	public static void main(String[] args) throws GameException, InterruptedException {
-		// TODO Auto-generated method stub
 		
 		start();
 		

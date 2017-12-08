@@ -52,7 +52,6 @@ public class PubSubChannelFactory {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 		            logger.info("Pub/sub subscribe global channel");
 		            R.getLocalRedis().subscribe(listener, new ArrayList<>(channels.keySet()));

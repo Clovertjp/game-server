@@ -19,6 +19,8 @@ import com.sun.tools.attach.VirtualMachine;
  */
 public class HotSwapAgentManager {
 	private static final Logger logger = LogManager.getLogger(HotSwapAgentManager.class);
+	
+	private HotSwapAgentManager() {}
 
     public static void reloadAgent() {
     	String pid = null;

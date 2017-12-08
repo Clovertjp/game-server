@@ -1,6 +1,5 @@
 package com.game.common.server.queue;
 
-import java.awt.Color;
 
 import com.game.common.server.config.Config;
 

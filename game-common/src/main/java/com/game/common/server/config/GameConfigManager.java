@@ -15,6 +15,8 @@ import io.netty.util.internal.StringUtil;
  */
 public class GameConfigManager {
 	
+	private GameConfigManager() {}
+	
 	private static volatile boolean readInCache=true;
 	
 	public static Map<String,String> getItem(String fileName,String id){

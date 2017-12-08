@@ -15,13 +15,11 @@ public class GameRedisPool implements IGameRedisPool {
 	private String ip = "127.0.0.1";
 
 	public GameRedisPool(int port, String ip) {
-		// TODO Auto-generated constructor stub
 		this.port = port;
 		this.ip = ip;
 	}
 	
 	public GameRedisPool(JedisPoolConfig poolConfig,int port, String ip) {
-		// TODO Auto-generated constructor stub
 		this.port = port;
 		this.ip = ip;
 		initPool(poolConfig,port,ip);
@@ -29,13 +27,11 @@ public class GameRedisPool implements IGameRedisPool {
 
 	@Override
 	public Jedis getJedisClient() {
-		// TODO Auto-generated method stub
 		return pool.getResource();
 	}
 
 	@Override
 	public void initPool(JedisPoolConfig poolConfig, int poolPort, String poolIp) {
-		// TODO Auto-generated method stub
 		pool = new JedisPool(poolConfig, poolIp, poolPort);
 	}
 

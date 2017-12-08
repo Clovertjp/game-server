@@ -18,7 +18,7 @@ public class GameSessionManager {
 	
 	private static GameSessionManager sessionManager=new GameSessionManager();
 	
-	private Map<Channel,GameSession> sessionMap=new ConcurrentHashMap<Channel, GameSession>();
+	private Map<Channel,GameSession> sessionMap=new ConcurrentHashMap<>();
 	
 	public static GameSessionManager getInstance(){
 		return sessionManager;

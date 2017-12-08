@@ -8,55 +8,57 @@ import java.util.Properties;
  */
 public class Config {
 	
-	public static int NETTY_BOSS ;
-	public static int NETTY_WORK ;
-	public static int NETTY_BACK ;
-	public static int NETTY_PORT ;
-	public static int NETTY_RCVBUF ;
-	public static int NETTY_SNDBUF ;
+	private Config() {}
 	
-	public static String XML_PATH ;
+	public static final int NETTY_BOSS ;
+	public static final int NETTY_WORK ;
+	public static final int NETTY_BACK ;
+	public static final int NETTY_PORT ;
+	public static final int NETTY_RCVBUF ;
+	public static final int NETTY_SNDBUF ;
+	
+	public static final String XML_PATH ;
 	
 	@Deprecated
-	public static int MESSAGE_MULTI ;
-	public static int MESSAGE_SINGLE ;
-	public static int MESSAGE_POOL_NUM = 5;
+	public static final int MESSAGE_MULTI ;
+	public static final int MESSAGE_SINGLE ;
+	public static final int MESSAGE_POOL_NUM = 5;
 	
-	public static String MYBATIS_XML ;
+	public static final String MYBATIS_XML ;
 	
-	public static boolean SQL_AUTO_CLOSE ;
-	public static int SQL_AUTO_TIME ;
-	public static String SQL_POOL ;
+	public static final boolean SQL_AUTO_CLOSE ;
+	public static final int SQL_AUTO_TIME ;
+	public static final String SQL_POOL ;
 	
-	public static int REDIS_LOCAL_POOL_MAXACTIVE ;
-	public static int REDIS_LOCAL_POOL_MAXIDLE ;
-	public static int REDIS_LOCAL_POOL_MINIDLE ;
-	public static long REDIS_LOCAL_POOL_MAXWAIT ;
-	public static boolean REDIS_LOCAL_POOL_BORROW ;
-	public static boolean REDIS_LOCAL_POOL_RETURN ;
-	public static int REDIS_LOCAL_POOL_PORT ;
-	public static String REDIS_LOCAL_POOL_IP ;
-	public static int RPC_PORT ;
+	public static final int REDIS_LOCAL_POOL_MAXACTIVE ;
+	public static final int REDIS_LOCAL_POOL_MAXIDLE ;
+	public static final int REDIS_LOCAL_POOL_MINIDLE ;
+	public static final long REDIS_LOCAL_POOL_MAXWAIT ;
+	public static final boolean REDIS_LOCAL_POOL_BORROW ;
+	public static final boolean REDIS_LOCAL_POOL_RETURN ;
+	public static final int REDIS_LOCAL_POOL_PORT ;
+	public static final String REDIS_LOCAL_POOL_IP ;
+	public static final int RPC_PORT ;
 	
-	public static int GAME_SCHEDULE_THREAD_POOL_NUM ;
+	public static final int GAME_SCHEDULE_THREAD_POOL_NUM ;
 	
-	public static String AGENT_JAR ;
+	public static final String AGENT_JAR ;
 	
-	public static long SESSION_TIMEOUT ;
+	public static final long SESSION_TIMEOUT ;
 	
-	public static String RPC_FILE_PATH ;
+	public static final String RPC_FILE_PATH ;
 	
-	public static int PUSH_QUEUE_THREAD ;
+	public static final int PUSH_QUEUE_THREAD ;
 	
-	public static int PUSH_QUEUE_MAX_THREAD ;
+	public static final int PUSH_QUEUE_MAX_THREAD ;
 	
-	public static int PUSH_QUEUE_MAX_QUEUE ;
+	public static final int PUSH_QUEUE_MAX ;
 	
-	public static String LOGIN_HANDLER ;
+	public static final String LOGIN_HANDLER ;
 	
-	public static String LOGIN_CMD ;
+	public static final String LOGIN_CMD ;
 	
-	public static void load(){
+	static {
 		Properties prop = PropertiesManager.getSystemConfig();
 		
 		NETTY_BOSS=getIntItem(prop, "netty.boss", 1);
@@ -103,6 +105,8 @@ public class Config {
 		LOGIN_HANDLER=getStringItem(prop, "game.login.handler", "");
 		
 		LOGIN_CMD=getStringItem(prop, "game.login.cmd", "");
+		
+		PUSH_QUEUE_MAX=getIntItem(prop, "push.queue.max", 20);
 
 	}
 	

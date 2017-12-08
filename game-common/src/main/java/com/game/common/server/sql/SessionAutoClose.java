@@ -74,7 +74,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <T> T selectOne(String statement) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -86,7 +86,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <T> T selectOne(String statement, Object parameter) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -98,7 +98,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <E> List<E> selectList(String statement) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -110,7 +110,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <E> List<E> selectList(String statement, Object parameter) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -122,7 +122,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <E> List<E> selectList(String statement, Object parameter, RowBounds rowBounds) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -134,7 +134,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <K, V> Map<K, V> selectMap(String statement, String mapKey) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -146,7 +146,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <K, V> Map<K, V> selectMap(String statement, Object parameter, String mapKey) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -158,7 +158,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <K, V> Map<K, V> selectMap(String statement, Object parameter, String mapKey, RowBounds rowBounds) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -170,7 +170,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <T> Cursor<T> selectCursor(String statement) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -182,7 +182,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <T> Cursor<T> selectCursor(String statement, Object parameter) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -194,7 +194,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public <T> Cursor<T> selectCursor(String statement, Object parameter, RowBounds rowBounds) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -206,7 +206,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void select(String statement, Object parameter, ResultHandler handler) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -218,7 +218,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void select(String statement, ResultHandler handler) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -230,7 +230,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void select(String statement, Object parameter, RowBounds rowBounds, ResultHandler handler) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -242,7 +242,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public int insert(String statement) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -254,7 +254,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public int insert(String statement, Object parameter) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -266,7 +266,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public int update(String statement) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -278,7 +278,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public int update(String statement, Object parameter) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -290,7 +290,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public int delete(String statement) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -302,7 +302,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public int delete(String statement, Object parameter) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -314,7 +314,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void commit() {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -326,7 +326,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void commit(boolean force) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -338,7 +338,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void rollback() {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -350,7 +350,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void rollback(boolean force) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -362,7 +362,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public List<BatchResult> flushStatements() {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -374,28 +374,28 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
+		
 		session.close();
 		manager.removeSession(this);
 	}
 
 	@Override
 	public void clearCache() {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		session.clearCache();
 	}
 
 	@Override
 	public Configuration getConfiguration() {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		return session.getConfiguration();
 	}
 
 	@Override
 	public <T> T getMapper(Class<T> type) {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();
@@ -407,7 +407,7 @@ public class SessionAutoClose implements SqlSession {
 
 	@Override
 	public Connection getConnection() {
-		// TODO Auto-generated method stub
+		
 		setAccessTime();
 		try {
 			setOperationInProgress();

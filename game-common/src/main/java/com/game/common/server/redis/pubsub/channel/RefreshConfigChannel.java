@@ -23,12 +23,10 @@ public class RefreshConfigChannel implements IPubSubChannel {
 
 	@Override
 	public void handle(String fileStr) {
-		// TODO Auto-generated method stub
 		if(StringUtils.isBlank(fileStr) || "all".equals(fileStr)){
 			try {
 				GameConfigManager.refreshAll();
 			} catch (GameException e) {
-				// TODO Auto-generated catch block
 				logger.error(e.getMessage(),e);
 			}
 		}else{
@@ -46,7 +44,6 @@ public class RefreshConfigChannel implements IPubSubChannel {
 			try {
 				GameConfigManager.refreshFileList(fileList);
 			} catch (GameException e) {
-				// TODO Auto-generated catch block
 				logger.error(e.getMessage(),e);
 			}
 		}

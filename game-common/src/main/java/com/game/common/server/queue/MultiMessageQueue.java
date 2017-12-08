@@ -26,13 +26,11 @@ public class MultiMessageQueue extends AbstractMessageQueue {
 
 	@Override
 	protected ExecutorService getExecutorService() {
-		// TODO Auto-generated method stub
 		return executor;
 	}
 
 	@Override
 	protected Queue<IAction<MessageObj.NetMessage>> getQueue() {
-		// TODO Auto-generated method stub
 		return queue;
 	}
 }

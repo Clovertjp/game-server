@@ -14,7 +14,8 @@ import com.game.common.exception.GameException;
 public class LockManager {
 	
 	private static class LazyHolder{
-        final private static LockManager INSTANCE = new LockManager();
+		private LazyHolder() {}
+		private static final LockManager INSTANCE = new LockManager();
     }
 	
 	public static LockManager getInstance() {

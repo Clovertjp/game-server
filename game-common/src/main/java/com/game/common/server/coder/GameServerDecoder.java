@@ -22,7 +22,6 @@ public class GameServerDecoder extends ByteToMessageDecoder {
 	@Override
 	protected void decode(ChannelHandlerContext paramChannelHandlerContext, ByteBuf paramByteBuf,
 			List<Object> paramList) throws Exception {
-		// TODO Auto-generated method stub
 		if (paramByteBuf.readableBytes() < 4) {
             return;
         }

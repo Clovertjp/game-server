@@ -10,6 +10,8 @@ import com.game.common.server.config.Constants;
  */
 public class CommonUtils {
 	
+	private CommonUtils() {}
+	
 	/**
      * 判断 serverId中是否包含当前运行的服务器.
      * serverId的可以有以下格式:

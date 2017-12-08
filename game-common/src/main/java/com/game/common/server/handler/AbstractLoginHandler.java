@@ -14,7 +14,6 @@ public abstract class AbstractLoginHandler implements IGameLoginHandler {
 
 	@Override
 	public Message handlerRequest(Message msg, GameSession session) throws GameException {
-		// TODO Auto-generated method stub
 		GamePlayer gamePlayer=new GamePlayer();
 		Message message=onLogin(gamePlayer);
 		gamePlayer.setGameSession(session);

@@ -14,7 +14,6 @@ public class RPCServiceImpl extends RPCServiceImplBase {
 	
 	@Override
 	public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-		// TODO Auto-generated method stub
 		super.sayHello(request, responseObserver);
 	}
 

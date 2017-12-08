@@ -6,6 +6,8 @@ package com.game.common.server.redis;
  */
 public class R {
 	
+	private R() {}
+	
 	private static GameRedis LOCAL_REDIS = new GameRedis(new LocalRedisPool());
 	
 	public static GameRedis getLocalRedis(){

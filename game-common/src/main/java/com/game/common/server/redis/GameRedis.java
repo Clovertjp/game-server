@@ -411,7 +411,7 @@ public class GameRedis {
         if (map == null || map.size() == 0) {
             return;
         }
-        String keyValues[] = new String[map.size() * 2];
+        String[] keyValues = new String[map.size() * 2];
         int index = 0;
         for (Map.Entry<String, String> mapEntry : map.entrySet()) {
             keyValues[index++] = mapEntry.getKey();
@@ -672,7 +672,7 @@ public class GameRedis {
         try {
             HashMap<String, Double> ret = new HashMap<>();
             Set<Tuple> result = jedis.zrangeWithScores(key, start, end);
-            if (result != null && result.size() > 0) {
+            if (result != null && !result.isEmpty()) {
                 for (Tuple member : result) {
                     ret.put(member.getElement(), member.getScore());
                 }
@@ -688,7 +688,7 @@ public class GameRedis {
         try {
             Map<String, Double> ret = new HashMap<>();
             Set<Tuple> result = jedis.zrevrangeWithScores(key, start, end);
-            if (result != null && result.size() > 0) {
+            if (result != null && !result.isEmpty()) {
                 for (Tuple member : result) {
                     ret.put(member.getElement(), member.getScore());
                 }
@@ -704,7 +704,7 @@ public class GameRedis {
         try {
             List<Map<String,Double>> retList = new LinkedList<>();
             Set<Tuple> result = jedis.zrevrangeWithScores(key, start, end);
-            if (result != null && result.size() > 0) {
+            if (result != null && !result.isEmpty()) {
                 for (Tuple member : result) {
                 	Map<String,Double> map=new HashMap<>();
                 	map.put(member.getElement(), member.getScore());

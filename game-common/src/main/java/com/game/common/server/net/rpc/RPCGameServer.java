@@ -17,31 +17,27 @@ import io.grpc.ServerBuilder;
  *
  */
 public class RPCGameServer extends AbstractGameServer {
-	private final static String className="RPCServer";
+	private static final String className="RPCServer";
 	private static final Logger logger = LogManager.getLogger(RPCGameServer.class);
 	
 	private Server server;
 
 	public RPCGameServer() {
 		super(className);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void initServer() throws GameException {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	protected void startServer() throws GameException {
-		// TODO Auto-generated method stub
 		try {
 			server = ServerBuilder.forPort(Config.RPC_PORT)
 			        .addService(new RPCServiceImpl())
 			        .build()
 			        .start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			logger.error("RPC",e);
 			throw new GameException("RPC ERROR ",e);
 		}
@@ -49,7 +45,6 @@ public class RPCGameServer extends AbstractGameServer {
 
 	@Override
 	protected void stopServer() throws GameException {
-		// TODO Auto-generated method stub
 		if(server!=null){
 			server.shutdown();
 		}

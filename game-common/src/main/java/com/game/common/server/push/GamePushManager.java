@@ -128,7 +128,6 @@ public class GamePushManager {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			try {
 				MessageObj.NetMessage ret=MessageObj.NetMessage.newBuilder().setClassData(pushMessage.getPushMessage().toByteString())
 						.setClassName(pushMessage.getPushMessage().getClass().getName()).setUid("").build();
@@ -148,7 +147,6 @@ public class GamePushManager {
 				} 
 				
 			}catch (Exception e) {
-				// TODO: handle exception
 				logger.error("push error",e);
 			}finally {
 				logger.info(pushMessage);
@@ -204,7 +202,6 @@ public class GamePushManager {
 		}
 		@Override
 		public String toString() {
-			// TODO Auto-generated method stub
 			StringBuilder sb=new StringBuilder();
 			sb.append(PUSH_STR).append(SEPARATOR)
 			.append(pushUid).append(SEPARATOR)

@@ -25,7 +25,6 @@ public class GameSession {
 	private String uid;
 	
 	public GameSession(Channel channel) {
-		// TODO Auto-generated constructor stub
 		id=atomicId.incrementAndGet();
 		createTime=System.currentTimeMillis();
 		readTime=createTime;

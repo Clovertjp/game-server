@@ -28,7 +28,6 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, MessageObj.NetMessage msg) throws Exception {
-		// TODO Auto-generated method stub
 		GameSession session=GameSessionManager.getInstance().getSession(ctx.channel());
 		if(session==null){
 			throw new GameException("session is null");
@@ -45,7 +44,6 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		// TODO Auto-generated method stub
 		GameSession session=new GameSession(ctx.channel());
 		GameSessionManager.getInstance().addSession(session);
 		logger.info("session create id"+session.getId()+"   ip:"+ctx.channel().remoteAddress());
@@ -53,7 +51,6 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 	
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		// TODO Auto-generated method stub
 		GameSession session=GameSessionManager.getInstance().removeSession(ctx.channel());
 		if(session!=null){
 			GameEngine.getInstance().removePlayer(session.getUid());
@@ -66,7 +63,6 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 	
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-		// TODO Auto-generated method stub
 		GameSession session=GameSessionManager.getInstance().removeSession(ctx.channel());
 		if(session!=null){
 			GameEngine.getInstance().removePlayer(session.getUid());

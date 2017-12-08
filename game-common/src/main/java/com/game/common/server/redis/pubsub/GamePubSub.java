@@ -14,7 +14,6 @@ public class GamePubSub extends JedisPubSub {
 	
 	@Override
 	public void onMessage(String channel, String message) {
-		// TODO Auto-generated method stub
 		try {
             logger.info("receive {} from channel: {}", message, channel);
             IPubSubChannel channelInstance = PubSubChannelFactory.getInstance().getChannel(channel);

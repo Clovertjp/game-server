@@ -23,9 +23,9 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 	
 	private static final Logger logger = LogManager.getLogger(AbstractMessageQueue.class);
 	
-	public volatile boolean exec=false;
+	protected volatile boolean exec=false;
 	
-	public Object lock=new Object();
+	protected Object lock=new Object();
 	
 	protected abstract ExecutorService getExecutorService();
 	
@@ -61,21 +61,18 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 		private AbstractMessageQueue queue;
 		
 		public MessageTask(IAction<MessageObj.NetMessage> msg,AbstractMessageQueue queue) {
-			// TODO Auto-generated constructor stub
 			this.msg=msg;
 			this.queue=queue;
 		}
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			try{
 				if(StringUtil.isNullOrEmpty(msg.getMsgObject().getCmd())){
 					throw new GameException("cmd is null");
 				}
 				GameHandlerManager.getInstance().execHandler(msg);
 			}catch (Exception e) {
-				// TODO: handle exception
 				logger.error(e);
 			}finally {
 				queue.execute();

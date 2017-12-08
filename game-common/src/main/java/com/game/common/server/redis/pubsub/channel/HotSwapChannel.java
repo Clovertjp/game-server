@@ -12,7 +12,6 @@ public class HotSwapChannel implements IPubSubChannel {
 
 	@Override
 	public void handle(String serverId) {
-		// TODO Auto-generated method stub
 		if(CommonUtils.containCurrentServerId(serverId)) {
 			HotSwapAgentManager.reloadAgent();
 		}

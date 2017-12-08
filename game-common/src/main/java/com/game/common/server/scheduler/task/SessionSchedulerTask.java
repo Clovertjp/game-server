@@ -10,7 +10,6 @@ public class SessionSchedulerTask implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		GameSessionManager.getInstance().checkSession();
 	}
 
