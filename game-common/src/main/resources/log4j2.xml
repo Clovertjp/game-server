@@ -4,19 +4,19 @@
 	<appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout
-				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n" />
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} | %msg%n" />
 		</Console>
 
 		<RollingFile name="logError" fileName="logs/logError.log"
 			filePattern="logs/logError-%d{yyyy-MM-dd-HH-mm}.log">
-			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %msg%n" />
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} | %msg%n" />
 			<TimeBasedTriggeringPolicy  interval="1"/>
 		</RollingFile>
 
 
 		<RollingFile name="infoFile" fileName="logs/info.log"
 			filePattern="logs/info-%d{yyyy-MM-dd-HH-mm}.log">
-			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %msg%n" />
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} | %msg%n" />
 			<TimeBasedTriggeringPolicy  interval="1"/>
 		</RollingFile>
 

@@ -9,6 +9,7 @@ import com.game.common.server.net.netty.NettyGameServer;
 import com.game.common.server.net.rpc.RPCGameServer;
 import com.game.common.server.redis.pubsub.PubSubChannelFactory;
 import com.game.common.server.scheduler.GameScheduler;
+import com.game.pb.server.message.ReqLoginOuterClass.ReqLogin;
 
 /**
  * @author tangjp
@@ -42,8 +43,6 @@ public class GameMain {
 	public static void main(String[] args) throws GameException, InterruptedException {
 		
 		start();
-		
-
 	}
 
 }

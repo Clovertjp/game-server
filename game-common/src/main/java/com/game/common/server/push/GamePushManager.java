@@ -130,7 +130,7 @@ public class GamePushManager {
 		public void run() {
 			try {
 				MessageObj.NetMessage ret=MessageObj.NetMessage.newBuilder().setClassData(pushMessage.getPushMessage().toByteString())
-						.setClassName(pushMessage.getPushMessage().getClass().getName()).setUid("").build();
+						.setClassName(pushMessage.getPushMessage().getClass().getSimpleName()).setUid("").build();
 				StringBuilder sb=new StringBuilder();
 				sb.append(PUSH_STR).append(SEPARATOR)
 				.append(pushMessage.getPushUid()).append(SEPARATOR)

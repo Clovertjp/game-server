@@ -14,6 +14,7 @@ import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
 import com.game.pb.server.message.MessageObj;
+import com.game.pb.server.message.ReqLoginOuterClass.ReqLogin;
 import com.google.common.base.Strings;
 import com.google.protobuf.AbstractMessageLite;
 import com.google.protobuf.ByteString;
@@ -34,7 +35,12 @@ public class GameHandlerManager {
 	private static JsonFormat format=new JsonFormat();
 	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<>();
 	private GameHandlerManager(){
-		
+		try {
+			init();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private Map<String,Class<? extends AbstractGameBaseHandler>> handlerMap=new ConcurrentHashMap<>();
@@ -67,10 +73,9 @@ public class GameHandlerManager {
 			Message msgMessage=byteStringToMessage(data,className);
 			msgStr=format.printToString(msgMessage);
 			Message retBuilder=null ;
-			
 			if(Config.LOGIN_CMD.equals(cmd) && gameLoginHandler!=null) {
 				IGameLoginHandler login=gameLoginHandler.newInstance();
-				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession());
+				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession(),uid);
 			}else {
 				Class<? extends AbstractGameBaseHandler> handler=handlerMap.get(cmd);
 				AbstractGameBaseHandler gameHandler=(AbstractGameBaseHandler)handler.newInstance();
@@ -78,7 +83,7 @@ public class GameHandlerManager {
 			}
 			if(retBuilder!=null){
 				retStr=format.printToString(retBuilder);
-				retClsName=retBuilder.getClass().getName();
+				retClsName=retBuilder.getClass().getSimpleName();
 			}
 			if(retBuilder!=null){
 				ret=MessageObj.NetMessage.newBuilder().setClassData(retBuilder.toByteString())
@@ -108,7 +113,7 @@ public class GameHandlerManager {
 	}
 	
 	private static Method getParseFromMethod(String className) {
-		return parseFromMethods.computeIfAbsent(className, (k) -> {
+		return parseFromMethods.computeIfAbsent("com.game.pb.server.message."+className+"OuterClass$"+className, (k) -> {
 			Class<? extends Message> clazz = null;
 			try {
 				clazz = (Class<? extends Message>) Class.forName(k);

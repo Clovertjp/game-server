@@ -16,6 +16,10 @@ public class GamePlayer {
 		
 	}
 	
+	public GamePlayer(String uid) {
+		this.uid=uid;
+	}
+	
 	public Message onLogin() {
 		return null;
 	}

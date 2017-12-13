@@ -52,7 +52,6 @@
 				<version>1.5.0.Final</version>
 			</extension>
 		</extensions>
-		<pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.xolstice.maven.plugins</groupId>
@@ -76,7 +75,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		</pluginManagement>
 	</build>
   
 </project>

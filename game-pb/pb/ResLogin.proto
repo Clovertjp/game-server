@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "com.game.pb.server.message";
+
+message ResLogin {
+	string uid = 1;
+ 	string param = 2;
+}
