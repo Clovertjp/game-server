@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "com.game.pb.server.message.error";
+
+enum ErrorCode //枚举消息类型
+{
+	UNKNOW=0;
+	UID_NULL=1;
+	GAME_PLAYER_NULL=2;
+	PARAM_ERROR=3;
+	RESOURCE_ERROR=4;
+	SESSION_ERROR=5;
+	NET_ERROR=6;
+	CMD_NULL=7;
+}

@@ -53,7 +53,7 @@ public class Client {
             });
 
             //发起异步连接操作
-            ChannelFuture futrue = bootstrap.connect(new InetSocketAddress("127.0.0.1",8000)).sync();
+            ChannelFuture futrue = bootstrap.connect(new InetSocketAddress("10.1.34.183",8000)).sync();
 
             //等待客户端链路关闭
             futrue.channel().closeFuture().sync();

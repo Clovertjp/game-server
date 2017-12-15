@@ -10,11 +10,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
+import com.game.common.server.engine.GameEngine;
+import com.game.common.server.palyer.GamePlayer;
 import com.game.pb.server.message.MessageObj;
 import com.game.pb.server.message.ReqLoginOuterClass.ReqLogin;
+import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 import com.google.common.base.Strings;
 import com.google.protobuf.AbstractMessageLite;
 import com.google.protobuf.ByteString;
@@ -70,16 +74,25 @@ public class GameHandlerManager {
 		long start=System.currentTimeMillis();
 		try{
 			
+			if(StringUtils.isBlank(uid)) {
+				throw new GameException("uid is null",ErrorCode.UID_NULL);
+			}
+			GamePlayer gamePlayer=GameEngine.getInstance().findPlayerById(uid);
 			Message msgMessage=byteStringToMessage(data,className);
 			msgStr=format.printToString(msgMessage);
 			Message retBuilder=null ;
 			if(Config.LOGIN_CMD.equals(cmd) && gameLoginHandler!=null) {
 				IGameLoginHandler login=gameLoginHandler.newInstance();
-				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession(),uid);
+				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession(),gamePlayer,uid);
 			}else {
+				
+				if(gamePlayer==null) {
+					throw new GameException("game player is null",ErrorCode.GAME_PLAYER_NULL);
+				}
+				
 				Class<? extends AbstractGameBaseHandler> handler=handlerMap.get(cmd);
 				AbstractGameBaseHandler gameHandler=(AbstractGameBaseHandler)handler.newInstance();
-				retBuilder=gameHandler.handlerRequest(msgMessage);
+				retBuilder=gameHandler.handlerRequest(msgMessage,gamePlayer);
 			}
 			if(retBuilder!=null){
 				retStr=format.printToString(retBuilder);
@@ -90,6 +103,9 @@ public class GameHandlerManager {
 						.setClassName(retClsName).setUid(uid).build();
 				actionMsg.getSession().getChannel().writeAndFlush(ret);
 			}
+		}catch (GameException e) {
+			
+			logger.error(e.getMessage(),e);
 		}catch (Exception e) {
 			logger.error(e.getMessage(),e);
 		}finally {

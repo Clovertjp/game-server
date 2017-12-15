@@ -40,9 +40,15 @@ public class GameMain {
 		GameScheduler.getInstance().stop();
 	}
 
-	public static void main(String[] args) throws GameException, InterruptedException {
+	public static void main(String[] args) {
 		
-		start();
+		try {
+			start();
+		} catch (GameException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 
 }

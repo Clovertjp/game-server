@@ -11,6 +11,7 @@ import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.handler.GameHandlerManager;
 import com.game.pb.server.message.MessageObj;
+import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 
 import io.netty.util.internal.StringUtil;
 
@@ -69,7 +70,7 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 		public void run() {
 			try{
 				if(StringUtil.isNullOrEmpty(msg.getMsgObject().getCmd())){
-					throw new GameException("cmd is null");
+					throw new GameException("cmd is null",ErrorCode.CMD_NULL);
 				}
 				GameHandlerManager.getInstance().execHandler(msg);
 			}catch (Exception e) {

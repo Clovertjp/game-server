@@ -1,0 +1,20 @@
+2017-12-15 11:07:32 | loading xml start
+2017-12-15 11:07:32 | loading xml finish
+2017-12-15 11:07:32 | Pub/sub subscribe global channel
+2017-12-15 11:07:32 | the NettyGameServer server initialized!
+2017-12-15 11:07:32 | the NettyGameServer server started!
+2017-12-15 11:07:32 | the RPCServer server initialized!
+2017-12-15 11:07:32 | the RPCServer server started!
+2017-12-15 11:07:46 | session create id1   ip:/127.0.0.1:52589
+2017-12-15 11:07:46 | session create id 1 uid: 1  add message
+2017-12-15 11:07:46 | REQ_RES | ReqLogin | ResLogin | 1 | login | 83 | {"uid": "1","param": "active"} | {"param": "1"}
+2017-12-15 11:07:46 | session create id 1 uid: 1  add message
+2017-12-15 11:07:46 | player has login
+com.game.common.exception.GameException: player has login
+	at com.game.common.server.handler.AbstractLoginHandler.handlerRequest(AbstractLoginHandler.java:23) ~[classes/:?]
+	at com.game.common.server.handler.GameHandlerManager.execHandler(GameHandlerManager.java:85) [classes/:?]
+	at com.game.common.server.queue.AbstractMessageQueue$MessageTask.run(AbstractMessageQueue.java:74) [classes/:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_121]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_121]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_121]
+2017-12-15 11:07:46 | REQ_RES | ReqLogin |  | 1 | login | 7 | {"uid": "1","param": "read"} | 

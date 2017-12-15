@@ -17,6 +17,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.game.common.exception.GameException;
+import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 
 import io.netty.util.internal.StringUtil;
 
@@ -39,7 +40,7 @@ public class GameConfigXml {
 		logger.info("loading xml start");
 		File xmlPath = new File(PATH);
 		if(!xmlPath.isDirectory()){
-			throw new GameException(PATH+" is not a directory");
+			throw new GameException(PATH+" is not a directory",ErrorCode.RESOURCE_ERROR);
 		}
 		
 		File[] fileList=xmlPath.listFiles(new FileFilter() {
@@ -66,7 +67,7 @@ public class GameConfigXml {
 			logger.info("loading xml finish");
 		}catch (Exception e) {
 			logger.error(LOG_ERROR+fileName,e);
-			throw new GameException(fileName+" is error ",e);
+			throw new GameException(fileName+" is error ",e,ErrorCode.RESOURCE_ERROR);
 		}
 	}
 	
@@ -81,7 +82,7 @@ public class GameConfigXml {
 			loadXML(root,fileName);
 		}catch (Exception e) {
 			logger.error(LOG_ERROR+fileName,e);
-			throw new GameException(fileName+" is error ",e);
+			throw new GameException(fileName+" is error ",e,ErrorCode.RESOURCE_ERROR);
 		}
 		
 	}
@@ -96,7 +97,7 @@ public class GameConfigXml {
 				attrMap.put(attr.getName(), attr.getValue());
 			}
 			if(!attrMap.containsKey("id")){
-				throw new GameException(fileName+" not contain id");
+				throw new GameException(fileName+" not contain id",ErrorCode.RESOURCE_ERROR);
 			}
 			GameConfigCache.getInstance().addItem(fileName, attrMap.get("id"), attrMap);
 		}
@@ -150,7 +151,7 @@ public class GameConfigXml {
 				}
 				
 				if(!attrMap.containsKey("id")){
-					throw new GameException(fileName+" not contain id");
+					throw new GameException(fileName+" not contain id",ErrorCode.RESOURCE_ERROR);
 				}
 				if(id.equals(attrMap.get("id"))){
 					return attrMap;

@@ -18,8 +18,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <modules>
-  	<module>game-agent</module>
   	<module>game-pb</module>
+  	<module>game-agent</module>
   	<module>game-common</module>
   </modules>
 </project>

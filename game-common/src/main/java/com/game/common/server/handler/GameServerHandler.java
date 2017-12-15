@@ -14,6 +14,7 @@ import com.game.common.server.manager.GameSessionManager;
 import com.game.common.server.net.AbstractGameServer;
 import com.game.common.server.session.GameSession;
 import com.game.pb.server.message.MessageObj;
+import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -30,7 +31,7 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 	protected void channelRead0(ChannelHandlerContext ctx, MessageObj.NetMessage msg) throws Exception {
 		GameSession session=GameSessionManager.getInstance().getSession(ctx.channel());
 		if(session==null){
-			throw new GameException("session is null");
+			throw new GameException("session is null",ErrorCode.SESSION_ERROR);
 		}
 		if(StringUtils.isBlank(session.getUid())) {
 			session.setUid(msg.getUid());

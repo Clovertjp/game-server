@@ -6,6 +6,7 @@ import com.game.common.exception.GameException;
 import com.game.common.server.engine.GameEngine;
 import com.game.common.server.palyer.GamePlayer;
 import com.game.common.server.session.GameSession;
+import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 import com.google.protobuf.Message;
 
 /**
@@ -15,14 +16,14 @@ import com.google.protobuf.Message;
 public abstract class AbstractLoginHandler implements IGameLoginHandler {
 
 	@Override
-	public Message handlerRequest(Message msg, GameSession session,String uid) throws GameException {
+	public Message handlerRequest(Message msg, GameSession session,GamePlayer gamePlayer,String uid) throws GameException {
 		if(StringUtils.isBlank(uid)) {
-			throw new GameException("uid is null");
+			throw new GameException("uid is null",ErrorCode.UID_NULL);
 		}
-		if(GameEngine.getInstance().findPlayerById(uid)!=null) {
-			throw new GameException("player has login");
+		if(gamePlayer!=null) {
+			throw new GameException("player has login",ErrorCode.GAME_PLAYER_NULL);
 		}
-		GamePlayer gamePlayer=new GamePlayer(uid);
+		gamePlayer=new GamePlayer(uid);
 		Message message=onLogin(gamePlayer,msg);
 		gamePlayer.setGameSession(session);
 		GameEngine.getInstance().addPlayer(gamePlayer);
