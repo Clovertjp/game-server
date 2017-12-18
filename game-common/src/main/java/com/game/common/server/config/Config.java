@@ -22,7 +22,8 @@ public class Config {
 	@Deprecated
 	public static final int MESSAGE_MULTI ;
 	public static final int MESSAGE_SINGLE ;
-	public static final int MESSAGE_POOL_NUM = 5;
+	public static final int MESSAGE_POOL_NUM;
+	public static final int MESSAGE_LENTH;
 	
 	public static final String MYBATIS_XML ;
 	
@@ -70,6 +71,8 @@ public class Config {
 		
 		MESSAGE_MULTI=getIntItem(prop, "message.multi", 1);
 		MESSAGE_SINGLE=getIntItem(prop, "message.single", 1);
+		MESSAGE_POOL_NUM=getIntItem(prop, "message.pool.num", 5);
+		MESSAGE_LENTH=getIntItem(prop, "messgae.lenth", 100);
 		
 		XML_PATH=getStringItem(prop, "xml.path", "Resource");
 		

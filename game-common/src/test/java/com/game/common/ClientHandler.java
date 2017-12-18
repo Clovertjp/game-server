@@ -21,14 +21,15 @@ public class ClientHandler extends SimpleChannelInboundHandler<MessageObj.NetMes
 		System.out.println("read "+msg);
 		int i=1;
 		ReqLogin req=ReqLogin.newBuilder().setParam("read").setUid("1").build();
-		MessageObj.NetMessage obj=MessageObj.NetMessage.newBuilder().setCmd("login")
+		MessageObj.NetMessage obj=MessageObj.NetMessage.newBuilder().setCmd("test")
 				.setClassName(req.getClass().getSimpleName())
 				.setUid("1").setClassData(req.toByteString())
 				.build();
 		System.out.println(req.getClass().getSimpleName());
 		JsonFormat format=new JsonFormat();
 		System.out.println(format.printToString(obj));
-		ctx.writeAndFlush(obj);
+		for(int j=0;j<10;j++)
+			ctx.writeAndFlush(obj);
 	}
 	
 	@Override

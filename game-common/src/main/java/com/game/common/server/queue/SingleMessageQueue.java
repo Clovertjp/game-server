@@ -20,7 +20,7 @@ public class SingleMessageQueue extends AbstractMessageQueue {
 	private static ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_SINGLE,
 			new GameThreadFactory("SingleMessageQueue"));
 	
-	private static Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>();
+	private static Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>(Config.MESSAGE_LENTH);
 
 	@Override
 	protected ExecutorService getExecutorService() {

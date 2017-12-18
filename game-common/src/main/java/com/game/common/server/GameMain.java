@@ -45,7 +45,6 @@ public class GameMain {
 		try {
 			start();
 		} catch (GameException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}

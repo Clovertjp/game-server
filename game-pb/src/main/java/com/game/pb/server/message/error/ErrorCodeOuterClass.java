@@ -20,72 +20,88 @@ public final class ErrorCodeOuterClass {
   public enum ErrorCode
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <code>UNKNOW = 0;</code>
+     * <code>SUCCESS = 0;</code>
      */
-    UNKNOW(0),
+    SUCCESS(0),
     /**
-     * <code>UID_NULL = 1;</code>
+     * <code>UNKNOW = 1;</code>
      */
-    UID_NULL(1),
+    UNKNOW(1),
     /**
-     * <code>GAME_PLAYER_NULL = 2;</code>
+     * <code>UID_NULL = 2;</code>
      */
-    GAME_PLAYER_NULL(2),
+    UID_NULL(2),
     /**
-     * <code>PARAM_ERROR = 3;</code>
+     * <code>GAME_PLAYER_NULL = 3;</code>
      */
-    PARAM_ERROR(3),
+    GAME_PLAYER_NULL(3),
     /**
-     * <code>RESOURCE_ERROR = 4;</code>
+     * <code>PARAM_ERROR = 4;</code>
      */
-    RESOURCE_ERROR(4),
+    PARAM_ERROR(4),
     /**
-     * <code>SESSION_ERROR = 5;</code>
+     * <code>RESOURCE_ERROR = 5;</code>
      */
-    SESSION_ERROR(5),
+    RESOURCE_ERROR(5),
     /**
-     * <code>NET_ERROR = 6;</code>
+     * <code>SESSION_ERROR = 6;</code>
      */
-    NET_ERROR(6),
+    SESSION_ERROR(6),
     /**
-     * <code>CMD_NULL = 7;</code>
+     * <code>NET_ERROR = 7;</code>
      */
-    CMD_NULL(7),
+    NET_ERROR(7),
+    /**
+     * <code>CMD_NULL = 8;</code>
+     */
+    CMD_NULL(8),
+    /**
+     * <code>PLAYER_HAS_LOGIN = 9;</code>
+     */
+    PLAYER_HAS_LOGIN(9),
     UNRECOGNIZED(-1),
     ;
 
     /**
-     * <code>UNKNOW = 0;</code>
+     * <code>SUCCESS = 0;</code>
      */
-    public static final int UNKNOW_VALUE = 0;
+    public static final int SUCCESS_VALUE = 0;
     /**
-     * <code>UID_NULL = 1;</code>
+     * <code>UNKNOW = 1;</code>
      */
-    public static final int UID_NULL_VALUE = 1;
+    public static final int UNKNOW_VALUE = 1;
     /**
-     * <code>GAME_PLAYER_NULL = 2;</code>
+     * <code>UID_NULL = 2;</code>
      */
-    public static final int GAME_PLAYER_NULL_VALUE = 2;
+    public static final int UID_NULL_VALUE = 2;
     /**
-     * <code>PARAM_ERROR = 3;</code>
+     * <code>GAME_PLAYER_NULL = 3;</code>
      */
-    public static final int PARAM_ERROR_VALUE = 3;
+    public static final int GAME_PLAYER_NULL_VALUE = 3;
     /**
-     * <code>RESOURCE_ERROR = 4;</code>
+     * <code>PARAM_ERROR = 4;</code>
      */
-    public static final int RESOURCE_ERROR_VALUE = 4;
+    public static final int PARAM_ERROR_VALUE = 4;
     /**
-     * <code>SESSION_ERROR = 5;</code>
+     * <code>RESOURCE_ERROR = 5;</code>
      */
-    public static final int SESSION_ERROR_VALUE = 5;
+    public static final int RESOURCE_ERROR_VALUE = 5;
     /**
-     * <code>NET_ERROR = 6;</code>
+     * <code>SESSION_ERROR = 6;</code>
      */
-    public static final int NET_ERROR_VALUE = 6;
+    public static final int SESSION_ERROR_VALUE = 6;
     /**
-     * <code>CMD_NULL = 7;</code>
+     * <code>NET_ERROR = 7;</code>
      */
-    public static final int CMD_NULL_VALUE = 7;
+    public static final int NET_ERROR_VALUE = 7;
+    /**
+     * <code>CMD_NULL = 8;</code>
+     */
+    public static final int CMD_NULL_VALUE = 8;
+    /**
+     * <code>PLAYER_HAS_LOGIN = 9;</code>
+     */
+    public static final int PLAYER_HAS_LOGIN_VALUE = 9;
 
 
     public final int getNumber() {
@@ -106,14 +122,16 @@ public final class ErrorCodeOuterClass {
 
     public static ErrorCode forNumber(int value) {
       switch (value) {
-        case 0: return UNKNOW;
-        case 1: return UID_NULL;
-        case 2: return GAME_PLAYER_NULL;
-        case 3: return PARAM_ERROR;
-        case 4: return RESOURCE_ERROR;
-        case 5: return SESSION_ERROR;
-        case 6: return NET_ERROR;
-        case 7: return CMD_NULL;
+        case 0: return SUCCESS;
+        case 1: return UNKNOW;
+        case 2: return UID_NULL;
+        case 3: return GAME_PLAYER_NULL;
+        case 4: return PARAM_ERROR;
+        case 5: return RESOURCE_ERROR;
+        case 6: return SESSION_ERROR;
+        case 7: return NET_ERROR;
+        case 8: return CMD_NULL;
+        case 9: return PLAYER_HAS_LOGIN;
         default: return null;
       }
     }
@@ -175,12 +193,13 @@ public final class ErrorCodeOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017ErrorCode.proto*\220\001\n\tErrorCode\022\n\n\006UNKNO" +
-      "W\020\000\022\014\n\010UID_NULL\020\001\022\024\n\020GAME_PLAYER_NULL\020\002\022" +
-      "\017\n\013PARAM_ERROR\020\003\022\022\n\016RESOURCE_ERROR\020\004\022\021\n\r" +
-      "SESSION_ERROR\020\005\022\r\n\tNET_ERROR\020\006\022\014\n\010CMD_NU" +
-      "LL\020\007B\"\n com.game.pb.server.message.error" +
-      "b\006proto3"
+      "\n\017ErrorCode.proto*\263\001\n\tErrorCode\022\013\n\007SUCCE" +
+      "SS\020\000\022\n\n\006UNKNOW\020\001\022\014\n\010UID_NULL\020\002\022\024\n\020GAME_P" +
+      "LAYER_NULL\020\003\022\017\n\013PARAM_ERROR\020\004\022\022\n\016RESOURC" +
+      "E_ERROR\020\005\022\021\n\rSESSION_ERROR\020\006\022\r\n\tNET_ERRO" +
+      "R\020\007\022\014\n\010CMD_NULL\020\010\022\024\n\020PLAYER_HAS_LOGIN\020\tB" +
+      "\"\n com.game.pb.server.message.errorb\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

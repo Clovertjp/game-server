@@ -21,7 +21,7 @@ public abstract class AbstractLoginHandler implements IGameLoginHandler {
 			throw new GameException("uid is null",ErrorCode.UID_NULL);
 		}
 		if(gamePlayer!=null) {
-			throw new GameException("player has login",ErrorCode.GAME_PLAYER_NULL);
+			throw new GameException("player has login",ErrorCode.PLAYER_HAS_LOGIN);
 		}
 		gamePlayer=new GamePlayer(uid);
 		Message message=onLogin(gamePlayer,msg);

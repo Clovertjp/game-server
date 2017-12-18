@@ -30,5 +30,15 @@ public class GameException extends Exception {
 		super(msg, cause);
 		this.errorCode=errorCode;
 	}
+
+	public ErrorCode getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(ErrorCode errorCode) {
+		this.errorCode = errorCode;
+	}
+	
+	
 	
 }

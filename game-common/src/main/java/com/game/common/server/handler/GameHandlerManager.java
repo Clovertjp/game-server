@@ -42,8 +42,7 @@ public class GameHandlerManager {
 		try {
 			init();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage(),e);
 		}
 	}
 	
@@ -70,7 +69,8 @@ public class GameHandlerManager {
 		String msgStr="";
 		String retStr="";
 		String retClsName="";
-		MessageObj.NetMessage ret=MessageObj.NetMessage.getDefaultInstance();
+		MessageObj.NetMessage ret=null;
+		ErrorCode errorCode=ErrorCode.SUCCESS;
 		long start=System.currentTimeMillis();
 		try{
 			
@@ -98,18 +98,27 @@ public class GameHandlerManager {
 				retStr=format.printToString(retBuilder);
 				retClsName=retBuilder.getClass().getSimpleName();
 			}
+			errorCode=ErrorCode.SUCCESS;
 			if(retBuilder!=null){
 				ret=MessageObj.NetMessage.newBuilder().setClassData(retBuilder.toByteString())
-						.setClassName(retClsName).setUid(uid).build();
-				actionMsg.getSession().getChannel().writeAndFlush(ret);
+						.setClassName(retClsName).setUid(uid).setRetCode(errorCode).build();
 			}
 		}catch (GameException e) {
-			
+			errorCode=e.getErrorCode();
 			logger.error(e.getMessage(),e);
 		}catch (Exception e) {
+			errorCode=ErrorCode.UNKNOW;
 			logger.error(e.getMessage(),e);
 		}finally {
-			writeLog(start, cmd, uid, className, msgStr, retClsName, retStr);
+			try {
+				if(ret==null) {
+					ret=MessageObj.NetMessage.newBuilder().setUid(uid).setRetCode(errorCode).build();
+				}
+				actionMsg.getSession().getChannel().writeAndFlush(ret);
+			}catch(Exception e) {
+				logger.error(e.getMessage(),e);
+			}
+			writeLog(start, cmd, uid, className, msgStr, retClsName, retStr,errorCode);
 		}
 	}
 	
@@ -146,13 +155,15 @@ public class GameHandlerManager {
 		});
 	}
 	
-	private void writeLog(long start,String cmd,String uid,String clsName,String msg,String retClsName,String ret){
+	private void writeLog(long start,String cmd,String uid,String clsName,String msg,String retClsName,String ret
+			,ErrorCode errorCode){
 		StringBuilder sb=new StringBuilder();
 		sb.append(REQ_RES_STR).append(SEPARATOR)
 		.append(clsName).append(GameHandlerManager.SEPARATOR)
 		.append(retClsName).append(GameHandlerManager.SEPARATOR)
 		.append(uid).append(GameHandlerManager.SEPARATOR)
 		.append(cmd).append(GameHandlerManager.SEPARATOR)
+		.append(errorCode.name()).append(GameHandlerManager.SEPARATOR)
 		.append(System.currentTimeMillis()-start).append(GameHandlerManager.SEPARATOR)
 		.append(msg).append(GameHandlerManager.SEPARATOR)
 		.append(ret);

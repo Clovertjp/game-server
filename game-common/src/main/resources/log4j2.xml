@@ -7,10 +7,13 @@
 				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} | %msg%n" />
 		</Console>
 
-		<RollingFile name="logError" fileName="logs/logError.log"
+		<RollingFile name="logError" fileName="logs/logError.log" 
 			filePattern="logs/logError-%d{yyyy-MM-dd-HH-mm}.log">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} | %msg%n" />
 			<TimeBasedTriggeringPolicy  interval="1"/>
+			<Filters>
+                 <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+             </Filters>
 		</RollingFile>
 
 
@@ -26,12 +29,10 @@
 
 	<loggers>
 		<root level="all">
-			<AppenderRef ref="logError"/>
 			<AppenderRef ref="infoFile"/>
 			<AppenderRef ref="Console"/>
+			<AppenderRef ref="logError"/>
 		</root>
-
-		
 
 	</loggers>
 

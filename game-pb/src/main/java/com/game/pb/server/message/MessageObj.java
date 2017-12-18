@@ -57,6 +57,15 @@ public final class MessageObj {
      * <code>bytes classData = 5;</code>
      */
     com.google.protobuf.ByteString getClassData();
+
+    /**
+     * <code>.ErrorCode retCode = 6;</code>
+     */
+    int getRetCodeValue();
+    /**
+     * <code>.ErrorCode retCode = 6;</code>
+     */
+    com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode getRetCode();
   }
   /**
    * Protobuf type {@code NetMessage}
@@ -76,6 +85,7 @@ public final class MessageObj {
       sendTime_ = 0L;
       className_ = "";
       classData_ = com.google.protobuf.ByteString.EMPTY;
+      retCode_ = 0;
     }
 
     @java.lang.Override
@@ -132,6 +142,12 @@ public final class MessageObj {
             case 42: {
 
               classData_ = input.readBytes();
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+
+              retCode_ = rawValue;
               break;
             }
           }
@@ -278,6 +294,22 @@ public final class MessageObj {
       return classData_;
     }
 
+    public static final int RETCODE_FIELD_NUMBER = 6;
+    private int retCode_;
+    /**
+     * <code>.ErrorCode retCode = 6;</code>
+     */
+    public int getRetCodeValue() {
+      return retCode_;
+    }
+    /**
+     * <code>.ErrorCode retCode = 6;</code>
+     */
+    public com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode getRetCode() {
+      com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode result = com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.valueOf(retCode_);
+      return result == null ? com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -305,6 +337,9 @@ public final class MessageObj {
       if (!classData_.isEmpty()) {
         output.writeBytes(5, classData_);
       }
+      if (retCode_ != com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.SUCCESS.getNumber()) {
+        output.writeEnum(6, retCode_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -329,6 +364,10 @@ public final class MessageObj {
       if (!classData_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, classData_);
+      }
+      if (retCode_ != com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.SUCCESS.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, retCode_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -356,6 +395,7 @@ public final class MessageObj {
           .equals(other.getClassName());
       result = result && getClassData()
           .equals(other.getClassData());
+      result = result && retCode_ == other.retCode_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -378,6 +418,8 @@ public final class MessageObj {
       hash = (53 * hash) + getClassName().hashCode();
       hash = (37 * hash) + CLASSDATA_FIELD_NUMBER;
       hash = (53 * hash) + getClassData().hashCode();
+      hash = (37 * hash) + RETCODE_FIELD_NUMBER;
+      hash = (53 * hash) + retCode_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -517,6 +559,8 @@ public final class MessageObj {
 
         classData_ = com.google.protobuf.ByteString.EMPTY;
 
+        retCode_ = 0;
+
         return this;
       }
 
@@ -544,6 +588,7 @@ public final class MessageObj {
         result.sendTime_ = sendTime_;
         result.className_ = className_;
         result.classData_ = classData_;
+        result.retCode_ = retCode_;
         onBuilt();
         return result;
       }
@@ -602,6 +647,9 @@ public final class MessageObj {
         }
         if (other.getClassData() != com.google.protobuf.ByteString.EMPTY) {
           setClassData(other.getClassData());
+        }
+        if (other.retCode_ != 0) {
+          setRetCodeValue(other.getRetCodeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -891,6 +939,50 @@ public final class MessageObj {
         onChanged();
         return this;
       }
+
+      private int retCode_ = 0;
+      /**
+       * <code>.ErrorCode retCode = 6;</code>
+       */
+      public int getRetCodeValue() {
+        return retCode_;
+      }
+      /**
+       * <code>.ErrorCode retCode = 6;</code>
+       */
+      public Builder setRetCodeValue(int value) {
+        retCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ErrorCode retCode = 6;</code>
+       */
+      public com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode getRetCode() {
+        com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode result = com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.valueOf(retCode_);
+        return result == null ? com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ErrorCode retCode = 6;</code>
+       */
+      public Builder setRetCode(com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        retCode_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ErrorCode retCode = 6;</code>
+       */
+      public Builder clearRetCode() {
+        
+        retCode_ = 0;
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -954,11 +1046,12 @@ public final class MessageObj {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ServerMessage.proto\"^\n\nNetMessage\022\013\n\003c" +
-      "md\030\001 \001(\t\022\013\n\003uid\030\002 \001(\t\022\020\n\010sendTime\030\003 \001(\003\022" +
-      "\021\n\tclassName\030\004 \001(\t\022\021\n\tclassData\030\005 \001(\014B(\n" +
-      "\032com.game.pb.server.messageB\nMessageObjb" +
-      "\006proto3"
+      "\n\023ServerMessage.proto\032\017ErrorCode.proto\"{" +
+      "\n\nNetMessage\022\013\n\003cmd\030\001 \001(\t\022\013\n\003uid\030\002 \001(\t\022\020" +
+      "\n\010sendTime\030\003 \001(\003\022\021\n\tclassName\030\004 \001(\t\022\021\n\tc" +
+      "lassData\030\005 \001(\014\022\033\n\007retCode\030\006 \001(\0162\n.ErrorC" +
+      "odeB(\n\032com.game.pb.server.messageB\nMessa" +
+      "geObjb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -971,13 +1064,15 @@ public final class MessageObj {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.game.pb.server.message.error.ErrorCodeOuterClass.getDescriptor(),
         }, assigner);
     internal_static_NetMessage_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_NetMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_NetMessage_descriptor,
-        new java.lang.String[] { "Cmd", "Uid", "SendTime", "ClassName", "ClassData", });
+        new java.lang.String[] { "Cmd", "Uid", "SendTime", "ClassName", "ClassData", "RetCode", });
+    com.game.pb.server.message.error.ErrorCodeOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
