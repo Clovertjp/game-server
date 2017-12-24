@@ -3,6 +3,7 @@ package com.game.common.server.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.game.common.server.config.Config;
 import com.game.common.server.redis.R;
 
 /**
@@ -20,8 +21,7 @@ public class IPFilter extends AbstractFilter<String> {
 
 	@Override
 	public void loadFilterList() {
-		List<String> list=new ArrayList<>();
-		
+		ipList=R.getLocalRedis().getAllRangeList(Config.FILTER_IP_KEY);
 	}
 
 }

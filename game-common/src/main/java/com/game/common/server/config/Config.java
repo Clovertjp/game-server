@@ -59,6 +59,10 @@ public class Config {
 	
 	public static final String LOGIN_CMD ;
 	
+	public static final String FILTER_IP_KEY ;
+	
+	public static final String FILTER_UID_KEY ;
+	
 	static {
 		Properties prop = PropertiesManager.getSystemConfig();
 		
@@ -110,6 +114,10 @@ public class Config {
 		LOGIN_CMD=getStringItem(prop, "game.login.cmd", "");
 		
 		PUSH_QUEUE_MAX=getIntItem(prop, "push.queue.max", 20);
+		
+		FILTER_IP_KEY=getStringItem(prop, "filter.ip.key", "filter.ip");
+		
+		FILTER_UID_KEY=getStringItem(prop, "filter.uid.key", "filter.uid");
 
 	}
 	

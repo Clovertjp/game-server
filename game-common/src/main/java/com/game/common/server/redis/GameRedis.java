@@ -528,6 +528,15 @@ public class GameRedis {
             jedis.close();
         }
     }
+    
+    public List<String> getAllRangeList(String key) {
+        Jedis jedis = getClient();
+        try {
+            return jedis.lrange(key, 0, -1);
+        } finally {
+            jedis.close();
+        }
+    }
 
     public long getLength(String key) {
         Jedis jedis = getClient();

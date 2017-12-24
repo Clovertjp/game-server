@@ -22,6 +22,7 @@ public class GameServerDecoder extends ByteToMessageDecoder {
 	@Override
 	protected void decode(ChannelHandlerContext paramChannelHandlerContext, ByteBuf paramByteBuf,
 			List<Object> paramList) throws Exception {
+		
 		if (paramByteBuf.readableBytes() < 4) {
             return;
         }

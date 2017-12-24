@@ -30,6 +30,7 @@ public class GameAgent {
             logger.info("[hot swap] no patch files, finish.");
             return;
         }
+        
         logger.info("[hot swap] FullClassNameFilePathMap: {}", classNamePathMap);
         GameTransform classTransformer = new GameTransform(classNamePathMap);
         inst.addTransformer(classTransformer, true);
