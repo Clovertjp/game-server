@@ -59,6 +59,10 @@ public final class ErrorCodeOuterClass {
      * <code>PLAYER_HAS_LOGIN = 9;</code>
      */
     PLAYER_HAS_LOGIN(9),
+    /**
+     * <code>FORBID = 10;</code>
+     */
+    FORBID(10),
     UNRECOGNIZED(-1),
     ;
 
@@ -102,6 +106,10 @@ public final class ErrorCodeOuterClass {
      * <code>PLAYER_HAS_LOGIN = 9;</code>
      */
     public static final int PLAYER_HAS_LOGIN_VALUE = 9;
+    /**
+     * <code>FORBID = 10;</code>
+     */
+    public static final int FORBID_VALUE = 10;
 
 
     public final int getNumber() {
@@ -132,6 +140,7 @@ public final class ErrorCodeOuterClass {
         case 7: return NET_ERROR;
         case 8: return CMD_NULL;
         case 9: return PLAYER_HAS_LOGIN;
+        case 10: return FORBID;
         default: return null;
       }
     }
@@ -193,13 +202,13 @@ public final class ErrorCodeOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017ErrorCode.proto*\263\001\n\tErrorCode\022\013\n\007SUCCE" +
+      "\n\017ErrorCode.proto*\277\001\n\tErrorCode\022\013\n\007SUCCE" +
       "SS\020\000\022\n\n\006UNKNOW\020\001\022\014\n\010UID_NULL\020\002\022\024\n\020GAME_P" +
       "LAYER_NULL\020\003\022\017\n\013PARAM_ERROR\020\004\022\022\n\016RESOURC" +
       "E_ERROR\020\005\022\021\n\rSESSION_ERROR\020\006\022\r\n\tNET_ERRO" +
-      "R\020\007\022\014\n\010CMD_NULL\020\010\022\024\n\020PLAYER_HAS_LOGIN\020\tB" +
-      "\"\n com.game.pb.server.message.errorb\006pro" +
-      "to3"
+      "R\020\007\022\014\n\010CMD_NULL\020\010\022\024\n\020PLAYER_HAS_LOGIN\020\t\022" +
+      "\n\n\006FORBID\020\nB\"\n com.game.pb.server.messag" +
+      "e.errorb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

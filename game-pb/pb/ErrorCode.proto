@@ -15,4 +15,5 @@ enum ErrorCode //枚举消息类型
 	NET_ERROR=7;
 	CMD_NULL=8;
 	PLAYER_HAS_LOGIN=9;
+	FORBID=10;
 }
