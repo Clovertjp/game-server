@@ -1,7 +1,11 @@
 package com.game.common.server.filter;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import com.game.common.exception.GameException;
 
 /**
  * @author tangjp
@@ -9,8 +13,67 @@ import java.util.Map;
  */
 public class FilterManager {
 	
-	private static IPFilter ipFilter;
-	private static UidFilter uidFilter;
+	public static interface IFilterType{
+		public int getType();
+		public IFilterType toOtherFilterType();
+	}
+	
+	public static class StaticFilterType implements IFilterType{
+		public static IFilterType STATIC_IP=new StaticFilterType(0);
+		public static IFilterType STATIC_UID=new StaticFilterType(1);
+		private int type;
+		private StaticFilterType(int type) {
+			this.type=type;
+		}
+		
+		@Override
+		public int getType() {
+			return type;
+		}
+
+		@Override
+		public IFilterType toOtherFilterType() {
+			// TODO Auto-generated method stub
+			switch(type) {
+			case 0:
+				return DynFilterType.DYN_IP;
+			case 1:
+				return DynFilterType.DYN_UID;
+			default:
+				return null;
+			}
+		}
+		
+	}
+	
+	public static class DynFilterType implements IFilterType{
+		public static IFilterType DYN_IP=new DynFilterType(0);
+		public static IFilterType DYN_UID=new DynFilterType(1);
+		private int type;
+		private DynFilterType(int type) {
+			this.type=type;
+		}
+		
+		@Override
+		public int getType() {
+			return type;
+		}
+
+		@Override
+		public IFilterType toOtherFilterType() {
+			// TODO Auto-generated method stub
+			switch(type) {
+			case 0:
+				return StaticFilterType.STATIC_IP;
+			case 1:
+				return StaticFilterType.STATIC_UID;
+			default:
+				return null;
+			}
+		}
+	}
+	
+	private Map<IFilterType,IFilter> filterMap;
 	
 	private static FilterManager filterManager=new FilterManager();
 	
@@ -19,38 +82,44 @@ public class FilterManager {
 	}
 	
 	private FilterManager() {
-		ipFilter=new IPFilter();
-		uidFilter=new UidFilter();
+		
+		filterMap=new HashMap<>();
+		filterMap.put(StaticFilterType.STATIC_IP, new IPFilter());
+		filterMap.put(StaticFilterType.STATIC_UID, new UidFilter());
+		filterMap.put(DynFilterType.DYN_IP, new DynIPFilter());
+		filterMap.put(DynFilterType.DYN_UID, new DynUidFilter());
 		reloadAll();
+		loadDyn();
 	}
 	
-	public void reloadIp() {
-		ipFilter.reloadFilterList();
-	}
-	
-	public void reloadUid() {
-		uidFilter.reloadFilterList();
+	public void loadDyn() {
+		for(IFilter filter : filterMap.values()) {
+			filter.loadForbid();
+		}
 	}
 	
 	public void reloadAll() {
-		reloadIp();
-		reloadUid();
+		for(IFilter filter : filterMap.values()) {
+			filter.loadFilterList();
+		}
 	}
 	
-	public boolean checkIp(String ip) {
-		return ipFilter.isInForbidList(ip);
+	public boolean check(String val,IFilterType type) {
+		return filterMap.get(type).isInForbidList(val);
 	}
 	
-	public boolean checkUid(String uid) {
-		return uidFilter.isInForbidList(uid);
+	public Map<String,Boolean> checkList(List<String> list,IFilterType type){
+		return filterMap.get(type).getCheckList(list);
 	}
 	
-	public Map<String,Boolean> checkIpList(List<String> ipList){
-		return ipFilter.getCheckList(ipList);
-	}
-	
-	public Map<String,Boolean> checkUidList(List<String> uidList){
-		return uidFilter.getCheckList(uidList);
+	public void addMsgFilterCount(String val,DynFilterType type) throws GameException {
+		IFilterType typ=type.toOtherFilterType();
+		if(typ!=null) {
+			if(check(val,typ)) {
+				throw new GameException(val+" has in static forbid");
+			}
+		}
+		filterMap.get(type).addCount(val);
 	}
 
 }

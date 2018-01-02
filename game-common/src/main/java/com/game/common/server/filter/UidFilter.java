@@ -3,6 +3,7 @@ package com.game.common.server.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.game.common.exception.GameException;
 import com.game.common.server.config.Config;
 import com.game.common.server.redis.R;
 
@@ -10,7 +11,7 @@ import com.game.common.server.redis.R;
  * @author tangjp
  *
  */
-public class UidFilter extends AbstractFilter<String> {
+public class UidFilter extends AbstractStaticFilter<String> {
 	
 	private List<String> uidList=new ArrayList<>();
 
@@ -23,5 +24,4 @@ public class UidFilter extends AbstractFilter<String> {
 	public List<String> getFilterList() {
 		return uidList;
 	}
-
 }

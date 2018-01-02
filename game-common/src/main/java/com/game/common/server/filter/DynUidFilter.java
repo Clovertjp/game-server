@@ -1,27 +1,26 @@
 package com.game.common.server.filter;
 
-import java.util.List;
-
 import com.game.common.server.config.Config;
 
 /**
  * @author tangjp
  *
  */
-public class DynIPFilter extends AbstractDynFilter<String> {
+public class DynUidFilter extends AbstractDynFilter<String> {
 
 	@Override
 	public int getForbidMax() {
-		return Config.FILTER_DY_IP_MAX;
+		return Config.FILTER_DY_UID_MAX;
 	}
 
 	@Override
 	public long getForbidMaxTime() {
-		return Config.FILTER_DY_IP_TIME;
+		return Config.FILTER_DY_UID_TIME;
 	}
 
 	@Override
 	public String getRedisKey() {
-		return Config.FILTER_DY_IP_KEY;
+		return Config.FILTER_DY_UID_KEY;
 	}
+
 }

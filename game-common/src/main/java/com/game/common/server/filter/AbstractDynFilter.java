@@ -1,5 +1,6 @@
 package com.game.common.server.filter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
  * @author tangjp
  *
  */
-public abstract class AbstractDynFilter<T> {
+public abstract class AbstractDynFilter<T> extends AbstractStaticFilter<T> {
 	
 	private Map<T,DynFilterCount> countMap=new ConcurrentHashMap<>();
 	
@@ -41,7 +42,7 @@ public abstract class AbstractDynFilter<T> {
 	
 	public abstract int getForbidMax() ;
 	
-	public abstract int getForbidMaxTime() ;
+	public abstract long getForbidMaxTime() ;
 	
 	public abstract String getRedisKey() ;
 	
@@ -66,6 +67,27 @@ public abstract class AbstractDynFilter<T> {
 			}
 		}
 		R.getLocalRedis().hMSet(getRedisKey(), storeMap);
+	}
+	
+	public void loadForbid() {
+		Map<String, String> map=R.getLocalRedis().hMGetAll(getRedisKey());
+		forbidMap.clear();
+		long nowTime=System.currentTimeMillis()/1000;
+		for(Map.Entry<String,String> entry : map.entrySet()) {
+			long time=Long.parseLong(entry.getValue());
+			if(nowTime-time < getForbidMaxTime()) {
+				forbidMap.put((T)entry.getKey(), time);
+			}
+		}
+	}
+	
+	@Override
+	public void loadFilterList() {		
+	}
+
+	@Override
+	public List<T> getFilterList() {
+		return new ArrayList<>(forbidMap.keySet());
 	}
 
 }

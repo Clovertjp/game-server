@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.game.common.exception.GameException;
+
 /**
  * @author tangjp
  *
  */
-public abstract class AbstractFilter<T> {
+public abstract class AbstractStaticFilter<T> implements IFilter<T> {
 	
 	public boolean isInForbidList(T val) {
 		if(getFilterList()==null) {
@@ -33,9 +35,17 @@ public abstract class AbstractFilter<T> {
 		loadFilterList();
 	}
 	
-	public abstract void loadFilterList();
+	@Override
+	public int addCount(T val) throws GameException {
+		return 0;
+	}
 	
-	public abstract List<T> getFilterList();
+	public void loadForbid() {
+		
+	}
 	
+	public void storeForbid() {
+		
+	}
 	
 }

@@ -63,6 +63,18 @@ public class Config {
 	
 	public static final String FILTER_UID_KEY ;
 	
+	public static final String FILTER_DY_IP_KEY ;
+	
+	public static final String FILTER_DY_UID_KEY ;
+	
+	public static final int FILTER_DY_IP_MAX ;
+	
+	public static final int FILTER_DY_UID_MAX ;
+	
+	public static final long FILTER_DY_IP_TIME ;
+	
+	public static final long FILTER_DY_UID_TIME ;
+	
 	static {
 		Properties prop = PropertiesManager.getSystemConfig();
 		
@@ -118,6 +130,18 @@ public class Config {
 		FILTER_IP_KEY=getStringItem(prop, "filter.ip.key", "filter.ip");
 		
 		FILTER_UID_KEY=getStringItem(prop, "filter.uid.key", "filter.uid");
+		
+		FILTER_DY_IP_KEY =getStringItem(prop, "filter.dy.ip.key", "filter.dy.ip");
+		
+		FILTER_DY_UID_KEY =getStringItem(prop, "filter.dy.uid.key", "filter.dy.uid");
+		
+		FILTER_DY_IP_MAX =getIntItem(prop, "filter.dy.ip.max", 100);
+		
+		FILTER_DY_UID_MAX =getIntItem(prop, "filter.dy.uid.max", 20);
+		
+		FILTER_DY_IP_TIME =getLongItem(prop, "filter.dy.ip.time", 24*60*60);
+		
+		FILTER_DY_UID_TIME =getLongItem(prop, "filter.dy.uid.time", 3*24*60*60);
 
 	}
 	

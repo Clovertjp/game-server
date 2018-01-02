@@ -3,6 +3,7 @@ package com.game.common.server.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.game.common.exception.GameException;
 import com.game.common.server.config.Config;
 import com.game.common.server.redis.R;
 
@@ -10,7 +11,7 @@ import com.game.common.server.redis.R;
  * @author tangjp
  *
  */
-public class IPFilter extends AbstractFilter<String> {
+public class IPFilter extends AbstractStaticFilter<String> {
 	
 	private List<String> ipList=new ArrayList<>();
 
