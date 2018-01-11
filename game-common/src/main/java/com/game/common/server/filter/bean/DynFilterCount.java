@@ -22,6 +22,7 @@ public class DynFilterCount {
 	public int addCount() {
 		if(minute!=DateUtils.getTimeByField(Calendar.MINUTE)) {
 			count.set(0);
+			minute=DateUtils.getTimeByField(Calendar.MINUTE);
 		}
 		return count.incrementAndGet();
 	}

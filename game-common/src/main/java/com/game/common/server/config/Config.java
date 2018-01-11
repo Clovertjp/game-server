@@ -75,6 +75,8 @@ public class Config {
 	
 	public static final long FILTER_DY_UID_TIME ;
 	
+	public static final String HANDLER_PATH ;
+	
 	static {
 		Properties prop = PropertiesManager.getSystemConfig();
 		
@@ -135,13 +137,15 @@ public class Config {
 		
 		FILTER_DY_UID_KEY =getStringItem(prop, "filter.dy.uid.key", "filter.dy.uid");
 		
-		FILTER_DY_IP_MAX =getIntItem(prop, "filter.dy.ip.max", 100);
+		FILTER_DY_IP_MAX =getIntItem(prop, "filter.dy.ip.max", 400);
 		
-		FILTER_DY_UID_MAX =getIntItem(prop, "filter.dy.uid.max", 20);
+		FILTER_DY_UID_MAX =getIntItem(prop, "filter.dy.uid.max", 100);
 		
 		FILTER_DY_IP_TIME =getLongItem(prop, "filter.dy.ip.time", 24*60*60);
 		
 		FILTER_DY_UID_TIME =getLongItem(prop, "filter.dy.uid.time", 3*24*60*60);
+		
+		HANDLER_PATH =getStringItem(prop, "handler.path", "com.game.common.server.handler.message");
 
 	}
 	

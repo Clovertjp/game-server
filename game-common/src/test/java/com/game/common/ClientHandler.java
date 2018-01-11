@@ -14,6 +14,8 @@ import io.netty.channel.SimpleChannelInboundHandler;
  *
  */
 public class ClientHandler extends SimpleChannelInboundHandler<MessageObj.NetMessage> {
+	
+	String uid="8";
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, MessageObj.NetMessage msg) throws Exception {
@@ -23,13 +25,16 @@ public class ClientHandler extends SimpleChannelInboundHandler<MessageObj.NetMes
 		ReqLogin req=ReqLogin.newBuilder().setParam("read").setUid("1").build();
 		MessageObj.NetMessage obj=MessageObj.NetMessage.newBuilder().setCmd("test")
 				.setClassName(req.getClass().getSimpleName())
-				.setUid("1").setClassData(req.toByteString())
+				.setUid(uid).setClassData(req.toByteString())
 				.build();
 		System.out.println(req.getClass().getSimpleName());
 		JsonFormat format=new JsonFormat();
 		System.out.println(format.printToString(obj));
-		for(int j=0;j<10;j++)
+		for(int j=0;j<1;j++) {
 			ctx.writeAndFlush(obj);
+			Thread.sleep(1000);
+		}
+			
 	}
 	
 	@Override
@@ -38,7 +43,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<MessageObj.NetMes
 		ReqLogin req=ReqLogin.newBuilder().setParam("active").setUid("1").build();
 		MessageObj.NetMessage obj=MessageObj.NetMessage.newBuilder().setCmd("login")
 				.setClassName(req.getClass().getSimpleName())
-				.setUid("1").setClassData(req.toByteString())
+				.setUid(uid).setClassData(req.toByteString())
 				.build();
 		System.out.println(req.getClass().getSimpleName());
 		JsonFormat format=new JsonFormat();

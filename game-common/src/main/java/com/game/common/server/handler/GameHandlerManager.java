@@ -3,18 +3,24 @@ package com.game.common.server.handler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.reflections.ReflectionUtils;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
 
 import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
 import com.game.common.server.engine.GameEngine;
+import com.game.common.server.handler.message.LoginHandler;
+import com.game.common.server.handler.message.TestHandler;
 import com.game.common.server.palyer.GamePlayer;
 import com.game.pb.server.message.MessageObj;
 import com.game.pb.server.message.ReqLoginOuterClass.ReqLogin;
@@ -26,6 +32,8 @@ import com.google.protobuf.Message;
 import com.google.protobuf.MessageLite;
 import com.google.protobuf.MessageOrBuilder;
 import com.googlecode.protobuf.format.JsonFormat;
+
+import javassist.Modifier;
 
 /**
  * @author tangjp
@@ -39,11 +47,6 @@ public class GameHandlerManager {
 	private static JsonFormat format=new JsonFormat();
 	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<>();
 	private GameHandlerManager(){
-		try {
-			init();
-		} catch (ClassNotFoundException e) {
-			logger.error(e.getMessage(),e);
-		}
 	}
 	
 	private Map<String,Class<? extends AbstractGameBaseHandler>> handlerMap=new ConcurrentHashMap<>();
@@ -57,6 +60,45 @@ public class GameHandlerManager {
 	public void init() throws ClassNotFoundException {
 		if(!StringUtils.isBlank(Config.LOGIN_HANDLER)) {
 			gameLoginHandler=(Class<? extends IGameLoginHandler>) Class.forName(Config.LOGIN_HANDLER);
+		}
+//		System.out.println(LoginHandler.class.getPackage().getName());
+//		registHandler(LoginHandler.class.getPackage().getName());
+		addHandlerMap();
+	}
+	
+	public void addHandlerMap() {
+		handlerMap.put(TestHandler.CMD, TestHandler.class);
+	}
+	
+	/**
+	 * 暂时不用
+	 * @param path
+	 */
+	@Deprecated
+	public void registHandler(String path) {
+		Reflections reflections = new Reflections(path);
+		Set<String> allClasses = reflections.getAllTypes();
+		for (String className : allClasses) {
+			Class clazz = ReflectionUtils.forName(className);
+			if (clazz.isInterface() || Modifier.isAbstract(clazz.getModifiers())) {
+				continue; // 忽略接口和抽象类
+			}
+			
+			if(!clazz.isAssignableFrom(AbstractGameBaseHandler.class)) {
+				continue;
+			}
+			
+			AbstractGameBaseHandler handlerInstance = null;
+			try {
+				handlerInstance = (AbstractGameBaseHandler)clazz.newInstance();
+			} catch (InstantiationException e) {
+				logger.error("类[" + className + "]无法生成实例，没有默认构造函数？", e);
+				continue; // 忽略不能实例化的类
+			} catch (IllegalAccessException e) {
+				throw new RuntimeException(e);
+			}
+			
+			handlerMap.put(handlerInstance.getCmd(), handlerInstance.getClass());
 		}
 	}
 	

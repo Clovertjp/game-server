@@ -33,7 +33,6 @@ public class FilterManager {
 
 		@Override
 		public IFilterType toOtherFilterType() {
-			// TODO Auto-generated method stub
 			switch(type) {
 			case 0:
 				return DynFilterType.DYN_IP;
@@ -61,7 +60,6 @@ public class FilterManager {
 
 		@Override
 		public IFilterType toOtherFilterType() {
-			// TODO Auto-generated method stub
 			switch(type) {
 			case 0:
 				return StaticFilterType.STATIC_IP;
@@ -116,7 +114,7 @@ public class FilterManager {
 		IFilterType typ=type.toOtherFilterType();
 		if(typ!=null) {
 			if(check(val,typ)) {
-				throw new GameException(val+" has in static forbid");
+				throw new GameException(val+" has in static forbid ");
 			}
 		}
 		filterMap.get(type).addCount(val);

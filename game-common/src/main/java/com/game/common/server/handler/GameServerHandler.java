@@ -1,5 +1,7 @@
 package com.game.common.server.handler;
 
+import java.net.InetSocketAddress;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +12,8 @@ import com.game.common.pb.object.GameObject.GamePbObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.action.MessageAction;
 import com.game.common.server.engine.GameEngine;
+import com.game.common.server.filter.FilterManager;
+import com.game.common.server.filter.FilterManager.DynFilterType;
 import com.game.common.server.manager.GameSessionManager;
 import com.game.common.server.net.AbstractGameServer;
 import com.game.common.server.session.GameSession;
@@ -36,15 +40,20 @@ public class GameServerHandler extends SimpleChannelInboundHandler<MessageObj.Ne
 		if(StringUtils.isBlank(session.getUid())) {
 			session.setUid(msg.getUid());
 		}
-		session.setUid(msg.getUid());
+		String ip=((InetSocketAddress)ctx.channel().remoteAddress()).getAddress().getHostAddress();
+		FilterManager.getInstance().addMsgFilterCount(session.getUid(), (DynFilterType) FilterManager.DynFilterType.DYN_UID);
+		FilterManager.getInstance().addMsgFilterCount(ip, (DynFilterType) FilterManager.DynFilterType.DYN_IP);
 		session.updateReadTime();
 		IAction<MessageObj.NetMessage> actionMsg=new MessageAction<>(session,msg);
 		session.addMessage(actionMsg);
-		logger.info("session create id "+session.getId()+" uid: "+session.getUid()+"  add message");
+		logger.info("session create id "+session.getId()+" uid: "+session.getUid()+"  add message"+"   ip:"+ip);
 	}
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+		String ip=((InetSocketAddress)ctx.channel().remoteAddress()).getAddress().getHostAddress();
+		FilterManager.getInstance().addMsgFilterCount(ip, (DynFilterType) FilterManager.DynFilterType.DYN_IP);
+		
 		GameSession session=new GameSession(ctx.channel());
 		GameSessionManager.getInstance().addSession(session);
 		logger.info("session create id"+session.getId()+"   ip:"+ctx.channel().remoteAddress());

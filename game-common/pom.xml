@@ -69,6 +69,12 @@
 			<version>9.4.6.v20170531</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.10</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.sun</groupId>

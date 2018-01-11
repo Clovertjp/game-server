@@ -15,4 +15,6 @@ public abstract class AbstractGameBaseHandler {
 	
 	public abstract Message handlerRequest(Message msg,GamePlayer gamePlayer) throws GameException;
 	
+	public abstract String getCmd();
+	
 }

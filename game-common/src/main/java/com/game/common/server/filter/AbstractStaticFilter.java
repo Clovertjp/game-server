@@ -14,9 +14,9 @@ public abstract class AbstractStaticFilter<T> implements IFilter<T> {
 	
 	public boolean isInForbidList(T val) {
 		if(getFilterList()==null) {
-			return true;
+			return false;
 		}
-		return !getFilterList().contains(val);
+		return getFilterList().contains(val);
 	}
 	
 	public Map<T,Boolean> getCheckList(List<T> checkList){
