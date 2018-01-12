@@ -111,6 +111,7 @@ public class GameHandlerManager {
 		String msgStr="";
 		String retStr="";
 		String retClsName="";
+		long createTime=actionMsg.getCreateTime();
 		MessageObj.NetMessage ret=null;
 		ErrorCode errorCode=ErrorCode.SUCCESS;
 		long start=System.currentTimeMillis();
@@ -118,6 +119,10 @@ public class GameHandlerManager {
 			
 			if(StringUtils.isBlank(uid)) {
 				throw new GameException("uid is null",ErrorCode.UID_NULL);
+			}
+			
+			if(!uid.equals(actionMsg.getSession().getUid())) {
+				throw new GameException(uid+" not match "+actionMsg.getSession().getUid(),ErrorCode.PARAM_ERROR);
 			}
 			GamePlayer gamePlayer=GameEngine.getInstance().findPlayerById(uid);
 			Message msgMessage=byteStringToMessage(data,className);
@@ -160,7 +165,7 @@ public class GameHandlerManager {
 			}catch(Exception e) {
 				logger.error(e.getMessage(),e);
 			}
-			writeLog(start, cmd, uid, className, msgStr, retClsName, retStr,errorCode);
+			writeLog(start,createTime, cmd, uid, className, msgStr, retClsName, retStr,errorCode);
 		}
 	}
 	
@@ -197,16 +202,18 @@ public class GameHandlerManager {
 		});
 	}
 	
-	private void writeLog(long start,String cmd,String uid,String clsName,String msg,String retClsName,String ret
+	private void writeLog(long start,long create,String cmd,String uid,String clsName,String msg,String retClsName,String ret
 			,ErrorCode errorCode){
 		StringBuilder sb=new StringBuilder();
+		long now=System.currentTimeMillis();
 		sb.append(REQ_RES_STR).append(SEPARATOR)
 		.append(clsName).append(GameHandlerManager.SEPARATOR)
 		.append(retClsName).append(GameHandlerManager.SEPARATOR)
 		.append(uid).append(GameHandlerManager.SEPARATOR)
 		.append(cmd).append(GameHandlerManager.SEPARATOR)
 		.append(errorCode.name()).append(GameHandlerManager.SEPARATOR)
-		.append(System.currentTimeMillis()-start).append(GameHandlerManager.SEPARATOR)
+		.append(start-create).append(GameHandlerManager.SEPARATOR)
+		.append(now-start).append(GameHandlerManager.SEPARATOR)
 		.append(msg).append(GameHandlerManager.SEPARATOR)
 		.append(ret);
 		logger.info(sb);

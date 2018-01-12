@@ -12,9 +12,12 @@ public class MessageAction<T> implements IAction<T> {
 	
 	private T msg;
 	
+	private long time;
+	
 	public MessageAction(GameSession session,T msg) {
 		this.session=session;
 		this.msg=msg;
+		time=System.currentTimeMillis();
 	}
 
 	@Override
@@ -36,5 +39,11 @@ public class MessageAction<T> implements IAction<T> {
 	public void setMsgObject(T msg) {
 		this.msg=msg;
 	}
+
+	@Override
+	public long getCreateTime() {
+		return time;
+	}
+
 
 }

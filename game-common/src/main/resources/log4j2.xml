@@ -20,7 +20,7 @@
 		<RollingFile name="infoFile" fileName="logs/info.log"
 			filePattern="logs/info-%d{yyyy-MM-dd-HH-mm}.log">
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} | %msg%n" />
-			<TimeBasedTriggeringPolicy  interval="1"/>
+			<TimeBasedTriggeringPolicy  interval="1" modulate="true"/>
 		</RollingFile>
 
 

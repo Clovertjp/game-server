@@ -15,5 +15,7 @@ public interface IAction<T> {
 	public T getMsgObject();
 	
 	public void setMsgObject(T msg);
+	
+	public long getCreateTime();
 
 }

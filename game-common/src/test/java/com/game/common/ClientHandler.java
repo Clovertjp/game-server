@@ -15,7 +15,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 public class ClientHandler extends SimpleChannelInboundHandler<MessageObj.NetMessage> {
 	
-	String uid="8";
+	public ClientHandler(String uid) {
+		this.uid=uid;
+	}
+	
+	String uid;
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, MessageObj.NetMessage msg) throws Exception {

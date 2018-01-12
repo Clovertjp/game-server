@@ -66,6 +66,9 @@ public abstract class AbstractDynFilter<T> extends AbstractStaticFilter<T> {
 				storeMap.put(entry.getKey().toString(), entry.getValue()+"");
 			}
 		}
+		if(storeMap.size()<=0) {
+			return;
+		}
 		R.getLocalRedis().hMSet(getRedisKey(), storeMap);
 	}
 	

@@ -119,5 +119,11 @@ public class FilterManager {
 		}
 		filterMap.get(type).addCount(val);
 	}
+	
+	public void restoreInfo() {
+		for(IFilter filter : filterMap.values()) {
+			filter.storeForbid();
+		}
+	}
 
 }

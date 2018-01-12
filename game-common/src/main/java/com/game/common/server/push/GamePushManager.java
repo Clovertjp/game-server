@@ -1,5 +1,6 @@
 package com.game.common.server.push;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -52,30 +53,38 @@ public class GamePushManager {
             new GameThreadFactory("GamePushManagerQueue"));
 	
 	
-	public void pushOne(String pushUid,String toUid,String cmd,Message pushMessage) {
+	public void pushOne(String pushUid,String toUid,String cmd,Message pushMessage,boolean isImmediately) {
 		GamePlayer player=GameEngine.getInstance().findPlayerById(toUid);
 		List<GamePlayer> list=new ArrayList<>();
 		list.add(player);
 		PushMessage message=new PushMessage(cmd,pushUid,toUid, list, pushMessage);
-		addTask(message);
+		if(isImmediately) {
+			push(message);
+		}else {
+			addTask(message);
+		}
 	}
 	
-	public void systemPushOne(String toUid,String cmd,Message pushMessage) {
-		pushOne(SYSTEM_UID, toUid, cmd, pushMessage);
+	public void systemPushOne(String toUid,String cmd,Message pushMessage,boolean isImmediately) {
+		pushOne(SYSTEM_UID, toUid, cmd, pushMessage,isImmediately);
 	}
 	
-	public void pushOne(String pushUid,GamePlayer toPlayer,String cmd,Message pushMessage) {
+	public void pushOne(String pushUid,GamePlayer toPlayer,String cmd,Message pushMessage,boolean isImmediately) {
 		List<GamePlayer> list=new ArrayList<>();
 		list.add(toPlayer);
 		PushMessage message=new PushMessage(cmd,pushUid,toPlayer.getUid(), list, pushMessage);
-		addTask(message);
+		if(isImmediately) {
+			push(message);
+		}else {
+			addTask(message);
+		}
 	}
 	
-	public void systemPushOne(GamePlayer toPlayer,String cmd,Message pushMessage) {
-		pushOne(SYSTEM_UID, toPlayer, cmd, pushMessage);
+	public void systemPushOne(GamePlayer toPlayer,String cmd,Message pushMessage,boolean isImmediately) {
+		pushOne(SYSTEM_UID, toPlayer, cmd, pushMessage,isImmediately);
 	}
 	
-	public void pushList(String pushUid,List<String> toUidList,String cmd,Message pushMessage) {
+	public void pushList(String pushUid,List<String> toUidList,String cmd,Message pushMessage,boolean isImmediately) {
 		List<GamePlayer> list=new ArrayList<>();
 		for(String toUid : toUidList) {
 			GamePlayer player=GameEngine.getInstance().findPlayerById(toUid);
@@ -85,34 +94,46 @@ public class GamePushManager {
 			list.add(player);
 		}
 		PushMessage message=new PushMessage(cmd,pushUid,Joiner.on(",").join(toUidList), list, pushMessage);
-		addTask(message);
+		if(isImmediately) {
+			push(message);
+		}else {
+			addTask(message);
+		}
 	}
 	
-	public void systemPushList(List<String> toUidList,String cmd,Message pushMessage) {
-		pushList(SYSTEM_UID, toUidList, cmd, pushMessage);
+	public void systemPushList(List<String> toUidList,String cmd,Message pushMessage,boolean isImmediately) {
+		pushList(SYSTEM_UID, toUidList, cmd, pushMessage,isImmediately);
 	}
 	
-	public void pushListWithPlayer(String pushUid,List<GamePlayer> toPlayerList,String cmd,Message pushMessage) {
+	public void pushListWithPlayer(String pushUid,List<GamePlayer> toPlayerList,String cmd,Message pushMessage,boolean isImmediately) {
 		List<String> list=new ArrayList<>();
 		for(GamePlayer toPlayer : toPlayerList) {
 			list.add(toPlayer.getUid());
 		}
 		PushMessage message=new PushMessage(cmd,pushUid,Joiner.on(",").join(list), toPlayerList, pushMessage);
-		addTask(message);
+		if(isImmediately) {
+			push(message);
+		}else {
+			addTask(message);
+		}
 	}
 	
-	public void systemPushListWithPlayer(List<GamePlayer> toPlayerList,String cmd,Message pushMessage) {
-		pushListWithPlayer(SYSTEM_UID, toPlayerList, cmd, pushMessage);
+	public void systemPushListWithPlayer(List<GamePlayer> toPlayerList,String cmd,Message pushMessage,boolean isImmediately) {
+		pushListWithPlayer(SYSTEM_UID, toPlayerList, cmd, pushMessage,isImmediately);
 	}
 	
-	public void pushAll(String pushUid,String cmd,Message pushMessage) {
+	public void pushAll(String pushUid,String cmd,Message pushMessage,boolean isImmediately) {
 		PushMessage message=new PushMessage(cmd,pushUid,Joiner.on(",").join(GameEngine.getInstance().getGamePlayerMap().keySet())
 				, new ArrayList<>(GameEngine.getInstance().getGamePlayerMap().values()), pushMessage);
-		addTask(message);
+		if(isImmediately) {
+			push(message);
+		}else {
+			addTask(message);
+		}
 	}
 	
-	public void systemPushAll(String cmd,Message pushMessage) {
-		pushAll(SYSTEM_UID, cmd, pushMessage);
+	public void systemPushAll(String cmd,Message pushMessage,boolean isImmediately) {
+		pushAll(SYSTEM_UID, cmd, pushMessage,isImmediately);
 	}
 	
 	private void addTask(PushMessage message) {
@@ -128,31 +149,35 @@ public class GamePushManager {
 
 		@Override
 		public void run() {
-			try {
-				MessageObj.NetMessage ret=MessageObj.NetMessage.newBuilder().setClassData(pushMessage.getPushMessage().toByteString())
-						.setClassName(pushMessage.getPushMessage().getClass().getSimpleName()).setUid("").build();
-				StringBuilder sb=new StringBuilder();
-				sb.append(PUSH_STR).append(SEPARATOR)
-				.append(pushMessage.getPushUid()).append(SEPARATOR)
-				.append("%s").append(SEPARATOR)
-				.append(pushMessage.getPushCmd());
-				String strFormat=sb.toString();
-				for(GamePlayer gamePlayer : pushMessage.getPushGamePlayerList()) {
-					GameSession session=gamePlayer.getGameSession();
-					if(session==null || session.getChannel()==null) {
-						continue;
-					}
-					session.getChannel().writeAndFlush(ret);
-					logger.info(String.format(strFormat, gamePlayer.getUid()));
-				} 
-				
-			}catch (Exception e) {
-				logger.error("push error",e);
-			}finally {
-				logger.info(pushMessage);
-			}
+			push(pushMessage);
 		}
 		
+	}
+	
+	private void push(PushMessage pushMessage) {
+		try {
+			MessageObj.NetMessage ret=MessageObj.NetMessage.newBuilder().setClassData(pushMessage.getPushMessage().toByteString())
+					.setClassName(pushMessage.getPushMessage().getClass().getSimpleName()).setUid("").build();
+			StringBuilder sb=new StringBuilder();
+			sb.append(PUSH_STR).append(SEPARATOR)
+			.append(pushMessage.getPushUid()).append(SEPARATOR)
+			.append("%s").append(SEPARATOR)
+			.append(pushMessage.getPushCmd());
+			String strFormat=sb.toString();
+			for(GamePlayer gamePlayer : pushMessage.getPushGamePlayerList()) {
+				GameSession session=gamePlayer.getGameSession();
+				if(session==null || session.getChannel()==null) {
+					continue;
+				}
+				session.getChannel().writeAndFlush(ret);
+				logger.info(String.format(strFormat, gamePlayer.getUid()));
+			} 
+			
+		}catch (Exception e) {
+			logger.error("push error",e);
+		}finally {
+			logger.info(pushMessage);
+		}
 	}
 	
 	
