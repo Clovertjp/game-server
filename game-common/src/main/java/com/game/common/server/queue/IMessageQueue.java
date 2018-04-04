@@ -1,7 +1,7 @@
 package com.game.common.server.queue;
 
 import com.game.common.server.action.IAction;
-import com.game.pb.server.message.MessageObj;
+import com.game.common.server.msg.GameMessage;
 
 /**
  * @author tangjp
@@ -9,6 +9,6 @@ import com.game.pb.server.message.MessageObj;
  */
 public interface IMessageQueue {
 	
-	public void addQueue(IAction<MessageObj.NetMessage> msg);
+	public void addQueue(IAction<GameMessage> msg);
 
 }

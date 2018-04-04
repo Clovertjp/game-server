@@ -8,8 +8,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
+import com.game.common.server.msg.GameMessage;
 import com.game.common.server.thread.GameThreadFactory;
-import com.game.pb.server.message.MessageObj;
 
 /**
  * @author tangjp
@@ -20,7 +20,7 @@ public class SingleMessageQueue extends AbstractMessageQueue {
 	private static ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_SINGLE,
 			new GameThreadFactory("SingleMessageQueue"));
 	
-	private static Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>(Config.MESSAGE_LENTH);
+	private static Queue<IAction<GameMessage>> queue=new LinkedBlockingQueue<>(Config.MESSAGE_LENTH);
 
 	@Override
 	protected ExecutorService getExecutorService() {
@@ -28,7 +28,7 @@ public class SingleMessageQueue extends AbstractMessageQueue {
 	}
 
 	@Override
-	protected Queue<IAction<MessageObj.NetMessage>> getQueue() {
+	protected Queue<IAction<GameMessage>> getQueue() {
 		return queue;
 	}
 

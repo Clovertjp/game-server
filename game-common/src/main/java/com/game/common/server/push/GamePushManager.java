@@ -20,7 +20,6 @@ import com.game.common.server.handler.GameHandlerManager;
 import com.game.common.server.palyer.GamePlayer;
 import com.game.common.server.session.GameSession;
 import com.game.common.server.thread.GameThreadFactory;
-import com.game.pb.server.message.MessageObj;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.protobuf.Message;
@@ -156,22 +155,22 @@ public class GamePushManager {
 	
 	private void push(PushMessage pushMessage) {
 		try {
-			MessageObj.NetMessage ret=MessageObj.NetMessage.newBuilder().setClassData(pushMessage.getPushMessage().toByteString())
-					.setClassName(pushMessage.getPushMessage().getClass().getSimpleName()).setUid("").build();
-			StringBuilder sb=new StringBuilder();
-			sb.append(PUSH_STR).append(SEPARATOR)
-			.append(pushMessage.getPushUid()).append(SEPARATOR)
-			.append("%s").append(SEPARATOR)
-			.append(pushMessage.getPushCmd());
-			String strFormat=sb.toString();
-			for(GamePlayer gamePlayer : pushMessage.getPushGamePlayerList()) {
-				GameSession session=gamePlayer.getGameSession();
-				if(session==null || session.getChannel()==null) {
-					continue;
-				}
-				session.getChannel().writeAndFlush(ret);
-				logger.info(String.format(strFormat, gamePlayer.getUid()));
-			} 
+//			MessageObj.NetMessage ret=MessageObj.NetMessage.newBuilder().setClassData(pushMessage.getPushMessage().toByteString())
+//					.setClassName(pushMessage.getPushMessage().getClass().getSimpleName()).setUid("").build();
+//			StringBuilder sb=new StringBuilder();
+//			sb.append(PUSH_STR).append(SEPARATOR)
+//			.append(pushMessage.getPushUid()).append(SEPARATOR)
+//			.append("%s").append(SEPARATOR)
+//			.append(pushMessage.getPushCmd());
+//			String strFormat=sb.toString();
+//			for(GamePlayer gamePlayer : pushMessage.getPushGamePlayerList()) {
+//				GameSession session=gamePlayer.getGameSession();
+//				if(session==null || session.getChannel()==null) {
+//					continue;
+//				}
+//				session.getChannel().writeAndFlush(ret);
+//				logger.info(String.format(strFormat, gamePlayer.getUid()));
+//			} 
 			
 		}catch (Exception e) {
 			logger.error("push error",e);

@@ -19,53 +19,24 @@ public final class MessageObj {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string cmd = 1;</code>
-     */
-    java.lang.String getCmd();
-    /**
-     * <code>string cmd = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getCmdBytes();
-
-    /**
-     * <code>string uid = 2;</code>
+     * <code>string uid = 1;</code>
      */
     java.lang.String getUid();
     /**
-     * <code>string uid = 2;</code>
+     * <code>string uid = 1;</code>
      */
     com.google.protobuf.ByteString
         getUidBytes();
 
     /**
-     * <code>int64 sendTime = 3;</code>
+     * <code>int64 sendTime = 2;</code>
      */
     long getSendTime();
 
     /**
-     * <code>string className = 4;</code>
-     */
-    java.lang.String getClassName();
-    /**
-     * <code>string className = 4;</code>
-     */
-    com.google.protobuf.ByteString
-        getClassNameBytes();
-
-    /**
-     * <code>bytes classData = 5;</code>
+     * <code>bytes classData = 3;</code>
      */
     com.google.protobuf.ByteString getClassData();
-
-    /**
-     * <code>.ErrorCode retCode = 6;</code>
-     */
-    int getRetCodeValue();
-    /**
-     * <code>.ErrorCode retCode = 6;</code>
-     */
-    com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode getRetCode();
   }
   /**
    * Protobuf type {@code NetMessage}
@@ -80,12 +51,9 @@ public final class MessageObj {
       super(builder);
     }
     private NetMessage() {
-      cmd_ = "";
       uid_ = "";
       sendTime_ = 0L;
-      className_ = "";
       classData_ = com.google.protobuf.ByteString.EMPTY;
-      retCode_ = 0;
     }
 
     @java.lang.Override
@@ -119,35 +87,17 @@ public final class MessageObj {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              cmd_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
               uid_ = s;
               break;
             }
-            case 24: {
+            case 16: {
 
               sendTime_ = input.readInt64();
               break;
             }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              className_ = s;
-              break;
-            }
-            case 42: {
+            case 26: {
 
               classData_ = input.readBytes();
-              break;
-            }
-            case 48: {
-              int rawValue = input.readEnum();
-
-              retCode_ = rawValue;
               break;
             }
           }
@@ -174,44 +124,10 @@ public final class MessageObj {
               com.game.pb.server.message.MessageObj.NetMessage.class, com.game.pb.server.message.MessageObj.NetMessage.Builder.class);
     }
 
-    public static final int CMD_FIELD_NUMBER = 1;
-    private volatile java.lang.Object cmd_;
-    /**
-     * <code>string cmd = 1;</code>
-     */
-    public java.lang.String getCmd() {
-      java.lang.Object ref = cmd_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        cmd_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string cmd = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getCmdBytes() {
-      java.lang.Object ref = cmd_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        cmd_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int UID_FIELD_NUMBER = 2;
+    public static final int UID_FIELD_NUMBER = 1;
     private volatile java.lang.Object uid_;
     /**
-     * <code>string uid = 2;</code>
+     * <code>string uid = 1;</code>
      */
     public java.lang.String getUid() {
       java.lang.Object ref = uid_;
@@ -226,7 +142,7 @@ public final class MessageObj {
       }
     }
     /**
-     * <code>string uid = 2;</code>
+     * <code>string uid = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUidBytes() {
@@ -242,72 +158,22 @@ public final class MessageObj {
       }
     }
 
-    public static final int SENDTIME_FIELD_NUMBER = 3;
+    public static final int SENDTIME_FIELD_NUMBER = 2;
     private long sendTime_;
     /**
-     * <code>int64 sendTime = 3;</code>
+     * <code>int64 sendTime = 2;</code>
      */
     public long getSendTime() {
       return sendTime_;
     }
 
-    public static final int CLASSNAME_FIELD_NUMBER = 4;
-    private volatile java.lang.Object className_;
-    /**
-     * <code>string className = 4;</code>
-     */
-    public java.lang.String getClassName() {
-      java.lang.Object ref = className_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        className_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string className = 4;</code>
-     */
-    public com.google.protobuf.ByteString
-        getClassNameBytes() {
-      java.lang.Object ref = className_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        className_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int CLASSDATA_FIELD_NUMBER = 5;
+    public static final int CLASSDATA_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString classData_;
     /**
-     * <code>bytes classData = 5;</code>
+     * <code>bytes classData = 3;</code>
      */
     public com.google.protobuf.ByteString getClassData() {
       return classData_;
-    }
-
-    public static final int RETCODE_FIELD_NUMBER = 6;
-    private int retCode_;
-    /**
-     * <code>.ErrorCode retCode = 6;</code>
-     */
-    public int getRetCodeValue() {
-      return retCode_;
-    }
-    /**
-     * <code>.ErrorCode retCode = 6;</code>
-     */
-    public com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode getRetCode() {
-      com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode result = com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.valueOf(retCode_);
-      return result == null ? com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -322,23 +188,14 @@ public final class MessageObj {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getCmdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, cmd_);
-      }
       if (!getUidBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, uid_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, uid_);
       }
       if (sendTime_ != 0L) {
-        output.writeInt64(3, sendTime_);
-      }
-      if (!getClassNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, className_);
+        output.writeInt64(2, sendTime_);
       }
       if (!classData_.isEmpty()) {
-        output.writeBytes(5, classData_);
-      }
-      if (retCode_ != com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.SUCCESS.getNumber()) {
-        output.writeEnum(6, retCode_);
+        output.writeBytes(3, classData_);
       }
       unknownFields.writeTo(output);
     }
@@ -348,26 +205,16 @@ public final class MessageObj {
       if (size != -1) return size;
 
       size = 0;
-      if (!getCmdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, cmd_);
-      }
       if (!getUidBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, uid_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, uid_);
       }
       if (sendTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, sendTime_);
-      }
-      if (!getClassNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, className_);
+          .computeInt64Size(2, sendTime_);
       }
       if (!classData_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, classData_);
-      }
-      if (retCode_ != com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.SUCCESS.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, retCode_);
+          .computeBytesSize(3, classData_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -385,17 +232,12 @@ public final class MessageObj {
       com.game.pb.server.message.MessageObj.NetMessage other = (com.game.pb.server.message.MessageObj.NetMessage) obj;
 
       boolean result = true;
-      result = result && getCmd()
-          .equals(other.getCmd());
       result = result && getUid()
           .equals(other.getUid());
       result = result && (getSendTime()
           == other.getSendTime());
-      result = result && getClassName()
-          .equals(other.getClassName());
       result = result && getClassData()
           .equals(other.getClassData());
-      result = result && retCode_ == other.retCode_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -407,19 +249,13 @@ public final class MessageObj {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CMD_FIELD_NUMBER;
-      hash = (53 * hash) + getCmd().hashCode();
       hash = (37 * hash) + UID_FIELD_NUMBER;
       hash = (53 * hash) + getUid().hashCode();
       hash = (37 * hash) + SENDTIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getSendTime());
-      hash = (37 * hash) + CLASSNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getClassName().hashCode();
       hash = (37 * hash) + CLASSDATA_FIELD_NUMBER;
       hash = (53 * hash) + getClassData().hashCode();
-      hash = (37 * hash) + RETCODE_FIELD_NUMBER;
-      hash = (53 * hash) + retCode_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -549,17 +385,11 @@ public final class MessageObj {
       }
       public Builder clear() {
         super.clear();
-        cmd_ = "";
-
         uid_ = "";
 
         sendTime_ = 0L;
 
-        className_ = "";
-
         classData_ = com.google.protobuf.ByteString.EMPTY;
-
-        retCode_ = 0;
 
         return this;
       }
@@ -583,12 +413,9 @@ public final class MessageObj {
 
       public com.game.pb.server.message.MessageObj.NetMessage buildPartial() {
         com.game.pb.server.message.MessageObj.NetMessage result = new com.game.pb.server.message.MessageObj.NetMessage(this);
-        result.cmd_ = cmd_;
         result.uid_ = uid_;
         result.sendTime_ = sendTime_;
-        result.className_ = className_;
         result.classData_ = classData_;
-        result.retCode_ = retCode_;
         onBuilt();
         return result;
       }
@@ -630,10 +457,6 @@ public final class MessageObj {
 
       public Builder mergeFrom(com.game.pb.server.message.MessageObj.NetMessage other) {
         if (other == com.game.pb.server.message.MessageObj.NetMessage.getDefaultInstance()) return this;
-        if (!other.getCmd().isEmpty()) {
-          cmd_ = other.cmd_;
-          onChanged();
-        }
         if (!other.getUid().isEmpty()) {
           uid_ = other.uid_;
           onChanged();
@@ -641,15 +464,8 @@ public final class MessageObj {
         if (other.getSendTime() != 0L) {
           setSendTime(other.getSendTime());
         }
-        if (!other.getClassName().isEmpty()) {
-          className_ = other.className_;
-          onChanged();
-        }
         if (other.getClassData() != com.google.protobuf.ByteString.EMPTY) {
           setClassData(other.getClassData());
-        }
-        if (other.retCode_ != 0) {
-          setRetCodeValue(other.getRetCodeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -678,78 +494,9 @@ public final class MessageObj {
         return this;
       }
 
-      private java.lang.Object cmd_ = "";
-      /**
-       * <code>string cmd = 1;</code>
-       */
-      public java.lang.String getCmd() {
-        java.lang.Object ref = cmd_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          cmd_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string cmd = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getCmdBytes() {
-        java.lang.Object ref = cmd_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          cmd_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string cmd = 1;</code>
-       */
-      public Builder setCmd(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        cmd_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string cmd = 1;</code>
-       */
-      public Builder clearCmd() {
-        
-        cmd_ = getDefaultInstance().getCmd();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string cmd = 1;</code>
-       */
-      public Builder setCmdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        cmd_ = value;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object uid_ = "";
       /**
-       * <code>string uid = 2;</code>
+       * <code>string uid = 1;</code>
        */
       public java.lang.String getUid() {
         java.lang.Object ref = uid_;
@@ -764,7 +511,7 @@ public final class MessageObj {
         }
       }
       /**
-       * <code>string uid = 2;</code>
+       * <code>string uid = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUidBytes() {
@@ -780,7 +527,7 @@ public final class MessageObj {
         }
       }
       /**
-       * <code>string uid = 2;</code>
+       * <code>string uid = 1;</code>
        */
       public Builder setUid(
           java.lang.String value) {
@@ -793,7 +540,7 @@ public final class MessageObj {
         return this;
       }
       /**
-       * <code>string uid = 2;</code>
+       * <code>string uid = 1;</code>
        */
       public Builder clearUid() {
         
@@ -802,7 +549,7 @@ public final class MessageObj {
         return this;
       }
       /**
-       * <code>string uid = 2;</code>
+       * <code>string uid = 1;</code>
        */
       public Builder setUidBytes(
           com.google.protobuf.ByteString value) {
@@ -818,13 +565,13 @@ public final class MessageObj {
 
       private long sendTime_ ;
       /**
-       * <code>int64 sendTime = 3;</code>
+       * <code>int64 sendTime = 2;</code>
        */
       public long getSendTime() {
         return sendTime_;
       }
       /**
-       * <code>int64 sendTime = 3;</code>
+       * <code>int64 sendTime = 2;</code>
        */
       public Builder setSendTime(long value) {
         
@@ -833,7 +580,7 @@ public final class MessageObj {
         return this;
       }
       /**
-       * <code>int64 sendTime = 3;</code>
+       * <code>int64 sendTime = 2;</code>
        */
       public Builder clearSendTime() {
         
@@ -842,84 +589,15 @@ public final class MessageObj {
         return this;
       }
 
-      private java.lang.Object className_ = "";
-      /**
-       * <code>string className = 4;</code>
-       */
-      public java.lang.String getClassName() {
-        java.lang.Object ref = className_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          className_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string className = 4;</code>
-       */
-      public com.google.protobuf.ByteString
-          getClassNameBytes() {
-        java.lang.Object ref = className_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          className_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string className = 4;</code>
-       */
-      public Builder setClassName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        className_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string className = 4;</code>
-       */
-      public Builder clearClassName() {
-        
-        className_ = getDefaultInstance().getClassName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string className = 4;</code>
-       */
-      public Builder setClassNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        className_ = value;
-        onChanged();
-        return this;
-      }
-
       private com.google.protobuf.ByteString classData_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>bytes classData = 5;</code>
+       * <code>bytes classData = 3;</code>
        */
       public com.google.protobuf.ByteString getClassData() {
         return classData_;
       }
       /**
-       * <code>bytes classData = 5;</code>
+       * <code>bytes classData = 3;</code>
        */
       public Builder setClassData(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -931,55 +609,11 @@ public final class MessageObj {
         return this;
       }
       /**
-       * <code>bytes classData = 5;</code>
+       * <code>bytes classData = 3;</code>
        */
       public Builder clearClassData() {
         
         classData_ = getDefaultInstance().getClassData();
-        onChanged();
-        return this;
-      }
-
-      private int retCode_ = 0;
-      /**
-       * <code>.ErrorCode retCode = 6;</code>
-       */
-      public int getRetCodeValue() {
-        return retCode_;
-      }
-      /**
-       * <code>.ErrorCode retCode = 6;</code>
-       */
-      public Builder setRetCodeValue(int value) {
-        retCode_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.ErrorCode retCode = 6;</code>
-       */
-      public com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode getRetCode() {
-        com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode result = com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.valueOf(retCode_);
-        return result == null ? com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.ErrorCode retCode = 6;</code>
-       */
-      public Builder setRetCode(com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        retCode_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.ErrorCode retCode = 6;</code>
-       */
-      public Builder clearRetCode() {
-        
-        retCode_ = 0;
         onChanged();
         return this;
       }
@@ -1046,12 +680,10 @@ public final class MessageObj {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ServerMessage.proto\032\017ErrorCode.proto\"{" +
-      "\n\nNetMessage\022\013\n\003cmd\030\001 \001(\t\022\013\n\003uid\030\002 \001(\t\022\020" +
-      "\n\010sendTime\030\003 \001(\003\022\021\n\tclassName\030\004 \001(\t\022\021\n\tc" +
-      "lassData\030\005 \001(\014\022\033\n\007retCode\030\006 \001(\0162\n.ErrorC" +
-      "odeB(\n\032com.game.pb.server.messageB\nMessa" +
-      "geObjb\006proto3"
+      "\n\023ServerMessage.proto\">\n\nNetMessage\022\013\n\003u" +
+      "id\030\001 \001(\t\022\020\n\010sendTime\030\002 \001(\003\022\021\n\tclassData\030" +
+      "\003 \001(\014B(\n\032com.game.pb.server.messageB\nMes" +
+      "sageObjb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1064,15 +696,13 @@ public final class MessageObj {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.game.pb.server.message.error.ErrorCodeOuterClass.getDescriptor(),
         }, assigner);
     internal_static_NetMessage_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_NetMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_NetMessage_descriptor,
-        new java.lang.String[] { "Cmd", "Uid", "SendTime", "ClassName", "ClassData", "RetCode", });
-    com.game.pb.server.message.error.ErrorCodeOuterClass.getDescriptor();
+        new java.lang.String[] { "Uid", "SendTime", "ClassData", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

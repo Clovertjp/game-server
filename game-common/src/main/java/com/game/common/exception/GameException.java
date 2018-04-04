@@ -1,6 +1,5 @@
 package com.game.common.exception;
 
-import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 
 /**
  * 

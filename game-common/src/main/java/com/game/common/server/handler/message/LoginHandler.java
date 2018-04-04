@@ -10,12 +10,11 @@ import com.google.protobuf.Message;
  * @author tangjp
  *
  */
-public class LoginHandler extends AbstractLoginHandler {
+public class LoginHandler extends AbstractLoginHandler<Message,Message> {
 
 	@Override
 	public Message onLogin(GamePlayer gamePlayer,Message msg) {
 		ReqLogin login=(ReqLogin) msg;
 		return ResLogin.newBuilder().setParam("1").build();
 	}
-
 }

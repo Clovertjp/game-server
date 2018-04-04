@@ -9,6 +9,6 @@ import com.google.protobuf.Message;
  * @author tangjp
  *
  */
-public interface IGameLoginHandler {
-	public abstract Message handlerRequest(Message msg,GameSession session,GamePlayer gamePlayer,String uid) throws GameException;
+public interface IGameLoginHandler<T,K> {
+	public abstract K handlerRequest(T msg,GameSession session) throws GameException;
 }

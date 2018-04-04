@@ -6,6 +6,7 @@ import org.xerial.snappy.Snappy;
 
 import com.game.common.pb.object.GameObject;
 import com.game.common.pb.object.GameObject.GamePbObject;
+import com.game.common.server.msg.GameMessage;
 import com.game.pb.server.message.MessageObj;
 
 import io.netty.buffer.ByteBuf;
@@ -16,14 +17,18 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * @author tangjp
  *
  */
-public class GameServerEncoder extends MessageToByteEncoder<MessageObj.NetMessage> {
+public class GameServerEncoder extends MessageToByteEncoder<GameMessage> {
 
 	@Override
-	protected void encode(ChannelHandlerContext ctx, MessageObj.NetMessage msg, ByteBuf out) throws Exception {
-		byte[] data=msg.toByteArray();
+	protected void encode(ChannelHandlerContext ctx, GameMessage msg, ByteBuf out) throws Exception {
+		byte[] data=msg.getBody();
 		data=compress(data);
-		int len=data.length;
+		int len=data.length+13;
 		out.writeInt(len);
+		out.writeInt(msg.getGroupId());
+		out.writeInt(msg.getSubGroupId());
+		out.writeInt(msg.getErrorCode().getCode());
+		out.writeByte(1);
 		out.writeBytes(data);
 	}
 	

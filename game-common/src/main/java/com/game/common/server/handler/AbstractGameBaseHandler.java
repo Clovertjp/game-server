@@ -11,10 +11,8 @@ import com.google.protobuf.MessageOrBuilder;
  * @author tangjp
  *
  */
-public abstract class AbstractGameBaseHandler {
+public abstract class AbstractGameBaseHandler<T,K> {
 	
-	public abstract Message handlerRequest(Message msg,GamePlayer gamePlayer) throws GameException;
-	
-	public abstract String getCmd();
+	public abstract K handlerRequest(T msg,GamePlayer gamePlayer) throws GameException;
 	
 }

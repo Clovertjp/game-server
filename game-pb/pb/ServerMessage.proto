@@ -1,15 +1,10 @@
 syntax = "proto3";
 
-import "ErrorCode.proto";
-
 option java_package = "com.game.pb.server.message";
 option java_outer_classname = "MessageObj";
 
 message NetMessage {
-  string cmd = 1;
-  string uid = 2;
-  int64 sendTime = 3;
-  string className =4;
-  bytes classData =5;
-  ErrorCode retCode =6;
+  string uid = 1;
+  int64 sendTime = 2;
+  bytes classData =3;
 }

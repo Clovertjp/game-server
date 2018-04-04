@@ -2,6 +2,7 @@ package com.game.common.server.handler;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,17 +15,21 @@ import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
+import com.game.common.exception.ErrorCode;
 import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
+import com.game.common.server.coder.Coder;
+import com.game.common.server.coder.ProtobufCoder;
 import com.game.common.server.config.Config;
 import com.game.common.server.engine.GameEngine;
+import com.game.common.server.format.IMessageFormat;
+import com.game.common.server.format.ProtobufMessageFormat;
 import com.game.common.server.handler.message.LoginHandler;
 import com.game.common.server.handler.message.TestHandler;
+import com.game.common.server.msg.GameMessage;
 import com.game.common.server.palyer.GamePlayer;
-import com.game.pb.server.message.MessageObj;
 import com.game.pb.server.message.ReqLoginOuterClass.ReqLogin;
-import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 import com.google.common.base.Strings;
 import com.google.protobuf.AbstractMessageLite;
 import com.google.protobuf.ByteString;
@@ -44,12 +49,17 @@ public class GameHandlerManager {
 	private static final String REQ_RES_STR="REQ_RES";
 	private static final Logger logger = LogManager.getLogger(GameHandlerManager.class);
 	private static GameHandlerManager handlerManager=new GameHandlerManager();
-	private static JsonFormat format=new JsonFormat();
-	private static ConcurrentMap<String, Method> parseFromMethods = new ConcurrentHashMap<>();
+	
+	private static Coder messageCoder;
+	private static IMessageFormat messageFormat;
 	private GameHandlerManager(){
+		//TODO 暂时定义为这个 以后从配置获取
+		messageCoder=new ProtobufCoder();
+		messageFormat=new ProtobufMessageFormat();
 	}
 	
 	private Map<String,Class<? extends AbstractGameBaseHandler>> handlerMap=new ConcurrentHashMap<>();
+	private Map<String,Class<?>> classMap=new HashMap<>();
 	
 	private Class<? extends IGameLoginHandler> gameLoginHandler;
 	
@@ -98,57 +108,49 @@ public class GameHandlerManager {
 				throw new RuntimeException(e);
 			}
 			
-			handlerMap.put(handlerInstance.getCmd(), handlerInstance.getClass());
+//			handlerMap.put(handlerInstance.getCmd(), handlerInstance.getClass());
 		}
 	}
 	
-	public void execHandler(IAction<MessageObj.NetMessage> actionMsg){
-		MessageObj.NetMessage msg=actionMsg.getMsgObject();
-		String cmd=msg.getCmd();
-		String className=msg.getClassName();
-		String uid=msg.getUid();
-		ByteString data = msg.getClassData();
+	public void execHandler(IAction<GameMessage> actionMsg){
+		GameMessage msg=actionMsg.getMsgObject();
+		String cmd=msg.getGroupId()+"_"+msg.getSubGroupId();
 		String msgStr="";
 		String retStr="";
 		String retClsName="";
 		long createTime=actionMsg.getCreateTime();
-		MessageObj.NetMessage ret=null;
 		ErrorCode errorCode=ErrorCode.SUCCESS;
 		long start=System.currentTimeMillis();
+		GameMessage ret=null;
 		try{
-			
-			if(StringUtils.isBlank(uid)) {
-				throw new GameException("uid is null",ErrorCode.UID_NULL);
-			}
-			
-			if(!uid.equals(actionMsg.getSession().getUid())) {
-				throw new GameException(uid+" not match "+actionMsg.getSession().getUid(),ErrorCode.PARAM_ERROR);
-			}
-			GamePlayer gamePlayer=GameEngine.getInstance().findPlayerById(uid);
-			Message msgMessage=byteStringToMessage(data,className);
-			msgStr=format.printToString(msgMessage);
-			Message retBuilder=null ;
+			Object msgMessage=messageCoder.decode(msg.getBody(), classMap.get(cmd+"_req"));
+			msgStr=messageFormat.messageFormat(msgMessage);
+			Object retBuilder;
 			if(Config.LOGIN_CMD.equals(cmd) && gameLoginHandler!=null) {
 				IGameLoginHandler login=gameLoginHandler.newInstance();
-				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession(),gamePlayer,uid);
+				retBuilder=login.handlerRequest(msgMessage, actionMsg.getSession());
 			}else {
-				
-				if(gamePlayer==null) {
-					throw new GameException("game player is null",ErrorCode.GAME_PLAYER_NULL);
+				if(StringUtils.isBlank(actionMsg.getSession().getUid())) {
+					throw new GameException("uid is null",ErrorCode.UID_NULL);
 				}
-				
 				Class<? extends AbstractGameBaseHandler> handler=handlerMap.get(cmd);
+				if(handler==null) {
+					throw new GameException("handler is null", ErrorCode.HANDLER_NULL);
+				}
+				GamePlayer gamePlayer=GameEngine.getInstance().findPlayerById(actionMsg.getSession().getUid());
 				AbstractGameBaseHandler gameHandler=(AbstractGameBaseHandler)handler.newInstance();
 				retBuilder=gameHandler.handlerRequest(msgMessage,gamePlayer);
 			}
 			if(retBuilder!=null){
-				retStr=format.printToString(retBuilder);
-				retClsName=retBuilder.getClass().getSimpleName();
+				retStr=messageFormat.messageFormat(retBuilder);
 			}
 			errorCode=ErrorCode.SUCCESS;
 			if(retBuilder!=null){
-				ret=MessageObj.NetMessage.newBuilder().setClassData(retBuilder.toByteString())
-						.setClassName(retClsName).setUid(uid).setRetCode(errorCode).build();
+				ret=new GameMessage();
+				ret.setErrorCode(errorCode);
+				ret.setGroupId(msg.getGroupId());
+				ret.setSubGroupId(msg.getSubGroupId());
+				ret.setBody(messageCoder.encode(retBuilder, classMap.get(cmd+"_res")));
 			}
 		}catch (GameException e) {
 			errorCode=e.getErrorCode();
@@ -159,55 +161,24 @@ public class GameHandlerManager {
 		}finally {
 			try {
 				if(ret==null) {
-					ret=MessageObj.NetMessage.newBuilder().setUid(uid).setRetCode(errorCode).build();
+					ret=new GameMessage();
+					ret.setErrorCode(errorCode);
+					ret.setGroupId(msg.getGroupId());
+					ret.setSubGroupId(msg.getSubGroupId());
 				}
 				actionMsg.getSession().getChannel().writeAndFlush(ret);
 			}catch(Exception e) {
 				logger.error(e.getMessage(),e);
 			}
-			writeLog(start,createTime, cmd, uid, className, msgStr, retClsName, retStr,errorCode);
+			writeLog(start,createTime, cmd, actionMsg.getSession().getUid(), msgStr, retClsName, retStr,errorCode);
 		}
 	}
 	
-	private Message byteStringToMessage(ByteString data,String className){
-		if(Strings.isNullOrEmpty(className)){
-			return null;
-		}
-		
-		Method parseFromMethod = getParseFromMethod(className);
-		
-		try {
-			return (Message) parseFromMethod.invoke(null, data);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			throw new RuntimeException(e);
-		}
-		
-	}
-	
-	private static Method getParseFromMethod(String className) {
-		return parseFromMethods.computeIfAbsent("com.game.pb.server.message."+className+"OuterClass$"+className, (k) -> {
-			Class<? extends Message> clazz = null;
-			try {
-				clazz = (Class<? extends Message>) Class.forName(k);
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException(e);
-			}
-			Method m = null;
-			try {
-				m = clazz.getMethod("parseFrom", ByteString.class);
-			} catch (NoSuchMethodException | SecurityException e) {
-				throw new RuntimeException(e);
-			}
-			return m;
-		});
-	}
-	
-	private void writeLog(long start,long create,String cmd,String uid,String clsName,String msg,String retClsName,String ret
+	private void writeLog(long start,long create,String cmd,String uid,String msg,String retClsName,String ret
 			,ErrorCode errorCode){
 		StringBuilder sb=new StringBuilder();
 		long now=System.currentTimeMillis();
 		sb.append(REQ_RES_STR).append(SEPARATOR)
-		.append(clsName).append(GameHandlerManager.SEPARATOR)
 		.append(retClsName).append(GameHandlerManager.SEPARATOR)
 		.append(uid).append(GameHandlerManager.SEPARATOR)
 		.append(cmd).append(GameHandlerManager.SEPARATOR)

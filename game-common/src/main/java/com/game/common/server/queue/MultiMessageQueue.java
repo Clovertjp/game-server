@@ -9,8 +9,8 @@ import com.game.common.pb.object.GameObject;
 import com.game.common.pb.object.GameObject.GamePbObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.config.Config;
+import com.game.common.server.msg.GameMessage;
 import com.game.common.server.thread.GameThreadFactory;
-import com.game.pb.server.message.MessageObj;
 
 /**
  * @author tangjp
@@ -22,7 +22,7 @@ public class MultiMessageQueue extends AbstractMessageQueue {
 	private ExecutorService executor=Executors.newFixedThreadPool(Config.MESSAGE_MULTI,
 			new GameThreadFactory("MultiMessageQueue")); 
 	
-	private Queue<IAction<MessageObj.NetMessage>> queue=new LinkedBlockingQueue<>();
+	private Queue<IAction<GameMessage>> queue=new LinkedBlockingQueue<>();
 
 	@Override
 	protected ExecutorService getExecutorService() {
@@ -30,7 +30,7 @@ public class MultiMessageQueue extends AbstractMessageQueue {
 	}
 
 	@Override
-	protected Queue<IAction<MessageObj.NetMessage>> getQueue() {
+	protected Queue<IAction<GameMessage>> getQueue() {
 		return queue;
 	}
 }

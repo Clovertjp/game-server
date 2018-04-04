@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.game.common.exception.ErrorCode;
 import com.game.common.exception.GameException;
 import com.game.common.server.filter.bean.DynFilterCount;
 import com.game.common.server.redis.R;
-import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 
 /**
  * @author tangjp

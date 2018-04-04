@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.game.common.exception.GameException;
 
 /**
@@ -111,6 +113,9 @@ public class FilterManager {
 	}
 	
 	public void addMsgFilterCount(String val,DynFilterType type) throws GameException {
+		if(StringUtils.isBlank(val)) {
+			return;
+		}
 		IFilterType typ=type.toOtherFilterType();
 		if(typ!=null) {
 			if(check(val,typ)) {

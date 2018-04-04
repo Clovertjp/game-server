@@ -6,12 +6,12 @@ import java.util.concurrent.ExecutorService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.game.common.exception.ErrorCode;
 import com.game.common.exception.GameException;
 import com.game.common.pb.object.GameObject;
 import com.game.common.server.action.IAction;
 import com.game.common.server.handler.GameHandlerManager;
-import com.game.pb.server.message.MessageObj;
-import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
+import com.game.common.server.msg.GameMessage;
 
 import io.netty.util.internal.StringUtil;
 
@@ -30,7 +30,7 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 	
 	protected abstract ExecutorService getExecutorService();
 	
-	protected abstract Queue<IAction<MessageObj.NetMessage>> getQueue();
+	protected abstract Queue<IAction<GameMessage>> getQueue();
 	
 	private void execute(){
 		
@@ -40,12 +40,12 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 				return ;
 			}
 		}
-		IAction<MessageObj.NetMessage> msg=getQueue().poll();
+		IAction<GameMessage> msg=getQueue().poll();
 		getExecutorService().execute(new MessageTask(msg,this));
 		
 	}
 	
-	public void addQueue(IAction<MessageObj.NetMessage> msg){
+	public void addQueue(IAction<GameMessage> msg){
 		getQueue().add(msg);
 		synchronized (lock) {
 			if(!exec){
@@ -58,10 +58,10 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 	
 	private class MessageTask implements Runnable {
 		
-		private IAction<MessageObj.NetMessage> msg;
+		private IAction<GameMessage> msg;
 		private AbstractMessageQueue queue;
 		
-		public MessageTask(IAction<MessageObj.NetMessage> msg,AbstractMessageQueue queue) {
+		public MessageTask(IAction<GameMessage> msg,AbstractMessageQueue queue) {
 			this.msg=msg;
 			this.queue=queue;
 		}
@@ -69,7 +69,7 @@ public abstract class AbstractMessageQueue implements IMessageQueue {
 		@Override
 		public void run() {
 			try{
-				if(StringUtil.isNullOrEmpty(msg.getMsgObject().getCmd())){
+				if(msg.getMsgObject().getGroupId()<=0 || msg.getMsgObject().getSubGroupId()<=0){
 					throw new GameException("cmd is null",ErrorCode.CMD_NULL);
 				}
 				GameHandlerManager.getInstance().execHandler(msg);

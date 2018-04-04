@@ -2,34 +2,28 @@ package com.game.common.server.handler;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.game.common.exception.ErrorCode;
 import com.game.common.exception.GameException;
 import com.game.common.server.engine.GameEngine;
 import com.game.common.server.palyer.GamePlayer;
 import com.game.common.server.session.GameSession;
-import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 import com.google.protobuf.Message;
 
 /**
  * @author tangjp
  *
  */
-public abstract class AbstractLoginHandler implements IGameLoginHandler {
+public abstract class AbstractLoginHandler<T,K> implements IGameLoginHandler<T,K> {
 
 	@Override
-	public Message handlerRequest(Message msg, GameSession session,GamePlayer gamePlayer,String uid) throws GameException {
-		if(StringUtils.isBlank(uid)) {
-			throw new GameException("uid is null",ErrorCode.UID_NULL);
-		}
-		if(gamePlayer!=null) {
-			throw new GameException("player has login",ErrorCode.PLAYER_HAS_LOGIN);
-		}
-		gamePlayer=new GamePlayer(uid);
-		Message message=onLogin(gamePlayer,msg);
+	public K handlerRequest(T msg, GameSession session) throws GameException {
+		GamePlayer gamePlayer=new GamePlayer();
 		gamePlayer.setGameSession(session);
+		K message=onLogin(gamePlayer,msg);
 		GameEngine.getInstance().addPlayer(gamePlayer);
 		return message;
 	}
 	
-	public abstract Message onLogin(GamePlayer gamePlayer,Message msg);
+	public abstract K onLogin(GamePlayer gamePlayer,T msg);
 
 }

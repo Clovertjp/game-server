@@ -10,7 +10,7 @@ import com.google.protobuf.Message;
  * @author tangjp
  *
  */
-public class TestHandler extends AbstractGameBaseHandler {
+public class TestHandler extends AbstractGameBaseHandler<Message,Message> {
 	
 	public static final String CMD="test";
 
@@ -19,11 +19,4 @@ public class TestHandler extends AbstractGameBaseHandler {
 		// TODO Auto-generated method stub
 		return ResLogin.newBuilder().setParam(gamePlayer.getUid()).build();
 	}
-
-	@Override
-	public String getCmd() {
-		// TODO Auto-generated method stub
-		return CMD;
-	}
-
 }

@@ -16,8 +16,8 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.game.common.exception.ErrorCode;
 import com.game.common.exception.GameException;
-import com.game.pb.server.message.error.ErrorCodeOuterClass.ErrorCode;
 
 import io.netty.util.internal.StringUtil;
 
